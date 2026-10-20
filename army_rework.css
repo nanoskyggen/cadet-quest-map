@@ -1,0 +1,236 @@
+/* ============================================================
+   ARMY TRAINING — "FIELD OPERATIONS COMMAND POST" THEME
+   CSS-only structural enhancements layered on top of army_training.css
+   Adds topographic textures, military stencil feel, field-order
+   prefixes, and task-card corner tabs. No HTML/JS changes needed.
+   ============================================================ */
+
+/* ---------- Sidebar: Topographic map texture overlay ---------- */
+.sidebar {
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(154, 179, 106, 0.04), transparent 25%),
+    radial-gradient(circle at 80% 70%, rgba(154, 179, 106, 0.03), transparent 20%),
+    linear-gradient(180deg, var(--panel), var(--void));
+  position: relative;
+}
+/* Contour-line texture using repeating gradient */
+.sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      108deg,
+      transparent,
+      transparent 18px,
+      rgba(154, 179, 106, 0.025) 18px,
+      rgba(154, 179, 106, 0.025) 19px
+    ),
+    repeating-linear-gradient(
+      72deg,
+      transparent,
+      transparent 24px,
+      rgba(154, 179, 106, 0.02) 24px,
+      rgba(154, 179, 106, 0.02) 25px
+    );
+  pointer-events: none;
+}
+
+/* Nav buttons — military stencil / field tag feel */
+.nav-btn {
+  border-left: 2px solid transparent;
+  transition: border-color .2s, background .2s;
+}
+.nav-btn:hover {
+  border-left-color: var(--army-dim);
+}
+.nav-btn.active {
+  border-left-color: var(--army-bright);
+}
+.nav-btn .txt {
+  letter-spacing: 0.5px;
+}
+
+/* ---------- Section headers — field order prefix ---------- */
+.section-head .eyebrow {
+  position: relative;
+  padding-left: 20px;
+}
+.section-head .eyebrow::before {
+  content: "▶";
+  position: absolute;
+  left: 0;
+  color: var(--army);
+  font-size: 9px;
+  top: 1px;
+}
+.section-head h1 {
+  position: relative;
+}
+.section-head h1::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--army-bright), transparent);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* ---------- Mission cards — field operation task cards ---------- */
+.mission-card {
+  position: relative;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+}
+/* Corner tab — top-right, like a field order tab */
+.mission-card::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 0 16px 16px 0;
+  border-color: transparent var(--army-dim) transparent transparent;
+  opacity: 0;
+  transition: opacity .2s;
+}
+/* Bottom-left topo-line accent */
+.mission-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--army-dim) 0,
+    var(--army-dim) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  opacity: 0;
+  transition: opacity .2s;
+}
+.mission-card:hover:not(.locked)::before {
+  opacity: 0.5;
+}
+.mission-card:hover:not(.locked)::after {
+  opacity: 0.4;
+}
+.mission-card.done::before {
+  opacity: 0.6;
+  border-color: transparent var(--green-dim) transparent transparent;
+}
+
+/* ---------- Briefing panel — field operations map board ---------- */
+.mission-banner {
+  background:
+    radial-gradient(circle at 85% 15%, rgba(154, 179, 106, 0.10), transparent 50%),
+    radial-gradient(circle at 10% 90%, rgba(255, 214, 107, 0.05), transparent 40%),
+    linear-gradient(180deg, var(--panel), var(--void)) !important;
+  position: relative;
+  overflow: hidden;
+}
+/* Grid overlay — like a topographic map grid */
+.mission-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(154,179,106,0.03) 30px, rgba(154,179,106,0.03) 31px),
+    repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(154,179,106,0.03) 30px, rgba(154,179,106,0.03) 31px);
+  pointer-events: none;
+}
+
+/* ---------- Task brief — field order document ---------- */
+.task-brief {
+  border-left: 3px solid var(--army-dim) !important;
+  position: relative;
+}
+.task-brief::before {
+  content: "OP ORDER";
+  position: absolute;
+  top: -1px;
+  right: 10px;
+  font-size: 8px;
+  font-family: var(--mono);
+  letter-spacing: 2px;
+  color: var(--army-dim);
+  background: var(--panel);
+  padding: 0 6px;
+}
+
+/* ---------- Cards — field operations panel ---------- */
+.card {
+  border-top: 2px solid var(--line-soft);
+  position: relative;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--army);
+}
+
+/* ---------- Rank ladder — insignia stripe ---------- */
+.rank-row {
+  border-left: 3px solid var(--line-soft);
+  position: relative;
+}
+.rank-row.current {
+  border-left: 3px solid var(--army-bright);
+  box-shadow: -2px 0 12px rgba(154, 179, 106, 0.2);
+}
+
+/* ---------- Learn library cards — field manual pages ---------- */
+.lib-card {
+  border-left: 3px solid var(--army-dim);
+  position: relative;
+}
+.lib-card::before {
+  content: "FM";
+  position: absolute;
+  top: 8px; right: 10px;
+  font-size: 9px;
+  font-family: var(--mono);
+  letter-spacing: 1px;
+  color: var(--army-dim);
+  opacity: 0.5;
+}
+.lib-card.read {
+  border-left-color: var(--green-dim);
+}
+
+/* ---------- Tags — military designation feel ---------- */
+.tag {
+  border-radius: 3px;
+  font-family: var(--mono);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  background: rgba(154, 179, 106, 0.06);
+}
+
+/* ---------- Task console — command operations console ---------- */
+.task-console {
+  border-top: 2px solid var(--army-dim);
+  position: relative;
+}
+.task-console::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--army-bright), var(--army-dim) 40%, transparent);
+}
+
+/* ---------- Step labels — numbered field orders ---------- */
+.task-step-label .step-num {
+  background: var(--army-dim) !important;
+  color: var(--abyss) !important;
+}

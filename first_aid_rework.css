@@ -1,0 +1,111 @@
+/* ============================================================
+   FIRST AID TRAINING — "FIELD HOSPITAL" THEME
+   CSS-only structural enhancements for the first aid training page.
+   Adds medical cross decorations, triage styling, and field
+   hospital feel. No HTML/JS changes.
+   ============================================================ */
+
+/* ---------- Sidebar: Triage board ---------- */
+.sidebar {
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(217, 75, 75, 0.05), transparent 40%),
+    linear-gradient(180deg, var(--panel), var(--void));
+  position: relative;
+}
+/* Subtle cross pattern */
+.sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(217, 75, 75, 0.015) 40px, rgba(217, 75, 75, 0.015) 41px),
+    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(217, 75, 75, 0.015) 40px, rgba(217, 75, 75, 0.015) 41px);
+  pointer-events: none;
+}
+
+/* Nav buttons — triage category tabs */
+.nav-btn {
+  border-left: 3px solid transparent;
+  transition: border-color .2s, background .2s;
+}
+.nav-btn:hover {
+  border-left-color: var(--red-dim);
+}
+.nav-btn.active {
+  border-left-color: var(--red);
+}
+
+/* ---------- Section headers — medical prefix ---------- */
+.section-head .eyebrow {
+  position: relative;
+  padding-left: 22px;
+}
+.section-head .eyebrow::before {
+  content: "✚";
+  position: absolute;
+  left: 0;
+  color: var(--red);
+  font-size: 13px;
+  top: -2px;
+}
+.section-head h1 {
+  position: relative;
+}
+.section-head h1::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--red), var(--green), transparent);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* ---------- Mission cards — medical task cards ---------- */
+.mission-card {
+  position: relative;
+  border-style: solid;
+  border-width: 1px;
+}
+/* Left accent — medical stripe */
+.mission-card::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--red);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.mission-card:hover:not(.locked)::after {
+  opacity: 0.5;
+}
+.mission-card.done::after {
+  opacity: 0.5;
+  background: var(--green);
+}
+
+/* ---------- Cards — field hospital panels ---------- */
+.card {
+  border-top: 2px solid var(--line);
+  position: relative;
+}
+/* Medical cross accent — using ::after since ::before is not used on .card */
+.card::after {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--red);
+}
+
+/* ---------- Tags — triage designation feel ---------- */
+.tag {
+  border-radius: 2px;
+  font-family: var(--mono);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 10px;
+}

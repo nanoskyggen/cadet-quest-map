@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Phase 2 Sea Cadet Sailing Fundamentals — points of sail, sail trim, tacking, gybing, helm and crew roles, and capsize recovery, with an interactive points-of-sail simulator." />
+  <title data-i18n="Sailing Fundamentals — Phase 2 Sea Cadet">Sailing Fundamentals — Phase 2 Sea Cadet</title>
+  <link rel="stylesheet" href="cadet-html5.css?v=1" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <link rel="stylesheet" href="mobile-fix.css" />
+  <link rel="stylesheet" href="sailing_training.css" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body class="cadet-body">
+
+  <a class="cadet-skip" href="#main" data-i18n="Skip to content">Skip to content</a>
+
+  <!-- ============ APP BAR ============ -->
+  <header class="cadet-appbar">
+    <div class="cadet-appbar__brand">
+      <div class="cadet-appbar__crest" aria-hidden="true">⛵</div>
+      <div>
+        <div class="cadet-appbar__title" data-i18n="Sailing Fundamentals">Sailing Fundamentals</div>
+        <div class="cadet-appbar__sub" data-i18n="Phase 2 · Sea Cadet">Phase 2 · Sea Cadet</div>
+      </div>
+    </div>
+    <div class="cadet-appbar__spacer"></div>
+    <div class="cadet-appbar__actions">
+      <div class="sail-stat"><span class="sail-stat__ico">⚡</span><span class="sail-stat__lbl" data-i18n="XP">XP</span><span class="sail-stat__val" id="topXP">0</span></div>
+      <div class="sail-stat"><span class="sail-stat__ico">🏅</span><span class="sail-stat__lbl" data-i18n="Badges">Badges</span><span class="sail-stat__val" id="topBadges">0</span></div>
+      <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+      <a class="cadet-btn cadet-btn--ghost cadet-btn--sm" href="sea_year2_map.html" data-i18n="← Back to Phase 2 Map">← Back to Phase 2 Map</a>
+    </div>
+  </header>
+
+  <!-- ============ LAYOUT ============ -->
+  <main id="main" class="cadet-layout cadet-layout--split">
+
+    <!-- ---------- RAIL ---------- -->
+    <aside class="cadet-rail" aria-label="Module navigation">
+      <section class="cadet-card">
+        <div class="cadet-eyebrow" data-i18n="Module Progress">Module Progress</div>
+        <div class="sail-progress-row">
+          <strong id="progressPct">0%</strong>
+          <span class="cadet-muted"><span id="progressCount">0</span>/<span id="progressTotal">7</span> <span data-i18n="chapters">chapters</span></span>
+        </div>
+        <div class="cadet-progress" aria-hidden="true"><i id="progressBar"></i></div>
+        <div class="sail-xp-row">
+          <span class="cadet-pill" id="xpPill">0 XP</span>
+          <span class="cadet-chip cadet-chip--muted" id="rankChip" data-i18n="Helm Hand">Helm Hand</span>
+        </div>
+      </section>
+
+      <nav class="cadet-card" aria-label="Chapters">
+        <div class="cadet-eyebrow" data-i18n="Chapters">Chapters</div>
+        <ol class="sail-chapter-list" id="chapterList"><!-- injected --></ol>
+      </nav>
+
+      <section class="cadet-card">
+        <div class="cadet-eyebrow" data-i18n="Skills Check">Skills Check</div>
+        <div class="cadet-progress cadet-progress--gold" aria-hidden="true"><i id="taskBar"></i></div>
+        <p class="cadet-muted sail-small"><span id="taskCount">0</span>/<span id="taskTotal">6</span> <span data-i18n="practical checks complete">practical checks complete</span></p>
+        <a class="cadet-btn cadet-btn--gold" href="sailing_diagnostic.html" style="width:100%;justify-content:center;margin-top:6px">
+          🧭 <span data-i18n="Chart Your Course — Diagnostic Game">Chart Your Course — Diagnostic Game</span>
+        </a>
+        <button class="cadet-btn cadet-btn--ghost cadet-btn--sm" id="resetModule" type="button" style="width:100%;justify-content:center;margin-top:8px">
+          ↺ <span data-i18n="Reset Module">Reset Module</span>
+        </button>
+      </section>
+    </aside>
+
+    <!-- ---------- MAIN ---------- -->
+    <div class="cadet-main">
+
+      <!-- Hero -->
+      <section class="cadet-card sail-hero" aria-labelledby="heroTitle">
+        <div class="sail-hero__badge"><img src="assets/badges/badge_15_sea_program.png" alt="" width="96" height="96" /></div>
+        <div class="sail-hero__text">
+          <div class="cadet-eyebrow" data-i18n="Phase 2 · Module 308 · Practical">Phase 2 · Module 308 · Practical</div>
+          <h1 class="cadet-h1" id="heroTitle" data-i18n="Sailing Fundamentals">Sailing Fundamentals</h1>
+          <p class="cadet-lead" data-i18n="Learn to harness the wind. This module covers how a sail generates drive, the five points of sail, sail trim and telltales, tacking and gybing, the roles of helm and crew, and what to do when a dinghy capsizes. Finish the chapters and the practical checks to earn your Sailing badge.">Learn to harness the wind. This module covers how a sail generates drive, the five points of sail, sail trim and telltales, tacking and gybing, the roles of helm and crew, and what to do when a dinghy capsizes. Finish the chapters and the practical checks to earn your Sailing badge.</p>
+          <div class="cadet-chip-row">
+            <span class="cadet-chip" data-i18n="Sailing">Sailing</span>
+            <span class="cadet-chip" data-i18n="Practical">Practical</span>
+            <span class="cadet-chip cadet-chip--gold" data-i18n="Phase 2">Phase 2</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive simulator -->
+      <section class="cadet-card" aria-labelledby="simTitle">
+        <div class="cadet-card__head">
+          <div>
+            <div class="cadet-eyebrow" data-i18n="Interactive · HTML5 Canvas">Interactive · HTML5 Canvas</div>
+            <h2 class="cadet-h2" id="simTitle" data-i18n="Points of Sail Simulator">Points of Sail Simulator</h2>
+          </div>
+        </div>
+        <p class="cadet-lead sail-small" data-i18n="Turn the boat and set the sail. The simulator shows the wind angle, names the point of sail, and tells you whether your sail is trimmed, luffing, or in the no-go zone. Try to sail every point of sail.">Turn the boat and set the sail. The simulator shows the wind angle, names the point of sail, and tells you whether your sail is trimmed, luffing, or in the no-go zone. Try to sail every point of sail.</p>
+
+        <div class="cadet-canvas-stage sail-sim">
+          <canvas class="cadet-canvas" id="simCanvas" width="900" height="460" role="img"
+                  aria-label="Interactive points of sail simulator showing wind direction, boat heading and sail trim"></canvas>
+          <div class="cadet-canvas-hud">
+            <div class="cadet-canvas-badge" id="hudPoint">—</div>
+            <div class="cadet-canvas-badge" id="hudAngle">—</div>
+            <div class="cadet-canvas-badge" id="hudTrim">—</div>
+          </div>
+        </div>
+
+        <div class="sail-sim-controls">
+          <div class="sail-ctrl">
+            <label for="windRange" data-i18n="Wind direction">Wind direction</label>
+            <input class="cadet-range" type="range" id="windRange" min="0" max="359" value="0" />
+          </div>
+          <div class="sail-ctrl">
+            <label for="headRange" data-i18n="Boat heading">Boat heading</label>
+            <input class="cadet-range" type="range" id="headRange" min="0" max="359" value="45" />
+          </div>
+          <div class="sail-ctrl">
+            <label for="trimRange" data-i18n="Sail trim (sheeting)">Sail trim (sheeting)</label>
+            <input class="cadet-range" type="range" id="trimRange" min="0" max="100" value="50" />
+          </div>
+        </div>
+        <div class="sail-sim-buttons">
+          <button class="cadet-btn cadet-btn--sm" id="btnHeadUp" type="button" data-i18n="Head up (turn to wind)">Head up (turn to wind)</button>
+          <button class="cadet-btn cadet-btn--sm" id="btnBearAway" type="button" data-i18n="Bear away (turn off wind)">Bear away (turn off wind)</button>
+          <button class="cadet-btn cadet-btn--sm" id="btnTack" type="button" data-i18n="Tack">Tack</button>
+          <button class="cadet-btn cadet-btn--sm" id="btnGybe" type="button" data-i18n="Gybe">Gybe</button>
+          <button class="cadet-btn cadet-btn--sm cadet-btn--primary" id="btnAutoTrim" type="button" data-i18n="Auto-trim sail">Auto-trim sail</button>
+        </div>
+        <p class="sail-sim-feedback" id="simFeedback" role="status" aria-live="polite"></p>
+      </section>
+
+      <!-- Chapter reader -->
+      <section class="cadet-card" aria-labelledby="readerTitle">
+        <div class="cadet-card__head">
+          <div>
+            <div class="cadet-eyebrow" data-i18n="Course Content">Course Content</div>
+            <h2 class="cadet-h2" id="readerTitle" data-i18n="Chapter Reader">Chapter Reader</h2>
+          </div>
+        </div>
+        <div class="sail-reader" id="readerBody">
+          <!-- injected: current chapter summary + open button -->
+        </div>
+      </section>
+
+      <!-- Practical checks -->
+      <section class="cadet-card" aria-labelledby="taskTitle">
+        <div class="cadet-card__head">
+          <div>
+            <div class="cadet-eyebrow" data-i18n="Hands-on">Hands-on</div>
+            <h2 class="cadet-h2" id="taskTitle" data-i18n="Practical Checks">Practical Checks</h2>
+          </div>
+        </div>
+        <div id="taskList" class="sail-task-list"><!-- injected --></div>
+      </section>
+
+      <!-- Earn badge -->
+      <section class="cadet-card sail-earn" aria-labelledby="earnTitle">
+        <h2 class="cadet-h2" id="earnTitle" data-i18n="Earn your Sailing badge">Earn your Sailing badge</h2>
+        <p class="cadet-lead sail-small" data-i18n="Complete all 7 chapters and all 6 practical checks, then claim your badge. A confirmation is sent to your unit email and mirrored in your HQ Mail inbox.">Complete all 7 chapters and all 6 practical checks, then claim your badge. A confirmation is sent to your unit email and mirrored in your HQ Mail inbox.</p>
+        <button class="cadet-btn cadet-btn--gold" id="claimBadge" type="button" disabled>
+          🏅 <span data-i18n="Claim Sailing Badge">Claim Sailing Badge</span>
+        </button>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="cadet-footer">
+    <span data-i18n="Cadet Quest Map · Phase 2 Sea Cadet · Sailing Fundamentals">Cadet Quest Map · Phase 2 Sea Cadet · Sailing Fundamentals</span>
+    <span data-i18n="Built on the HTML5 Cadet Shell">Built on the HTML5 Cadet Shell</span>
+  </footer>
+
+  <!-- ============ CHAPTER DIALOG (native <dialog>) ============ -->
+  <dialog class="cadet-dialog cadet-dialog--paper" id="chapterDialog" aria-labelledby="chapterDialogTitle">
+    <div class="cadet-dialog__head">
+      <h2 class="cadet-dialog__title" id="chapterDialogTitle">Chapter</h2>
+      <button class="cadet-dialog__close" type="button" data-close-dialog aria-label="Close">×</button>
+    </div>
+    <div class="cadet-dialog__body" id="chapterDialogBody"></div>
+    <div class="cadet-dialog__foot">
+      <button class="cadet-btn cadet-btn--ghost" type="button" data-close-dialog data-i18n="Close">Close</button>
+      <button class="cadet-btn cadet-btn--primary" type="button" id="chapterDone" data-i18n="Mark chapter complete">Mark chapter complete</button>
+    </div>
+  </dialog>
+
+  <!-- ============ BADGE DIALOG ============ -->
+  <dialog class="cadet-dialog" id="badgeDialog" aria-labelledby="badgeDialogTitle">
+    <div class="cadet-dialog__head">
+      <h2 class="cadet-dialog__title" id="badgeDialogTitle" data-i18n="Sailing badge earned!">Sailing badge earned!</h2>
+      <button class="cadet-dialog__close" type="button" data-close-dialog aria-label="Close">×</button>
+    </div>
+    <div class="cadet-dialog__body" id="badgeDialogBody"></div>
+    <div class="cadet-dialog__foot">
+      <button class="cadet-btn cadet-btn--ghost" type="button" data-close-dialog data-i18n="Close">Close</button>
+      <a class="cadet-btn cadet-btn--primary" href="sea_year2_map.html" data-i18n="Return to Phase 2 Map">Return to Phase 2 Map</a>
+    </div>
+  </dialog>
+
+  <template id="chapterTpl">
+    <article class="sail-chapter-article">
+      <h3 class="sail-chapter-h"></h3>
+      <div class="sail-chapter-body"></div>
+      <div class="sail-keypoints">
+        <h4 data-i18n="Key points">Key points</h4>
+        <ul></ul>
+      </div>
+    </article>
+  </template>
+
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet-html5.js?v=1"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="mobile-nav.js"></script>
+  <script src="sailing_training.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg10" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a2014"/><stop offset="1" stop-color="#0d1008"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#bg10)"/>
+  <!-- map grid -->
+  <rect x="40" y="30" width="320" height="200" fill="#1a2a14" stroke="#9ab36a" stroke-width="2" rx="6"/>
+  <g stroke="#5a7a3a" stroke-width="1" opacity="0.5">
+    <line x1="40" y1="70" x2="360" y2="70"/><line x1="40" y1="110" x2="360" y2="110"/>
+    <line x1="40" y1="150" x2="360" y2="150"/><line x1="40" y1="190" x2="360" y2="190"/>
+    <line x1="80" y1="30" x2="80" y2="230"/><line x1="120" y1="30" x2="120" y2="230"/>
+    <line x1="160" y1="30" x2="160" y2="230"/><line x1="200" y1="30" x2="200" y2="230"/>
+    <line x1="240" y1="30" x2="240" y2="230"/><line x1="280" y1="30" x2="280" y2="230"/>
+    <line x1="320" y1="30" x2="320" y2="230"/>
+  </g>
+  <!-- easting numbers -->
+  <text x="60" y="24" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#9ab36a">41</text>
+  <text x="100" y="24" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#9ab36a">42</text>
+  <text x="140" y="24" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#c9a227" font-weight="bold">42</text>
+  <text x="180" y="24" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#9ab36a">43</text>
+  <!-- northing numbers -->
+  <text x="32" y="153" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#c9a227" font-weight="bold">73</text>
+  <text x="32" y="113" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#9ab36a">74</text>
+  <!-- checkpoint marker -->
+  <g transform="translate(132,158)">
+    <polygon points="0,-12 4,-4 12,-4 6,2 8,10 0,5 -8,10 -6,2 -12,-4 -4,-4" fill="#c9a227" stroke="#ffd655" stroke-width="1"/>
+    <text x="0" y="30" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#ffd655" font-weight="bold">423738</text>
+  </g>
+  <text x="200" y="265" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#9ab36a" opacity="0.7">Grid References</text>
+</svg>

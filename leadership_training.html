@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="Cadet HQ — Leadership Fundamentals Command">Cadet HQ — Leadership Fundamentals Command</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="leadership_training.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+  <link rel="stylesheet" href="mobile-fix.css" />
+  <link rel="stylesheet" href="multimodal.css" />
+</head>
+<body>
+  <!-- ========== TOP BAR ========== -->
+  <header class="topbar">
+    <div class="brand">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Toggle menu">☰</button>
+      <div class="crest">★</div>
+      <div class="brand-text">
+        <div class="t1" data-i18n="CADET HQ">CADET HQ</div>
+        <div class="t2" data-i18n="Leadership Fundamentals">Leadership Fundamentals</div>
+      </div>
+    </div>
+    <div class="top-stats">
+      <div class="top-stat"><span class="ico">⭐</span><span class="lbl" data-i18n="Rank">Rank</span><span class="val" id="topRank">—</span></div>
+      <div class="top-stat"><span class="ico">⚡</span><span class="lbl">XP</span><span class="val" id="topXP">0</span></div>
+      <div class="top-stat"><span class="ico">🏆</span><span class="lbl" data-i18n="Badges">Badges</span><span class="val" id="topBadges">0</span></div>
+            <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+<a class="back-link" href="year2_map.html" data-i18n="← Back to Red Star Map">← Back to Red Star Map</a>
+    </div>
+  </header>
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="pilot-card">
+      <div class="avatar">★</div>
+      <div class="rank-name" id="pilotRank" data-i18n="Red Star Cadet">Red Star Cadet</div>
+      <div class="callsign" id="pilotCallsign" data-i18n="CALLSIGN: LEADER-1">CALLSIGN: LEADER-1</div>
+      <div class="xp-bar"><div class="xp-fill" id="xpFill"></div></div>
+      <div class="xp-text" id="xpText" data-i18n="0 / 400 XP">0 / 400 XP</div>
+    </div>
+
+    <div class="nav-label" data-i18n="Operations">Operations</div>
+    <nav id="mainNav">
+      <button class="nav-btn active" data-section="command" type="button"><span class="ico">★</span><span class="txt" data-i18n="Command">Command</span></button>
+      <button class="nav-btn" data-section="training" type="button"><span class="ico">📋</span><span class="txt" data-i18n="Training">Training</span><span class="badge-dot" id="navTrainingCount">8</span></button>
+      <button class="nav-btn" data-section="missions" type="button"><span class="ico">🎯</span><span class="txt" data-i18n="Missions">Missions</span><span class="badge-dot" id="navMissionCount">8</span></button>
+      <button class="nav-btn" data-section="analysis" type="button"><span class="ico">📊</span><span class="txt" data-i18n="Analysis">Analysis</span></button>
+      <button class="nav-btn" data-section="sitrep" type="button"><span class="ico">📡</span><span class="txt" data-i18n="SITREP">SITREP</span></button>
+      <button class="nav-btn" data-section="ranks" type="button"><span class="ico">⭐</span><span class="txt" data-i18n="Ranks">Ranks</span></button>
+      <button class="nav-btn" data-section="learn" type="button"><span class="ico">📚</span><span class="txt" data-i18n="Learn">Learn</span></button>
+      <button class="nav-btn" data-section="arena" type="button"><span class="ico">🏟️</span><span class="txt" data-i18n="Leadership Arena">Leadership Arena</span></button>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN ========== -->
+  <main class="main">
+
+    <!-- ===== COMMAND (Dashboard) ===== -->
+    <section class="section active" id="section-command">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Command Overview">▸ Command Overview</div>
+        <h1 data-i18n="Leadership Fundamentals Command">Leadership Fundamentals Command</h1>
+        <p data-i18n="Welcome to the Red Star Leadership Fundamentals training command. Your mission is to develop the leadership qualities expected of a second-year Army Cadet — influence, communication, problem solving, integrity, and teamwork. Based on PO 203 of the Red Star qualification standard (A-CR-CCP-702), you will work through eight leadership modules covering responsibilities of a Red Star cadet, principles of leadership, effective communication, positive group dynamics, influence behaviours, problem solving, personal integrity, and team-building. Complete training modules to earn XP, climb the rank ladder, and confirm your fundamentals in the Leadership Arena game.">Welcome to the Red Star Leadership Fundamentals training command. Your mission is to develop the leadership qualities expected of a second-year Army Cadet — influence, communication, problem solving, integrity, and teamwork. Based on PO 203 of the Red Star qualification standard (A-CR-CCP-702), you will work through eight leadership modules covering responsibilities of a Red Star cadet, principles of leadership, effective communication, positive group dynamics, influence behaviours, problem solving, personal integrity, and team-building. Complete training modules to earn XP, climb the rank ladder, and confirm your fundamentals in the Leadership Arena game.</p>
+      </div>
+
+      <!-- Metrics row -->
+      <div class="grid grid-4" style="margin-bottom: 20px;">
+        <div class="metric">
+          <div class="m-ico">🎯</div>
+          <div class="m-val" id="cmdMissionsDone">0</div>
+          <div class="m-lbl" data-i18n="Missions Complete">Missions Complete</div>
+          <div class="m-sub" id="cmdMissionsTotal" data-i18n="of 8">of 8</div>
+        </div>
+        <div class="metric">
+          <div class="m-ico">⚡</div>
+          <div class="m-val" id="cmdXP">0</div>
+          <div class="m-lbl" data-i18n="Total XP">Total XP</div>
+          <div class="m-sub" id="cmdXPNext" data-i18n="+400 to next rank">+400 to next rank</div>
+        </div>
+        <div class="metric warn">
+          <div class="m-ico">📡</div>
+          <div class="m-val" id="cmdSitreps">0</div>
+          <div class="m-lbl" data-i18n="SITREPs Filed">SITREPs Filed</div>
+          <div class="m-sub" data-i18n="Filing recommended">Filing recommended</div>
+        </div>
+        <div class="metric">
+          <div class="m-ico">🏆</div>
+          <div class="m-val" id="cmdBadges">0</div>
+          <div class="m-lbl" data-i18n="Badges Earned">Badges Earned</div>
+          <div class="m-sub" id="cmdBadgeTotal" data-i18n="of 8">of 8</div>
+        </div>
+      </div>
+
+      <!-- Mission briefing + threat panel -->
+      <div class="briefing">
+        <div class="mission-banner">
+          <div class="tag-row">
+            <span class="tag green" data-i18n="PO 203 — LEADERSHIP">PO 203 — LEADERSHIP</span>
+            <span class="tag live" id="opStatusTag" data-i18n="ACTIVE">ACTIVE</span>
+            <span class="tag" data-i18n="RED STAR">RED STAR</span>
+          </div>
+          <h2 data-i18n="Current Operation: Leadership Development Rotation">Current Operation: Leadership Development Rotation</h2>
+          <p class="mission-sub">Your commanding officer has cleared your section to begin the Red Star Leadership Fundamentals training rotation. Work through each module in sequence — cadet responsibilities, principles of leadership, effective communication, positive group dynamics, influence behaviours, problem solving, personal integrity, and team-building. Each mission is a hands-on simulation where you will use the leadership manual, communication guide, problem-solving toolkit, and integrity charter just like a real Red Star cadet leading a peer group. When you have completed all eight modules, test your knowledge in the Leadership Arena confirmation game.</p>
+
+          <div class="chapter-list" id="chapterList">
+            <!-- chapters injected by JS -->
+          </div>
+        </div>
+
+        <div class="threat-panel">
+          <h2><span class="ico">⚠️</span> Leadership Risk Assessment</h2>
+          <p class="muted" style="font-size:12px; line-height:1.6;" data-i18n="Leadership challenges cadets must remain aware of when leading peers. Risk levels update as you progress.">Leadership challenges cadets must remain aware of when leading peers. Risk levels update as you progress.</p>
+          <div class="threat-meter">
+            <div class="threat-bar"><div class="threat-fill" id="threatFill" style="width: 20%;"></div></div>
+            <div class="threat-labels"><span data-i18n="SAFE">SAFE</span><span data-i18n="CAUTION">CAUTION</span><span data-i18n="HIGH">HIGH</span></div>
+          </div>
+          <div id="threatItems">
+            <div class="threat-item">
+              <div class="ti-ico">🗣️</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Poor Communication">Poor Communication</div>
+                <div class="ti-desc" data-i18n="Failing to listen, give clear instructions, or read non-verbal cues breaks down team coordination.">Failing to listen, give clear instructions, or read non-verbal cues breaks down team coordination.</div>
+              </div>
+              <div class="ti-level med" data-i18n="MED">MED</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">⚖️</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Lack of Integrity">Lack of Integrity</div>
+                <div class="ti-desc" data-i18n="Saying one thing and doing another erodes trust and makes team results inconsistent.">Saying one thing and doing another erodes trust and makes team results inconsistent.</div>
+              </div>
+              <div class="ti-level med" data-i18n="MED">MED</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">🔀</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Wrong Influence Behaviour">Wrong Influence Behaviour</div>
+                <div class="ti-desc" data-i18n="Using directive behaviour when persuasion is needed, or vice versa, can damage morale and mission success.">Using directive behaviour when persuasion is needed, or vice versa, can damage morale and mission success.</div>
+              </div>
+              <div class="ti-level low" data-i18n="LOW">LOW</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">🧩</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Skipping Problem-Solving Steps">Skipping Problem-Solving Steps</div>
+                <div class="ti-desc" data-i18n="Jumping to a solution without identifying the critical factor leads to plans that fail in execution.">Jumping to a solution without identifying the critical factor leads to plans that fail in execution.</div>
+              </div>
+              <div class="ti-level low" data-i18n="LOW">LOW</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TRAINING (Module List) ===== -->
+    <section class="section" id="section-training">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Training Modules">▸ Training Modules</div>
+        <h1 data-i18n="Training Pathway">Training Pathway</h1>
+        <p>The Red Star Leadership Fundamentals pathway is built from PO 203 — the eight mandatory Enabling Objectives of the leadership program. Each module teaches core leadership theory from the Red Star instructional guide and then tests it with a hands-on simulation. Complete modules in order to unlock the next.</p>
+      </div>
+      <div class="mission-grid" id="trainingGrid">
+        <!-- training cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- ===== MISSIONS (Active Task Console) ===== -->
+    <section class="section" id="section-missions">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Mission Simulator">▸ Mission Simulator</div>
+        <h1 id="missionHeaderTitle" data-i18n="Select a Mission">Select a Mission</h1>
+        <p id="missionHeaderSub" data-i18n="Choose a training module from the Training tab, or pick a mission below to enter the simulator.">Choose a training module from the Training tab, or pick a mission below to enter the simulator.</p>
+      </div>
+
+      <div id="missionSelector" class="mission-grid">
+        <!-- mission selector cards -->
+      </div>
+
+      <div id="missionConsole" style="display:none;">
+        <!-- Active task console injected here -->
+      </div>
+    </section>
+
+    <!-- ===== ANALYSIS ===== -->
+    <section class="section" id="section-analysis">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Performance Analysis">▸ Performance Analysis</div>
+        <h1 data-i18n="Leadership Performance Dashboard">Leadership Performance Dashboard</h1>
+        <p data-i18n="Track your progress across the eight Red Star leadership training modules. XP is awarded for completing mission tasks correctly. Wrong attempts reduce your mission score but you can retry.">Track your progress across the eight Red Star leadership training modules. XP is awarded for completing mission tasks correctly. Wrong attempts reduce your mission score but you can retry.</p>
+      </div>
+
+      <div class="grid grid-2" style="margin-bottom: 20px;">
+        <div class="card xp-ring-wrap" style="align-items:center; justify-content:center;">
+          <div class="xp-ring">
+            <svg width="120" height="120">
+              <circle class="ring-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="ring-fg" cx="60" cy="60" r="50" id="xpRingFg" stroke-dasharray="314" stroke-dashoffset="314"></circle>
+            </svg>
+            <div class="ring-text">
+              <div class="rt-val" id="ringXP">0</div>
+              <div class="rt-lbl" id="ringRankLabel" data-i18n="Recruit">Recruit</div>
+            </div>
+          </div>
+          <div>
+            <h2 style="margin-bottom:6px;" data-i18n="Career Progression">Career Progression</h2>
+            <p class="muted" style="font-size:12px; line-height:1.6; max-width:300px;">You are working toward <strong id="nextRankName" style="color:var(--crimson-bright)" data-i18n="Peer Leader">Peer Leader</strong>. Complete missions to earn XP and climb the ranks.</p>
+            <p class="mono" style="font-size:11px; color:var(--ink-3); margin-top:8px;" id="ringXPToNext" data-i18n="0 / 400 XP to next rank">0 / 400 XP to next rank</p>
+          </div>
+        </div>
+
+        <div class="card chart-card">
+          <h2><span class="ico">📊</span> XP by Module</h2>
+          <div class="chart-canvas">
+            <div class="bar-chart" id="xpBarChart">
+              <!-- bars injected -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h2><span class="ico">✅</span> Accuracy</h2>
+          <div class="m-val mono" style="font-size:28px; font-weight:800; color:var(--green);" id="accuracyPct">100%</div>
+          <p class="muted" style="font-size:12px; margin-top:6px;" data-i18n="Correct first-try task completions">Correct first-try task completions</p>
+        </div>
+        <div class="card">
+          <h2><span class="ico">🔄</span> Total Attempts</h2>
+          <div class="m-val mono" style="font-size:28px; font-weight:800; color:var(--amber);" id="totalAttempts">0</div>
+          <p class="muted" style="font-size:12px; margin-top:6px;" data-i18n="Across all missions">Across all missions</p>
+        </div>
+        <div class="card">
+          <h2><span class="ico">⏱️</span> Best Streak</h2>
+          <div class="m-val mono" style="font-size:28px; font-weight:800; color:var(--green-bright);" id="bestStreak">0</div>
+          <p class="muted" style="font-size:12px; margin-top:6px;" data-i18n="Consecutive correct tasks">Consecutive correct tasks</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SITREP ===== -->
+    <section class="section" id="section-sitrep">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Situation Reports">▸ Situation Reports</div>
+        <h1 data-i18n="SITREP Filing">SITREP Filing</h1>
+        <p data-i18n="A Situation Report (SITREP) is how cadets communicate mission status to their commanding officer. File a SITREP after each training module to log what you learned and any areas to improve.">A Situation Report (SITREP) is how cadets communicate mission status to their commanding officer. File a SITREP after each training module to log what you learned and any areas to improve.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h2 style="margin-bottom:12px;"><span class="ico">📝</span> <span data-i18n="File New SITREP">File New SITREP</span></h2>
+          <div class="sitrep-form">
+            <div>
+              <label data-i18n="Mission Module">Mission Module</label>
+              <select id="sitrepMission">
+                <option value="" data-i18n="— Select module —">— Select module —</option>
+              </select>
+            </div>
+            <div>
+              <label data-i18n="Status">Status</label>
+              <select id="sitrepStatus">
+                <option value="progress" data-i18n="In Progress">In Progress</option>
+                <option value="complete" data-i18n="Complete">Complete</option>
+              </select>
+            </div>
+            <div>
+              <label data-i18n="Key Learnings">Key Learnings</label>
+              <textarea id="sitrepLearnings" rows="3" placeholder="What did you learn from this module?"></textarea>
+            </div>
+            <div>
+              <label data-i18n="Areas to Improve">Areas to Improve</label>
+              <textarea id="sitrepImprove" rows="2" placeholder="What will you work on next?"></textarea>
+            </div>
+            <button class="btn btn-primary" id="fileSitrepBtn" type="button" data-i18n="File SITREP">File SITREP</button>
+          </div>
+        </div>
+        <div class="card">
+          <h2 style="margin-bottom:12px;"><span class="ico">📋</span> <span data-i18n="SITREP Log">SITREP Log</span></h2>
+          <div class="sitrep-log" id="sitrepLog">
+            <p class="muted" style="font-size:12px; color:var(--ink-3);" data-i18n="No SITREPs filed yet.">No SITREPs filed yet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RANKS ===== -->
+    <section class="section" id="section-ranks">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Rank Progression">▸ Rank Progression</div>
+        <h1 data-i18n="Leadership Rank Ladder">Leadership Rank Ladder</h1>
+        <p data-i18n="Earn XP by completing leadership modules and reading learn articles. Each rank unlocks a new callsign and reflects your growing leadership capability within the Red Star peer setting.">Earn XP by completing leadership modules and reading learn articles. Each rank unlocks a new callsign and reflects your growing leadership capability within the Red Star peer setting.</p>
+      </div>
+      <div class="rank-list" id="rankList">
+        <!-- ranks injected by JS -->
+      </div>
+    </section>
+
+    <!-- ===== LEARN ===== -->
+    <section class="section" id="section-learn">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Learn Library">▸ Learn Library</div>
+        <h1 data-i18n="Leadership Reference Library">Leadership Reference Library</h1>
+        <p data-i18n="Reference articles covering the Red Star PO 203 leadership curriculum. Tap any card to read it and earn XP. These articles are the knowledge base for the mission simulations and the Leadership Arena game.">Reference articles covering the Red Star PO 203 leadership curriculum. Tap any card to read it and earn XP. These articles are the knowledge base for the mission simulations and the Leadership Arena game.</p>
+      </div>
+      <div class="learn-grid" id="learnGrid">
+        <!-- learn cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- ===== LEADERSHIP ARENA (Confirmation Game) ===== -->
+    <section class="section" id="section-arena">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Leadership Arena">▸ Leadership Arena</div>
+        <h1 data-i18n="Leadership Fundamentals Confirmation Game">Leadership Fundamentals Confirmation Game</h1>
+        <p data-i18n="Test your mastery of all eight Red Star leadership modules. The Arena presents randomized questions drawn from every EO — responsibilities, principles, communication, group dynamics, influence behaviours, problem solving, integrity, and team-building. Answer correctly to build your streak and confirm your leadership fundamentals. Complete a 10-question round to earn the Leadership Arena badge.">Test your mastery of all eight Red Star leadership modules. The Arena presents randomized questions drawn from every EO — responsibilities, principles, communication, group dynamics, influence behaviours, problem solving, integrity, and team-building. Answer correctly to build your streak and confirm your leadership fundamentals. Complete a 10-question round to earn the Leadership Arena badge.</p>
+      </div>
+
+      <div class="arena-wrap">
+        <div class="arena-stage" id="arenaStage">
+          <!-- Arena game injected by JS -->
+        </div>
+        <div class="arena-side" id="arenaSide">
+          <!-- Arena stats injected by JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="badge-unlock" id="badgeUnlock" aria-hidden="true"><img id="badgeImage" src="assets/badges/badge_05_leadership.png" alt="badge" /><h2 data-i18n="Badge Unlocked!">Badge Unlocked!</h2><p id="badgeText"></p></div>
+  <div class="toast" id="toast"><span id="toastIco">ℹ️</span><span id="toastText"></span></div>
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="leadership_training.js"></script>
+  <script src="multimodal.js"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="Cadet Avatar — Customize Your Profile">Cadet Avatar — Customize Your Profile</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="avatar.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+  <link rel="stylesheet" href="mobile-fix.css" />
+</head>
+<body>
+
+  <!-- ============ TOP NAV ============ -->
+  <nav class="avatar-nav">
+    <div class="avatar-nav-left">
+      <span class="avatar-nav-crest">🇨🇦</span>
+      <div>
+        <div class="avatar-nav-title">CADET <span data-i18n="AVATAR">AVATAR</span></div>
+        <div class="avatar-nav-sub" data-i18n="Royal Canadian Cadets · Customize Your Profile">Royal Canadian Cadets · Customize Your Profile</div>
+      </div>
+    </div>
+    <div class="avatar-nav-right">
+      <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+      <a href="index.html" class="back-btn">
+        <span class="arrow">←</span>
+        <span data-i18n="Back to Quest Map">Back to Quest Map</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ============ FULL-SCREEN LAYOUT ============ -->
+  <div class="avatar-fullscreen">
+
+    <!-- LEFT: LARGE AVATAR STAGE (fills screen height) -->
+    <section class="avatar-hero-stage">
+      <div class="hero-stage-bg"></div>
+      <span class="stage-sparkle">✨</span>
+      <span class="stage-sparkle">⭐</span>
+      <span class="stage-sparkle">✦</span>
+      <span class="stage-sparkle">★</span>
+      <div class="avatar-svg-wrap" id="avatarSvgWrap"></div>
+      <div class="avatar-id-card">
+        <div class="avatar-id-name" id="avatarNameDisplay" data-i18n="Cadet">Cadet</div>
+        <div class="avatar-id-branch army" id="avatarBranchDisplay">
+          <span id="avatarBranchIcon">★</span>
+          <span id="avatarBranchText" data-i18n="Army Cadet">Army Cadet</span>
+        </div>
+      </div>
+      <div class="avatar-actions">
+        <button class="av-btn save" id="saveBtn" type="button" data-i18n="💾 Save">💾 Save</button>
+        <button class="av-btn random" id="randomBtn" type="button" data-i18n="🎲 Random">🎲 Random</button>
+        <button class="av-btn reset" id="resetBtn" type="button" data-i18n="↺ Reset">↺ Reset</button>
+      </div>
+    </section>
+
+    <!-- RIGHT: SCROLLABLE CUSTOMIZATION + PROFILE -->
+    <section class="avatar-customize-panel">
+
+      <!-- Name input -->
+      <div class="name-input-row">
+        <label for="avatarName" data-i18n="Callsign:">Callsign:</label>
+        <input type="text" id="avatarName" maxlength="20" data-i18n-placeholder="Enter your cadet name…" autocomplete="off" />
+      </div>
+
+      <!-- Branch -->
+      <div class="cat-section">
+        <div class="cat-label"><span class="cat-icon">🪖</span> Cadet Branch <span class="cat-hint" data-i18n="Choose your element">Choose your element</span></div>
+        <div class="opt-grid branch" id="branchGrid"></div>
+      </div>
+
+      <!-- Element-Specific (NEW) -->
+      <div class="cat-section" id="elementSpecificSection">
+        <div class="cat-label"><span class="cat-icon">🎖️</span> Element Specific <span class="cat-hint" data-i18n="Branch gear & extras">Branch gear & extras</span></div>
+        <div class="opt-grid cols-4" id="elementGrid"></div>
+      </div>
+
+      <!-- Skin Tone -->
+      <div class="cat-section">
+        <div class="cat-label"><span class="cat-icon">🤚</span> Skin Tone <span class="cat-hint" data-i18n="Pick a shade">Pick a shade</span></div>
+        <div class="opt-grid cols-5" id="skinGrid"></div>
+      </div>
+
+      <!-- Hair Style -->
+      <div class="cat-section">
+        <div class="cat-label"><span class="cat-icon">💇</span> Hair Style <span class="cat-hint" data-i18n="Select a cut">Select a cut</span></div>
+        <div class="opt-grid cols-6" id="hairGrid"></div>
+      </div>
+
+      <!-- Hair Color -->
+      <div class="cat-section">
+        <div class="cat-label"><span class="cat-icon">🌈</span> Hair Color <span class="cat-hint" data-i18n="Choose a colour">Choose a colour</span></div>
+        <div class="opt-grid cols-6" id="hairColorGrid"></div>
+      </div>
+
+      <!-- Eye Shape -->
+      <div class="cat-section">
+        <div class="cat-label"><span class="cat-icon">👁️</span> Eye Shape <span class="cat-hint" data-i18n="Pick a look">Pick a look</span></div>
+        <div class="opt-grid cols-5" id="eyeGrid"></div>
+      </div>
+
+      <!-- Eyebrows -->
+      <div class="cat-section">
+        <div class="cat-label"><span class="cat-icon">✏️</span> Eyebrows <span class="cat-hint" data-i18n="Set the mood">Set the mood</span></div>
+        <div class="opt-grid cols-6" id="eyebrowGrid"></div>
+      </div>
+
+      <!-- Expression -->
+      <div class="cat-section">
+        <div class="cat-label"><span class="cat-icon">😊</span> Expression <span class="cat-hint" data-i18n="How do you feel?">How do you feel?</span></div>
+        <div class="opt-grid cols-5" id="exprGrid"></div>
+      </div>
+
+      <!-- Details (freckles / blush / etc) -->
+      <div class="cat-section">
+        <div class="cat-label"><span class="cat-icon">🎨</span> Face Details <span class="cat-hint" data-i18n="Freckles & more">Freckles & more</span></div>
+        <div class="opt-grid cols-5" id="detailsGrid"></div>
+      </div>
+
+      <!-- Earrings -->
+      <div class="cat-section">
+        <div class="cat-label"><span class="cat-icon">💎</span> Earrings <span class="cat-hint" data-i18n="Add a sparkle">Add a sparkle</span></div>
+        <div class="opt-grid cols-4" id="earringGrid"></div>
+      </div>
+
+      <!-- Eyewear -->
+      <div class="cat-section">
+        <div class="cat-label"><span class="cat-icon">🕶️</span> Eyewear <span class="cat-hint" data-i18n="Add some flair">Add some flair</span></div>
+        <div class="opt-grid cols-5" id="accGrid"></div>
+      </div>
+
+      <!-- Profile & Badges section -->
+      <div class="cat-section profile-section">
+        <div class="cat-label"><span class="cat-icon">🏆</span> <span data-i18n="Profile &amp; Badges">Profile &amp; Badges</span></div>
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-num" id="statBadges">0</div>
+            <div class="stat-label" data-i18n="Badges Earned">Badges Earned</div>
+          </div>
+          <div class="stat-card progress">
+            <div class="stat-num" id="statProgress">0%</div>
+            <div class="stat-label" data-i18n="Complete">Complete</div>
+          </div>
+        </div>
+        <div class="badge-inv-section">
+          <div class="badge-inv-header">
+            <h3 data-i18n="🏅 Badge Inventory">🏅 Badge Inventory</h3>
+            <span class="badge-inv-count" id="badgeInvCount">0 / 17</span>
+          </div>
+          <div class="badge-inv-grid" id="badgeInvGrid"></div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- Toast -->
+  <div class="av-toast" id="avToast" data-i18n="✓ Avatar saved!">✓ Avatar saved!</div>
+
+  <!-- Attribution footer (DiceBear Adventurer is CC BY 4.0) -->
+  <footer class="avatar-attribution">
+    Avatar faces by <a href="https://www.dicebear.com/styles/adventurer/" target="_blank" rel="noopener" data-i18n="DiceBear Adventurer">DiceBear Adventurer</a>
+    &middot; illustrated by Lisa Wischofsky &middot; <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" data-i18n="CC BY 4.0">CC BY 4.0</a>
+    &middot; cadet uniform &amp; headgear overlays by Cadet Quest Map
+  </footer>
+
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="avatar-render.js"></script>
+  <script src="avatar.js"></script>
+</body>
+</html>

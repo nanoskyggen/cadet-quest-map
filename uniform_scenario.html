@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="Badge 3 Interactive Uniform Inspection">Badge 3 Interactive Uniform Inspection</title>
+  <link rel="stylesheet" href="uniform_scenario.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+  <link rel="stylesheet" href="mobile-fix.css" />
+</head>
+<body>
+  <main class="app">
+    <nav class="top-nav">
+      <a class="back-link" href="index.html" data-i18n="← Back to Quest Map">← Back to Quest Map</a>
+      <button class="small-btn" id="resetGame" type="button" data-i18n="Reset Inspection">Reset Inspection</button>
+          <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+</nav>
+
+    <section class="hero">
+      <article class="panel title-card">
+        <p class="eyebrow" data-i18n="Badge 3 Scenario • Dress & Uniform Standards">Badge 3 Scenario • Dress & Uniform Standards</p>
+        <h1 data-i18n="Uniform Inspection Challenge">Uniform Inspection Challenge</h1>
+        <p class="subtitle" data-i18n="Inspect the cadet, find uniform issues, choose the correct fix, and earn the Dress & Uniform badge. This is a standalone interactive version of map scenario 3, built in the same playable style as the music lesson.">Inspect the cadet, find uniform issues, choose the correct fix, and earn the Dress & Uniform badge. This is a standalone interactive version of map scenario 3, built in the same playable style as the music lesson.</p>
+      </article>
+      <aside class="panel score-card">
+        <h2 data-i18n="Inspection Score">Inspection Score</h2>
+        <div class="progress-shell"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="score-row">
+          <span><strong id="score">0</strong>/100 points</span>
+          <span><strong id="foundCount">0</strong>/4 issues corrected</span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="game">
+      <article class="panel inspection-bay">
+        <div class="bay-title">
+          <h2 data-i18n="Inspection Bay">Inspection Bay</h2>
+          <span class="small-btn" data-i18n="Click glowing areas">Click glowing areas</span>
+        </div>
+        <div class="uniform-stage" aria-label="Interactive cadet uniform inspection scene">
+          <div class="floor-grid" aria-hidden="true"></div>
+          <div class="cadet" aria-hidden="true">
+            <div class="beret"></div>
+            <div class="hair"></div>
+            <div class="head"></div>
+            <div class="collar"></div>
+            <div class="tie"></div>
+            <div class="torso"></div>
+            <div class="arm left"><div class="hand"></div></div>
+            <div class="arm right"><div class="hand"></div></div>
+            <div class="legs"><div class="leg left"></div><div class="leg right"></div></div>
+            <div class="boot left"></div>
+            <div class="boot right"></div>
+            <button class="issue-hotspot hotspot-beret" data-issue="beret" type="button">?</button>
+            <button class="issue-hotspot hotspot-tie" data-issue="tie" type="button">?</button>
+            <button class="issue-hotspot hotspot-boots" data-issue="boots" type="button">?</button>
+            <button class="issue-hotspot hotspot-sleeve" data-issue="sleeve" type="button">?</button>
+          </div>
+        </div>
+      </article>
+
+      <aside class="panel inspector-panel">
+        <h2 data-i18n="Mission Brief">Mission Brief</h2>
+        <p class="brief" data-i18n="A cadet is about to report for inspection. Four details need attention. Select a glowing inspection area, then choose the best correction. Wrong answers give feedback; correct answers add points and update your checklist.">A cadet is about to report for inspection. Four details need attention. Select a glowing inspection area, then choose the best correction. Wrong answers give feedback; correct answers add points and update your checklist.</p>
+        <ul class="mission-list">
+          <li data-i18n="1. Inspect the highlighted uniform area.">1. Inspect the highlighted uniform area.</li>
+          <li data-i18n="2. Read the issue clue.">2. Read the issue clue.</li>
+          <li data-i18n="3. Choose the best correction.">3. Choose the best correction.</li>
+          <li data-i18n="4. Correct all four issues to unlock the badge.">4. Correct all four issues to unlock the badge.</li>
+        </ul>
+
+        <div class="feedback" id="feedback">
+          <h3 data-i18n="Awaiting inspection">Awaiting inspection</h3>
+          <p data-i18n="Click a glowing area on the cadet uniform to begin.">Click a glowing area on the cadet uniform to begin.</p>
+        </div>
+
+        <div class="correction-card" id="correctionCard">
+          <h3 id="correctionTitle" data-i18n="Correction Choice">Correction Choice</h3>
+          <div class="choice-grid" id="choiceGrid"></div>
+        </div>
+
+        <div class="tools">
+          <button class="btn" id="hintBtn" type="button" data-i18n="Give Hint">Give Hint</button>
+          <button class="btn secondary" id="autoDemo" type="button" data-i18n="Auto Demo Correct Path">Auto Demo Correct Path</button>
+        </div>
+
+        <div class="inventory" id="inventory"></div>
+      </aside>
+    </section>
+  </main>
+
+  <div class="badge-unlock" id="badgeUnlock" aria-hidden="true">
+    <img src="assets/badges/badge_03_dress_and_uniform.png" alt="Dress and Uniform badge" />
+    <h2 data-i18n="Badge Unlocked!">Badge Unlocked!</h2>
+    <p data-i18n="Dress & Uniform Standards inspection complete.">Dress & Uniform Standards inspection complete.</p>
+  </div>
+
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="uniform_scenario.js"></script>
+</body>
+</html>

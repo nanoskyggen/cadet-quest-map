@@ -1,0 +1,538 @@
+/* ============================================================
+   mobile-fix.css — Site-wide mobile responsiveness fixes
+   Included after page-specific CSS to override layout issues
+   on narrow screens (phones, 390px–480px wide).
+   ============================================================ */
+
+/* ============================================================
+   TRAINING PAGES — Topbar header fixes
+   All 16 training pages share the same .topbar structure:
+   .brand (hamburger + crest + brand-text) | .top-stats (Rank, XP, Badges, lang, back-link)
+   ============================================================ */
+
+/* ---- Tablet / small landscape: start compacting ---- */
+@media (max-width: 860px) {
+  .topbar {
+    padding: 0 12px;
+    height: auto;
+    min-height: 52px;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+  }
+  .topbar .brand {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .topbar .brand .crest {
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
+  }
+  .topbar .brand .brand-text .t1 {
+    font-size: 12px;
+  }
+  .topbar .brand .brand-text .t2 {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+  .topbar .top-stats {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .topbar .back-link {
+    font-size: 11px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+}
+
+/* ---- Phone portrait: aggressive compaction ---- */
+@media (max-width: 640px) {
+  .topbar {
+    padding: 6px 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  /* Brand row: hamburger + crest + short title; hide subtitle */
+  .topbar .brand {
+    gap: 8px;
+  }
+  .topbar .brand .crest {
+    width: 24px;
+    height: 24px;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .topbar .brand .brand-text .t1 {
+    font-size: 11px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+  }
+  .topbar .brand .brand-text .t2 {
+    display: none;
+  }
+  /* Stats: show icons + values only, hide text labels */
+  .topbar .top-stats {
+    gap: 6px;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  .topbar .top-stat {
+    gap: 3px;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+  .topbar .top-stat .lbl {
+    display: none;
+  }
+  .topbar .top-stat .ico {
+    font-size: 13px;
+  }
+  /* Language switcher: compact */
+  .topbar .lang-switcher {
+    padding: 1px;
+  }
+  .topbar .lang-btn {
+    min-width: 30px;
+    height: 24px;
+    font-size: 11px;
+    padding: 0 7px;
+  }
+  /* Back link: icon-only on very narrow screens */
+  .topbar .back-link {
+    font-size: 0;
+    padding: 5px 8px;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .topbar .back-link::before {
+    content: "←";
+    font-size: 14px;
+  }
+}
+
+/* ---- Very narrow phones (360px and below) ---- */
+@media (max-width: 380px) {
+  .topbar .brand .brand-text .t1 {
+    max-width: 100px;
+    font-size: 10px;
+  }
+  .topbar .top-stats {
+    gap: 4px;
+  }
+  .topbar .top-stat .val {
+    font-size: 11px;
+  }
+}
+
+/* ============================================================
+   TRAINING PAGES — Sidebar / body grid fixes
+   Ensure sidebar is off-canvas and body is single column
+   ============================================================ */
+
+@media (max-width: 860px) {
+  body {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: "topbar" "main" !important;
+    grid-template-rows: auto 1fr !important;
+  }
+  .sidebar {
+    position: fixed !important;
+    left: -260px !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 248px !important;
+    max-width: 85vw !important;
+    transition: left 0.25s ease !important;
+    z-index: 50 !important;
+    overflow-y: auto !important;
+  }
+  .sidebar.open {
+    left: 0 !important;
+  }
+  .mobile-menu-btn {
+    display: block !important;
+  }
+  /* Overlay backdrop when sidebar is open */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 49;
+  }
+  .sidebar-overlay.show {
+    display: block;
+  }
+  .main {
+    padding: 14px !important;
+    overflow-x: hidden;
+  }
+}
+
+/* ---- Grids: collapse to fewer columns on tablet, 1 on phone ---- */
+@media (max-width: 860px) {
+  .grid-4,
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 640px) {
+  .grid-4,
+  .grid-3,
+  .grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+  .briefing {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   TRAINING PAGES — Section headings, cards, and content
+   ============================================================ */
+@media (max-width: 640px) {
+  .section-head h1 {
+    font-size: 22px !important;
+  }
+  .section-head .eyebrow {
+    font-size: 10px !important;
+  }
+  .section-head p {
+    font-size: 13px !important;
+  }
+  .card {
+    padding: 14px !important;
+  }
+  .card h2 {
+    font-size: 14px !important;
+  }
+  .metric {
+    padding: 12px !important;
+  }
+  .metric .m-val {
+    font-size: 22px !important;
+  }
+  .metric .m-ico {
+    font-size: 20px !important;
+  }
+}
+
+/* ============================================================
+   TRAINING PAGES — Game/simulator 2-column layouts
+   ============================================================ */
+@media (max-width: 860px) {
+  .fc-wrap,
+  .parade-game-wrap,
+  .nav-game-wrap,
+  .range-game-wrap,
+  .er-game-wrap,
+  .arena-game-wrap,
+  .inspection-game-wrap,
+  .ub-wrap,
+  .parade-ground-wrap,
+  .bc-body,
+  .bi-bottom-grid,
+  .bridge-stations {
+    grid-template-columns: 1fr !important;
+  }
+  .fc-map,
+  .fc-map-frame {
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .fc-scoreboard,
+  .nav-scoreboard,
+  .fcs-info {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .bridge-stations {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ============================================================
+   NAV BUTTONS — Ensure text doesn't overflow
+   ============================================================ */
+@media (max-width: 860px) {
+  .nav-btn {
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+  }
+  .nav-btn .ico {
+    font-size: 16px !important;
+  }
+  .nav-btn .txt {
+    font-size: 12px !important;
+  }
+}
+
+/* ============================================================
+   SCENARIO PAGES — top-nav fixes
+   ============================================================ */
+@media (max-width: 640px) {
+  .top-nav {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    padding: 10px 12px !important;
+  }
+  .top-nav .back-btn,
+  .top-nav .reset-btn,
+  .top-nav a {
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+    white-space: nowrap !important;
+  }
+  .top-nav .lang-switcher {
+    order: 99;
+  }
+}
+
+/* ============================================================
+   INDEX PAGE (styles.css) — quest map fixes
+   ============================================================ */
+@media (max-width: 640px) {
+  .hero-banner {
+    padding: 20px 14px !important;
+  }
+  .hero-banner h1 {
+    font-size: 26px !important;
+  }
+  .hero-banner .hero-desc {
+    font-size: 13px !important;
+  }
+  .hero-badge-row {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  .campus-map-wrap {
+    padding: 10px !important;
+  }
+  .quest-node {
+    transform: scale(0.85) !important;
+  }
+  .profile-btn {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding: 12px !important;
+  }
+}
+
+/* ============================================================
+   AVATAR PAGE (avatar.css) — fixes
+   ============================================================ */
+@media (max-width: 640px) {
+  .avatar-nav {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    padding: 8px 12px !important;
+  }
+  .avatar-nav .nav-title {
+    font-size: 14px !important;
+  }
+  .avatar-nav .back-link {
+    font-size: 12px !important;
+    padding: 5px 10px !important;
+    white-space: nowrap !important;
+  }
+  .avatar-stage {
+    padding: 12px !important;
+  }
+  .avatar-svg-wrap {
+    max-width: 100% !important;
+  }
+  .avatar-svg-wrap svg {
+    max-height: 45vh !important;
+  }
+  .avatar-controls {
+    padding: 12px !important;
+  }
+  .option-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+  .option-btn {
+    padding: 8px 6px !important;
+    font-size: 11px !important;
+  }
+  .option-btn .opt-label {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .option-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ============================================================
+   YEAR2 MAP PAGES — fixes
+   ============================================================ */
+@media (max-width: 640px) {
+  .header,
+  .title-card {
+    padding: 14px !important;
+  }
+  .header h1,
+  .title-card h1 {
+    font-size: 20px !important;
+  }
+  .header p,
+  .title-card p {
+    font-size: 12px !important;
+  }
+  .title-card-bottom-row {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  .map-container,
+  .map-wrap {
+    padding: 8px !important;
+  }
+  .map-svg {
+    width: 100% !important;
+    height: auto !important;
+  }
+  .quest-badge {
+    transform: scale(0.8) !important;
+  }
+}
+
+/* ============================================================
+   CYBER RANGE & ESCAPE ROOM — fixes
+   ============================================================ */
+@media (max-width: 640px) {
+  .vm-top-row,
+  .er-top-row {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    padding: 8px 12px !important;
+  }
+  .vm-top-row .back-link,
+  .er-top-row .back-link,
+  .vm-shell .back-link,
+  .er-shell .back-link {
+    font-size: 12px !important;
+    padding: 5px 10px !important;
+    white-space: nowrap !important;
+  }
+  .vm-login-box,
+  .er-panel {
+    padding: 16px !important;
+    margin: 12px !important;
+  }
+  .vm-login-box h2,
+  .er-panel h2 {
+    font-size: 18px !important;
+  }
+}
+
+/* ============================================================
+   GLOBAL — prevent horizontal overflow
+   ============================================================ */
+@media (max-width: 860px) {
+  body {
+    overflow-x: hidden !important;
+  }
+  * {
+    max-width: 100% !important;
+  }
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  pre,
+  code {
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+  }
+}
+
+/* ============================================================
+   GLOBAL — touch target sizing (minimum 40px for buttons)
+   ============================================================ */
+@media (max-width: 640px) {
+  button,
+  .btn,
+  .nav-btn,
+  a[role="button"] {
+    min-height: 36px;
+  }
+}
+
+/* ============================================================
+   FONT SIZES — scale down headings globally on mobile
+   ============================================================ */
+@media (max-width: 640px) {
+  h1 { font-size: 22px !important; }
+  h2 { font-size: 18px !important; }
+  h3 { font-size: 16px !important; }
+  p { font-size: 13px !important; line-height: 1.5 !important; }
+  li { font-size: 13px !important; }
+}
+
+/* ============================================================
+   TRAINING PAGES — Tab/section content fixes
+   ============================================================ */
+@media (max-width: 640px) {
+  .section {
+    padding: 0 !important;
+  }
+  .section-head {
+    margin-bottom: 14px !important;
+  }
+  .mission-banner,
+  .briefing-card {
+    padding: 14px !important;
+  }
+  .tag-row {
+    gap: 6px !important;
+  }
+  .tag {
+    font-size: 9px !important;
+    padding: 3px 8px !important;
+  }
+}
+
+/* ============================================================
+   LIBRARY / LEARN sections — grid fixes
+   ============================================================ */
+@media (max-width: 860px) {
+  .lib-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   MODALS / OVERLAYS — full screen on mobile
+   ============================================================ */
+@media (max-width: 640px) {
+  .modal,
+  .overlay,
+  .dialog {
+    width: 95vw !important;
+    max-width: 95vw !important;
+    margin: 10px auto !important;
+    padding: 16px !important;
+  }
+  .modal-content,
+  .overlay-content {
+    max-height: 85vh !important;
+    overflow-y: auto !important;
+  }
+}

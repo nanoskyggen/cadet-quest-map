@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title></title>
+  <link rel="stylesheet" href="scenario_page.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <link rel="stylesheet" href="mobile-fix.css" />
+</head>
+<body>
+  <main class="app">
+    <nav class="top-nav">
+      <a class="back-link" href="index.html" data-i18n="← Back to Quest Map">← Back to Quest Map</a>
+      <button class="small-btn" id="resetGame" type="button" data-i18n="Reset Scenario">Reset Scenario</button>
+          <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+</nav>
+    <section class="hero">
+      <article class="panel title-card">
+        <p class="eyebrow" id="eyebrow"></p>
+        <h1 id="pageTitle"></h1>
+        <p class="subtitle" id="subtitle"></p>
+      </article>
+      <aside class="panel score-card">
+        <h2 id="scoreTitle"></h2>
+        <div class="progress-shell"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="score-row">
+          <span><strong id="score">0</strong>/100 points</span>
+          <span><strong id="foundCount">0</strong>/<strong id="totalCount">4</strong> complete</span>
+        </div>
+      </aside>
+    </section>
+    <section class="game">
+      <article class="panel scene-panel">
+        <div class="scene-title"><h2 id="sceneTitle"></h2><span class="small-btn" id="stageLabel"></span></div>
+        <div class="scene-stage" aria-label="Interactive scenario scene"><div class="scene-art" id="sceneArt"></div></div>
+      </article>
+      <aside class="panel mission-panel">
+        <h2 id="missionTitle"></h2>
+        <p class="brief" id="brief"></p>
+        <ul class="mission-list" id="missionList"></ul>
+        <div class="feedback" id="feedback"></div>
+        <div class="challenge-card" id="challengeCard"><h3 id="challengeTitle"></h3><div class="choice-grid" id="choiceGrid"></div></div>
+        <div class="tools"><button class="btn" id="hintBtn" type="button" data-i18n="Give Hint">Give Hint</button><button class="btn secondary" id="autoDemo" type="button" data-i18n="Auto Demo Correct Path">Auto Demo Correct Path</button></div>
+        <div class="inventory" id="inventory"></div>
+      </aside>
+    </section>
+  </main>
+  <div class="badge-unlock" id="badgeUnlock" aria-hidden="true"><img id="badgeImage" alt="badge" /><h2 data-i18n="Badge Unlocked!">Badge Unlocked!</h2><p id="badgeText"></p></div>
+  <script>window.SCENARIO_CONFIG = {"badgeId": 14, "storageKey": "scenario14_army", "pageTitle": "Badge 14 Interactive Army Cadet Fieldcraft", "eyebrow": "Badge 14 Scenario • Army Program", "title": "Army Cadet Fieldcraft Quest", "subtitle": "Use army-green pathway choices to complete observation, navigation, packing, and team movement decisions.", "scoreTitle": "Fieldcraft Score", "sceneTitle": "Fieldcraft Training Camp", "stageLabel": "Click field stations", "theme": ["#456534", "#9ab36a"], "badge": "assets/badges/badge_14_army_program.png", "brief": "Your team is moving through a fieldcraft training area. Complete each station by choosing safe, organized field decisions.", "missionSteps": ["Observe the terrain.", "Plan the route.", "Check the pack.", "Move as a team."], "startPrompt": "Click a glowing fieldcraft station to begin.", "unlockText": "Army Program badge unlocked — fieldcraft route complete.", "sceneObjects": [{"x": "9%", "y": "13%", "size": "big", "html": "Observation<br>Point"}, {"x": "62%", "y": "12%", "size": "big", "html": "Map &<br>Compass"}, {"x": "12%", "y": "70%", "size": "med", "html": "Rucksack<br>Check"}, {"x": "68%", "y": "70%", "size": "med", "html": "Team<br>Route"}], "tasks": [{"id": "observe", "label": "Observation Point", "marker": "1", "x": "22%", "y": "31%", "clue": "You need to describe the area from an observation point.", "question": "Which observation is strongest?", "hint": "Use detail, not guesses.", "choices": [{"text": "Describe visible terrain, routes, obstacles, and team safety considerations.", "correct": true, "feedback": "Correct. Useful observation is specific and relevant."}, {"text": "Say “looks fine” without checking.", "correct": false, "feedback": "Wrong response. Fieldcraft needs careful observation."}, {"text": "Guess what is behind every tree.", "correct": false, "feedback": "Not quite. Separate what you see from what you assume."}]}, {"id": "route", "label": "Map & Compass", "marker": "2", "x": "76%", "y": "32%", "clue": "The map shows two routes to the next station.", "question": "Which route choice is best?", "hint": "Safe and clear beats fastest if the fast route is risky.", "choices": [{"text": "Choose the route with clear checkpoints and fewer hazards.", "correct": true, "feedback": "Correct. Safe navigation uses checkpoints and hazard awareness."}, {"text": "Choose the shortest line even if it crosses unsafe ground.", "correct": false, "feedback": "Wrong response. Shortest is not always safest."}, {"text": "Ignore the map and follow instinct only.", "correct": false, "feedback": "Not quite. Use navigation tools."}]}, {"id": "pack", "label": "Rucksack Check", "marker": "3", "x": "25%", "y": "78%", "clue": "Your pack needs a quick check before moving.", "question": "Which pack choice is best?", "hint": "Think essentials, balance, and access.", "choices": [{"text": "Pack essentials, balance weight, and keep needed items accessible.", "correct": true, "feedback": "Correct. Good packing supports safe movement."}, {"text": "Pack every possible item until the bag is overloaded.", "correct": false, "feedback": "Wrong response. Overpacking can slow and tire the team."}, {"text": "Carry nothing because teammates can share.", "correct": false, "feedback": "Not quite. Each cadet has preparation responsibility."}]}, {"id": "movement", "label": "Team Movement", "marker": "4", "x": "78%", "y": "78%", "clue": "Your section moves to the next checkpoint.", "question": "Which movement choice is best?", "hint": "Team spacing and communication matter.", "choices": [{"text": "Move together with clear spacing, checkpoints, and leader communication.", "correct": true, "feedback": "Correct. Organized movement keeps the group together."}, {"text": "Let everyone race ahead alone.", "correct": false, "feedback": "Wrong response. The team can become separated."}, {"text": "Move silently even when someone is missing.", "correct": false, "feedback": "Not quite. Account for the team."}]}]};</script>
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="scenario_page.js"></script>
+</body>
+</html>

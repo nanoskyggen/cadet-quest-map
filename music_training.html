@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="Operation Harmony — Cadet Music Training Command">Operation Harmony — Cadet Music Training Command</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="music_training.css" />
+  <link rel="stylesheet" href="music_rework.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+  <link rel="stylesheet" href="mobile-fix.css" />
+  <link rel="stylesheet" href="multimodal.css" />
+</head>
+<body>
+  <!-- ========== TOP BAR ========== -->
+  <header class="topbar">
+    <div class="brand">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Toggle menu">☰</button>
+      <div class="crest">♪</div>
+      <div class="brand-text">
+        <div class="t1" data-i18n="HARMONY COMMAND">HARMONY COMMAND</div>
+        <div class="t2" data-i18n="Cadet Music Training">Cadet Music Training</div>
+      </div>
+    </div>
+    <div class="top-stats">
+      <div class="top-stat"><span class="ico">⭐</span><span class="lbl" data-i18n="Rank">Rank</span><span class="val" id="topRank">—</span></div>
+      <div class="top-stat"><span class="ico">⚡</span><span class="lbl">XP</span><span class="val" id="topXP">0</span></div>
+      <div class="top-stat"><span class="ico">🏆</span><span class="lbl" data-i18n="Badges">Badges</span><span class="val" id="topBadges">0</span></div>
+            <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+<a class="back-link" href="index.html" data-i18n="← Back to Quest Map">← Back to Quest Map</a>
+    </div>
+  </header>
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="pilot-card">
+      <div class="avatar">🎼</div>
+      <div class="rank-name" id="pilotRank" data-i18n="Cadet Musician Trainee">Cadet Musician Trainee</div>
+      <div class="callsign" id="pilotCallsign" data-i18n="CALLSIGN: ROOKIE-1">CALLSIGN: ROOKIE-1</div>
+      <div class="xp-bar"><div class="xp-fill" id="xpFill"></div></div>
+      <div class="xp-text" id="xpText" data-i18n="0 / 300 XP">0 / 300 XP</div>
+    </div>
+
+    <div class="nav-label" data-i18n="Operations">Operations</div>
+    <nav id="mainNav">
+      <button class="nav-btn active" data-section="command" type="button"><span class="ico">🎖️</span><span class="txt" data-i18n="Command">Command</span></button>
+      <button class="nav-btn" data-section="training" type="button"><span class="ico">📋</span><span class="txt" data-i18n="Training">Training</span><span class="badge-dot" id="navTrainingCount">12</span></button>
+      <button class="nav-btn" data-section="missions" type="button"><span class="ico">🎯</span><span class="txt" data-i18n="Missions">Missions</span><span class="badge-dot" id="navMissionCount">12</span></button>
+      <button class="nav-btn" data-section="analysis" type="button"><span class="ico">📊</span><span class="txt" data-i18n="Analysis">Analysis</span></button>
+      <button class="nav-btn" data-section="sitrep" type="button"><span class="ico">📠</span><span class="txt" data-i18n="SITREP">SITREP</span></button>
+      <button class="nav-btn" data-section="ranks" type="button"><span class="ico">⭐</span><span class="txt" data-i18n="Ranks">Ranks</span></button>
+      <button class="nav-btn" data-section="learn" type="button"><span class="ico">📚</span><span class="txt" data-i18n="Learn">Learn</span></button>
+      <button class="nav-btn" data-section="earlab" type="button"><span class="ico">👂</span><span class="txt" data-i18n="Ear Lab">Ear Lab</span></button>
+      <button class="nav-btn" data-section="composer" type="button"><span class="ico">🎹</span><span class="txt" data-i18n="Composer">Composer</span></button>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN ========== -->
+  <main class="main">
+
+    <!-- ===== COMMAND (Dashboard) ===== -->
+    <section class="section active" id="section-command">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Command Overview">▸ Command Overview</div>
+        <h1 data-i18n="Music Command Centre">Music Command Centre</h1>
+        <p data-i18n="Welcome to Operation Harmony. The cadet music program trains musicians in two band types — the Military Band (woodwinds, brass, and percussion) and the Pipe Band (pipes and drums). Work through instrument-section training modules to earn XP, climb the proficiency ladder, and file your SITREPs. Each module covers instrument fundamentals, technique, care and maintenance, marching and parade, and proficiency assessment.">Welcome to Operation Harmony. The cadet music program trains musicians in two band types — the Military Band (woodwinds, brass, and percussion) and the Pipe Band (pipes and drums). Work through instrument-section training modules to earn XP, climb the proficiency ladder, and file your SITREPs. Each module covers instrument fundamentals, technique, care and maintenance, marching and parade, and proficiency assessment.</p>
+      </div>
+
+      <!-- Metrics row -->
+      <div class="grid grid-4" style="margin-bottom: 20px;">
+        <div class="metric">
+          <div class="m-ico">🎯</div>
+          <div class="m-val" id="cmdMissionsDone">0</div>
+          <div class="m-lbl" data-i18n="Modules Complete">Modules Complete</div>
+          <div class="m-sub" id="cmdMissionsTotal" data-i18n="of 12">of 12</div>
+        </div>
+        <div class="metric">
+          <div class="m-ico">⚡</div>
+          <div class="m-val" id="cmdXP">0</div>
+          <div class="m-lbl" data-i18n="Total XP">Total XP</div>
+          <div class="m-sub" id="cmdXPNext" data-i18n="+300 to next rank">+300 to next rank</div>
+        </div>
+        <div class="metric warn">
+          <div class="m-ico">📠</div>
+          <div class="m-val" id="cmdSitreps">0</div>
+          <div class="m-lbl" data-i18n="SITREPs Filed">SITREPs Filed</div>
+          <div class="m-sub" data-i18n="Filing recommended">Filing recommended</div>
+        </div>
+        <div class="metric">
+          <div class="m-ico">🏆</div>
+          <div class="m-val" id="cmdBadges">0</div>
+          <div class="m-lbl" data-i18n="Badges Earned">Badges Earned</div>
+          <div class="m-sub" id="cmdBadgeTotal" data-i18n="of 12">of 12</div>
+        </div>
+      </div>
+
+      <!-- Mission briefing + assessment panel -->
+      <div class="briefing">
+        <div class="mission-banner">
+          <div class="tag-row">
+            <span class="tag music" data-i18n="OPERATION HARMONY">OPERATION HARMONY</span>
+            <span class="tag live" id="opStatusTag" data-i18n="ACTIVE">ACTIVE</span>
+            <span class="tag gold" data-i18n="PHASE 1">PHASE 1</span>
+          </div>
+          <h2 data-i18n="Current Operation: Foundations of Cadet Music">Current Operation: Foundations of Cadet Music</h2>
+          <p class="mission-sub" data-i18n="Your bandmaster has cleared you to begin the cadet music training rotation. Training is organised by instrument family — Brass, Woodwind, Percussion, and Pipes &amp; Drums. Each section teaches instrument anatomy, playing technique, care and maintenance, marching and parade drill, and proficiency standards from Basic through Level 5. Complete modules in sequence to unlock the next and earn your music proficiency badges.">Your bandmaster has cleared you to begin the cadet music training rotation. Training is organised by instrument family — Brass, Woodwind, Percussion, and Pipes &amp; Drums. Each section teaches instrument anatomy, playing technique, care and maintenance, marching and parade drill, and proficiency standards from Basic through Level 5. Complete modules in sequence to unlock the next and earn your music proficiency badges.</p>
+
+          <div class="chapter-list" id="chapterList">
+            <!-- chapters injected by JS -->
+          </div>
+        </div>
+
+        <div class="threat-panel">
+          <h2><span class="ico">⚠️</span> Readiness Assessment</h2>
+          <p class="muted" style="font-size:12px; line-height:1.6;" data-i18n="Key areas cadet musicians must master before performance. Readiness levels update as you progress through training.">Key areas cadet musicians must master before performance. Readiness levels update as you progress through training.</p>
+          <div class="threat-meter">
+            <div class="threat-bar"><div class="threat-fill" id="threatFill" style="width: 35%;"></div></div>
+            <div class="threat-labels"><span data-i18n="BASIC">BASIC</span><span data-i18n="COMPETENT">COMPETENT</span><span data-i18n="PROFICIENT">PROFICIENT</span></div>
+          </div>
+          <div id="threatItems">
+            <div class="threat-item">
+              <div class="ti-ico">🧰</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Instrument Care">Instrument Care</div>
+                <div class="ti-desc" data-i18n="Proper cleaning, lubrication, and storage prevent damage and extend instrument life.">Proper cleaning, lubrication, and storage prevent damage and extend instrument life.</div>
+              </div>
+              <div class="ti-level med" data-i18n="MED">MED</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">🎵</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Pitch &amp; Tuning">Pitch &amp; Tuning</div>
+                <div class="ti-desc" data-i18n="Maintaining correct pitch is essential for ensemble cohesion during performances.">Maintaining correct pitch is essential for ensemble cohesion during performances.</div>
+              </div>
+              <div class="ti-level high" data-i18n="HIGH">HIGH</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">🥁</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Marching Drill">Marching Drill</div>
+                <div class="ti-desc" data-i18n="Coordinating playing while marching requires practice in timing and formation.">Coordinating playing while marching requires practice in timing and formation.</div>
+              </div>
+              <div class="ti-level med" data-i18n="MED">MED</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">📖</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Music Theory">Music Theory</div>
+                <div class="ti-desc" data-i18n="Reading notation, understanding rhythm, and key signatures underpin all playing.">Reading notation, understanding rhythm, and key signatures underpin all playing.</div>
+              </div>
+              <div class="ti-level low" data-i18n="LOW">LOW</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TRAINING (Module List by Section) ===== -->
+    <section class="section" id="section-training">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Training Modules">▸ Training Modules</div>
+        <h1 data-i18n="Training Pathway">Training Pathway</h1>
+        <p>The cadet music training pathway is organised by instrument family. Each module teaches core instrument knowledge and then tests it with a hands-on simulation. Complete modules in order within each section to unlock the next. Instrument families: Brass, Woodwind, Percussion, and Pipes &amp; Drums.</p>
+      </div>
+      <div id="trainingGrid">
+        <!-- training cards grouped by section, injected by JS -->
+      </div>
+    </section>
+
+    <!-- ===== MISSIONS (Active Task Console) ===== -->
+    <section class="section" id="section-missions">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Mission Simulator">▸ Mission Simulator</div>
+        <h1 id="missionHeaderTitle" data-i18n="Select a Mission">Select a Mission</h1>
+        <p id="missionHeaderSub" data-i18n="Choose a training module from the Training tab, or pick a mission below to enter the simulator.">Choose a training module from the Training tab, or pick a mission below to enter the simulator.</p>
+      </div>
+
+      <div id="missionSelector" class="mission-grid">
+        <!-- mission selector cards -->
+      </div>
+
+      <div id="missionConsole" style="display:none;">
+        <!-- Active task console injected here -->
+      </div>
+    </section>
+
+    <!-- ===== ANALYSIS ===== -->
+    <section class="section" id="section-analysis">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Performance Analysis">▸ Performance Analysis</div>
+        <h1 data-i18n="Cadet Performance Dashboard">Cadet Performance Dashboard</h1>
+        <p data-i18n="Track your progress across all instrument training modules. XP is awarded for completing mission tasks correctly. Wrong attempts reduce your mission score but you can retry. Proficiency badges unlock as you complete modules.">Track your progress across all instrument training modules. XP is awarded for completing mission tasks correctly. Wrong attempts reduce your mission score but you can retry. Proficiency badges unlock as you complete modules.</p>
+      </div>
+
+      <div class="grid grid-2" style="margin-bottom: 20px;">
+        <div class="card xp-ring-wrap" style="align-items:center; justify-content:center;">
+          <div class="xp-ring">
+            <svg width="120" height="120">
+              <circle class="ring-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="ring-fg" cx="60" cy="60" r="50" id="xpRingFg" stroke-dasharray="314" stroke-dashoffset="314"></circle>
+            </svg>
+            <div class="ring-text">
+              <div class="rt-val" id="ringXP">0</div>
+              <div class="rt-lbl" id="ringRankLabel" data-i18n="Trainee">Trainee</div>
+            </div>
+          </div>
+          <div>
+            <h2 style="margin-bottom:6px;" data-i18n="Proficiency Progression">Proficiency Progression</h2>
+            <p class="muted" style="font-size:12px; line-height:1.6; max-width:300px;">You are working toward <strong id="nextRankName" style="color:var(--music-bright)" data-i18n="Basic Musician">Basic Musician</strong>. Complete modules to earn XP and climb the proficiency ladder.</p>
+            <p class="mono" style="font-size:11px; color:var(--ink-3); margin-top:8px;" id="ringXPToNext" data-i18n="0 / 300 XP to next rank">0 / 300 XP to next rank</p>
+          </div>
+        </div>
+
+        <div class="card chart-card">
+          <h2><span class="ico">📊</span> XP by Module</h2>
+          <div class="chart-canvas">
+            <div class="bar-chart" id="xpBarChart">
+              <!-- bars injected -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h2><span class="ico">✅</span> Accuracy</h2>
+          <div class="m-val mono" style="font-size:28px; font-weight:800; color:var(--green);" id="accuracyPct">100%</div>
+          <p class="muted" style="font-size:12px; margin-top:6px;" data-i18n="Correct first-try task completions">Correct first-try task completions</p>
+        </div>
+        <div class="card">
+          <h2><span class="ico">🔄</span> Total Attempts</h2>
+          <div class="m-val mono" style="font-size:28px; font-weight:800; color:var(--amber);" id="totalAttempts">0</div>
+          <p class="muted" style="font-size:12px; margin-top:6px;" data-i18n="Across all missions">Across all missions</p>
+        </div>
+        <div class="card">
+          <h2><span class="ico">⏱️</span> Best Streak</h2>
+          <div class="m-val mono" style="font-size:28px; font-weight:800; color:var(--music-bright);" id="bestStreak">0</div>
+          <p class="muted" style="font-size:12px; margin-top:6px;" data-i18n="Consecutive correct tasks">Consecutive correct tasks</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SITREP ===== -->
+    <section class="section" id="section-sitrep">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Situation Reports">▸ Situation Reports</div>
+        <h1 data-i18n="SITREP Filing">SITREP Filing</h1>
+        <p data-i18n="A Situation Report (SITREP) is how cadet musicians communicate training status to their bandmaster. File a SITREP after each module to log what you learned, any instrument care issues identified, and your readiness for the next level.">A Situation Report (SITREP) is how cadet musicians communicate training status to their bandmaster. File a SITREP after each module to log what you learned, any instrument care issues identified, and your readiness for the next level.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h2><span class="ico">📝</span> File New SITREP</h2>
+          <div class="sitrep-form" style="margin-top:14px;">
+            <div class="sitrep-field">
+              <label for="sitrepMission" data-i18n="Module Reference">Module Reference</label>
+              <select class="task-select" id="sitrepMission">
+                <option value="" data-i18n="Select a completed module…">Select a completed module…</option>
+              </select>
+            </div>
+            <div class="sitrep-field">
+              <label for="sitrepStatus" data-i18n="Overall Status">Overall Status</label>
+              <select class="task-select" id="sitrepStatus">
+                <option value="" data-i18n="Choose status…">Choose status…</option>
+                <option value="NOMINAL" data-i18n="NOMINAL — All objectives met">NOMINAL — All objectives met</option>
+                <option value="MINOR_HAZARD" data-i18n="MINOR HAZARD — Completed with caution">MINOR HAZARD — Completed with caution</option>
+                <option value="ABORTED" data-i18n="ABORTED — Module not completed">ABORTED — Module not completed</option>
+              </select>
+            </div>
+            <div class="sitrep-field">
+              <label for="sitrepSummary" data-i18n="Summary of Training">Summary of Training</label>
+              <textarea class="task-note" id="sitrepSummary" data-i18n-placeholder="Summarise what happened during the training module. Include any instrument care issues identified and lessons learned. (Min 20 characters)"></textarea>
+            </div>
+            <button class="btn btn-primary" id="fileSitrepBtn" type="button" data-i18n="📠 File SITREP">📠 File SITREP</button>
+            <div class="task-feedback" id="sitrepFeedback"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2><span class="ico">📋</span> SITREP Log</h2>
+          <div class="sitrep-log" id="sitrepLog" style="margin-top:14px;">
+            <p class="muted center" style="padding:20px;" data-i18n="No SITREPs filed yet. Complete a module and file your first report.">No SITREPs filed yet. Complete a module and file your first report.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RANKS ===== -->
+    <section class="section" id="section-ranks">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Proficiency Progression">▸ Proficiency Progression</div>
+        <h1 data-i18n="Music Proficiency Ladder">Music Proficiency Ladder</h1>
+        <p data-i18n="As you complete training modules and earn XP, you advance through the cadet music proficiency levels. Each level corresponds to the Canadian Cadet Music Program standards — from Basic through Level 5. Higher levels unlock leadership roles such as Drum Major or Pipe Major.">As you complete training modules and earn XP, you advance through the cadet music proficiency levels. Each level corresponds to the Canadian Cadet Music Program standards — from Basic through Level 5. Higher levels unlock leadership roles such as Drum Major or Pipe Major.</p>
+      </div>
+      <div class="card">
+        <div class="rank-list" id="rankList">
+          <!-- rank rows injected -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LEARN ===== -->
+    <section class="section" id="section-learn">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Learning Library">▸ Learning Library</div>
+        <h1 data-i18n="Music Knowledge Base">Music Knowledge Base</h1>
+        <p data-i18n="Reference materials covering the theory behind each training module — music theory, instrument care, band drill, marches and calls, and proficiency standards. Read these before or after modules to deepen your understanding. Reading articles also earns a small XP bonus.">Reference materials covering the theory behind each training module — music theory, instrument care, band drill, marches and calls, and proficiency standards. Read these before or after modules to deepen your understanding. Reading articles also earns a small XP bonus.</p>
+      </div>
+      <div class="lib-grid" id="learnGrid">
+        <!-- learn cards injected -->
+      </div>
+    </section>
+
+    <!-- ===== EAR LAB (Hear notes + place on staff) ===== -->
+    <section class="section" id="section-earlab">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Ear Training Studio">▸ Ear Training Studio</div>
+        <h1 data-i18n="Ear Lab">Ear Lab</h1>
+        <p data-i18n="Listen to notes played by different cadet band instruments, then place them on the musical staff. Train your ear to identify pitch and learn how notes map to the five-line staff. Select an instrument voice, play a note, and drag it onto the staff to build a melody.">Listen to notes played by different cadet band instruments, then place them on the musical staff. Train your ear to identify pitch and learn how notes map to the five-line staff. Select an instrument voice, play a note, and drag it onto the staff to build a melody.</p>
+      </div>
+
+      <div class="grid grid-2" style="margin-bottom:20px;">
+        <!-- Instrument selector -->
+        <div class="card ear-instrument-card">
+          <h2><span class="ico">🎺</span> Instrument Voice</h2>
+          <p class="muted" style="font-size:12px; margin-bottom:12px;" data-i18n="Choose an instrument timbre. Each voice uses a distinct synthesis model to approximate the real instrument's sound.">Choose an instrument timbre. Each voice uses a distinct synthesis model to approximate the real instrument's sound.</p>
+          <div class="ear-voice-grid" id="earVoiceGrid"></div>
+        </div>
+
+        <!-- Note palette -->
+        <div class="card ear-note-palette-card">
+          <h2><span class="ico">🎹</span> Note Palette</h2>
+          <p class="muted" style="font-size:12px; margin-bottom:12px;" data-i18n="Click any note to hear it played by the selected instrument. The note will be staged for placement on the staff.">Click any note to hear it played by the selected instrument. The note will be staged for placement on the staff.</p>
+          <div class="ear-note-palette" id="earNotePalette"></div>
+          <div class="ear-staged" id="earStaged">
+            <span class="ear-staged-label" data-i18n="Staged note:">Staged note:</span>
+            <span class="ear-staged-note" id="earStagedNote">—</span>
+            <button class="btn btn-ghost btn-sm" id="earClearStaffBtn" type="button" data-i18n="Clear Staff">Clear Staff</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Staff -->
+      <div class="card ear-staff-card">
+        <h2><span class="ico">🎼</span> Musical Staff</h2>
+        <p class="muted" style="font-size:12px; margin-bottom:12px;">Click a position on the staff to place the staged note. Build a melody by placing several notes left-to-right. Press <strong data-i18n="Play Melody">Play Melody</strong> to hear the full sequence.</p>
+        <div class="ear-staff-wrap" id="earStaffWrap"></div>
+        <div class="ear-staff-actions">
+          <button class="btn btn-primary" id="earPlayMelodyBtn" type="button" data-i18n="▶ Play Melody">▶ Play Melody</button>
+          <button class="btn btn-ghost" id="earPlayTargetBtn" type="button" data-i18n="🎯 Play Target">🎯 Play Target</button>
+          <button class="btn btn-ghost" id="earCheckBtn" type="button" data-i18n="✓ Check Match">✓ Check Match</button>
+          <button class="btn btn-gold" id="earNewChallengeBtn" type="button" data-i18n="🎲 New Challenge">🎲 New Challenge</button>
+        </div>
+        <div class="task-feedback" id="earFeedback"></div>
+        <div class="ear-challenge-info" id="earChallengeInfo"></div>
+      </div>
+
+      <!-- Ear training keyboard -->
+      <div class="card ear-keyboard-card">
+        <h2><span class="ico">🎵</span> On-Screen Keyboard</h2>
+        <p class="muted" style="font-size:12px; margin-bottom:12px;" data-i18n="Play notes directly on the keyboard. Each key is labelled with its note name. Click to hear it with the selected instrument voice.">Play notes directly on the keyboard. Each key is labelled with its note name. Click to hear it with the selected instrument voice.</p>
+        <div class="ear-keyboard" id="earKeyboard"></div>
+      </div>
+    </section>
+
+    <!-- ===== COMPOSER (Create music from scratch) ===== -->
+    <section class="section" id="section-composer">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Composition Studio">▸ Composition Studio</div>
+        <h1 data-i18n="Composer">Composer</h1>
+        <p data-i18n="Create your own music from scratch. Pick the instruments you want from the full band, lay notes into the sequencer grid, set the tempo, and press play to hear your composition. Wind, brass, and melodic instruments use real recorded samples for authentic sound — experiment freely and build your own cadet march, fanfare, or melody.">Create your own music from scratch. Pick the instruments you want from the full band, lay notes into the sequencer grid, set the tempo, and press play to hear your composition. Wind, brass, and melodic instruments use real recorded samples for authentic sound — experiment freely and build your own cadet march, fanfare, or melody.</p>
+      </div>
+
+      <!-- Transport controls -->
+      <div class="card composer-transport-card">
+        <div class="composer-transport">
+          <button class="btn btn-primary" id="compPlayBtn" type="button" data-i18n="▶ Play">▶ Play</button>
+          <button class="btn btn-ghost" id="compStopBtn" type="button" data-i18n="⏹ Stop">⏹ Stop</button>
+          <button class="btn btn-ghost" id="compClearBtn" type="button" data-i18n="🗑 Clear All">🗑 Clear All</button>
+          <div class="comp-tempo-wrap">
+            <label for="compTempo">Tempo: <span id="compTempoVal">120</span> BPM</label>
+            <input class="task-slider" id="compTempo" type="range" min="40" max="200" value="120" />
+          </div>
+          <div class="comp-beats-wrap">
+            <label for="compBars" data-i18n="Bars:">Bars:</label>
+            <select class="task-select comp-select-sm" id="compBars">
+              <option value="2">2</option>
+              <option value="4" selected>4</option>
+              <option value="8">8</option>
+            </select>
+          </div>
+          <div class="comp-beats-wrap">
+            <label for="compScale" data-i18n="Scale:">Scale:</label>
+            <select class="task-select comp-select-sm" id="compScale"></select>
+          </div>
+          <button class="btn btn-gold" id="compSaveBtn" type="button" data-i18n="💾 Save">💾 Save</button>
+          <button class="btn btn-ghost" id="compLoadBtn" type="button" data-i18n="📂 Load">📂 Load</button>
+        </div>
+        <div class="comp-now-playing" id="compNowPlaying"></div>
+      </div>
+
+      <!-- Instrument picker -->
+      <div class="card composer-instruments-card">
+        <div class="comp-instruments-head">
+          <h2><span class="ico">🎺</span> Select Your Instruments</h2>
+          <span class="comp-instr-hint" id="compInstrHint" data-i18n="Tap an instrument to add it to your composition">Tap an instrument to add it to your composition</span>
+        </div>
+        <div class="comp-instrument-picker" id="compInstrumentPicker"></div>
+        <div class="comp-instr-load-status" id="compLoadStatus"></div>
+      </div>
+
+      <!-- Sequencer grid -->
+      <div class="card composer-grid-card">
+        <h2><span class="ico">🎹</span> Sequencer Grid</h2>
+        <p class="muted" style="font-size:12px; margin-bottom:12px;" data-i18n="Each selected instrument appears below as its own grid block. Click a block's coloured header to make it active (editable), then click cells to toggle notes. Active notes are bright; other tracks show faded ghosts so you can see the whole arrangement. Press Play to hear all instruments together.">Each selected instrument appears below as its own grid block. Click a block's coloured header to make it active (editable), then click cells to toggle notes. Active notes are bright; other tracks show faded ghosts so you can see the whole arrangement. Press Play to hear all instruments together.</p>
+        <div class="comp-grid-wrap" id="compGridWrap"></div>
+      </div>
+
+      <div class="task-feedback" id="compFeedback"></div>
+    </section>
+
+  </main>
+
+  <!-- ========== TOAST ========== -->
+  <div class="toast" id="toast">
+    <span class="toast-ico" id="toastIco">✅</span>
+    <span id="toastText" data-i18n="Notification">Notification</span>
+  </div>
+
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/soundfont-player@0.12.0/dist/soundfont-player.min.js"></script>
+  <script src="mobile-nav.js"></script>
+  <script src="music_training.js"></script>
+  <script src="multimodal.js"></script>
+</body>
+</html>

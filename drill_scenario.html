@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title></title>
+  <link rel="stylesheet" href="scenario_page.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <link rel="stylesheet" href="mobile-fix.css" />
+</head>
+<body>
+  <main class="app">
+    <nav class="top-nav">
+      <a class="back-link" href="index.html" data-i18n="← Back to Quest Map">← Back to Quest Map</a>
+      <button class="small-btn" id="resetGame" type="button" data-i18n="Reset Scenario">Reset Scenario</button>
+          <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+</nav>
+    <section class="hero">
+      <article class="panel title-card">
+        <p class="eyebrow" id="eyebrow"></p>
+        <h1 id="pageTitle"></h1>
+        <p class="subtitle" id="subtitle"></p>
+      </article>
+      <aside class="panel score-card">
+        <h2 id="scoreTitle"></h2>
+        <div class="progress-shell"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="score-row">
+          <span><strong id="score">0</strong>/100 points</span>
+          <span><strong id="foundCount">0</strong>/<strong id="totalCount">4</strong> complete</span>
+        </div>
+      </aside>
+    </section>
+    <section class="game">
+      <article class="panel scene-panel">
+        <div class="scene-title"><h2 id="sceneTitle"></h2><span class="small-btn" id="stageLabel"></span></div>
+        <div class="scene-stage" aria-label="Interactive scenario scene"><div class="scene-art" id="sceneArt"></div></div>
+      </article>
+      <aside class="panel mission-panel">
+        <h2 id="missionTitle"></h2>
+        <p class="brief" id="brief"></p>
+        <ul class="mission-list" id="missionList"></ul>
+        <div class="feedback" id="feedback"></div>
+        <div class="challenge-card" id="challengeCard"><h3 id="challengeTitle"></h3><div class="choice-grid" id="choiceGrid"></div></div>
+        <div class="tools"><button class="btn" id="hintBtn" type="button" data-i18n="Give Hint">Give Hint</button><button class="btn secondary" id="autoDemo" type="button" data-i18n="Auto Demo Correct Path">Auto Demo Correct Path</button></div>
+        <div class="inventory" id="inventory"></div>
+      </aside>
+    </section>
+  </main>
+  <div class="badge-unlock" id="badgeUnlock" aria-hidden="true"><img id="badgeImage" alt="badge" /><h2 data-i18n="Badge Unlocked!">Badge Unlocked!</h2><p id="badgeText"></p></div>
+  <script>window.SCENARIO_CONFIG = {"badgeId": 2, "storageKey": "scenario2_drill", "pageTitle": "Badge 2 Interactive Drill and Parade", "eyebrow": "Badge 2 Scenario • Drill & Parade", "title": "Parade Square Command Quest", "subtitle": "Practice parade-square decisions by matching commands, timing, posture, and teamwork responses.", "scoreTitle": "Drill Score", "sceneTitle": "Parade Square", "stageLabel": "Click command stations", "theme": ["#476b9f", "#f5c84c"], "badge": "assets/badges/badge_02_drill_and_parade.png", "brief": "Your squad is practicing basic drill. Complete each command station by choosing the response that keeps the squad coordinated and safe.", "missionSteps": ["Listen for the command.", "Move on the executive word.", "Maintain posture and spacing.", "Recover and prepare for the next command."], "startPrompt": "Click a glowing parade station to receive a command challenge.", "unlockText": "Drill & Parade badge unlocked — command sequence complete.", "sceneObjects": [{"x": "12%", "y": "15%", "size": "big", "html": "Command<br>Marker"}, {"x": "62%", "y": "14%", "size": "big", "html": "Squad<br>Line"}, {"x": "18%", "y": "70%", "size": "med", "html": "Timing<br>Lane"}, {"x": "68%", "y": "70%", "size": "med", "html": "Review<br>Point"}], "tasks": [{"id": "attention", "label": "Attention Command", "marker": "1", "x": "22%", "y": "34%", "clue": "The instructor calls the squad to attention.", "question": "What should the cadet do?", "hint": "Attention is controlled, still, and ready.", "choices": [{"text": "Stand still, focused, with correct posture until the next command.", "correct": true, "feedback": "Correct. Attention shows readiness and discipline."}, {"text": "Keep chatting until the next activity starts.", "correct": false, "feedback": "Wrong response. Attention requires immediate focus."}, {"text": "Move around to get comfortable.", "correct": false, "feedback": "Not quite. Movement breaks the command response."}]}, {"id": "turn", "label": "Right Turn", "marker": "2", "x": "72%", "y": "34%", "clue": "The command is “Squad, right turn.”", "question": "What is the best response?", "hint": "Move with the squad, not before or after.", "choices": [{"text": "Turn at the same time as the squad, keeping balance and posture.", "correct": true, "feedback": "Correct. Timing keeps the squad synchronized."}, {"text": "Turn early so you finish first.", "correct": false, "feedback": "Wrong response. Early movement breaks timing."}, {"text": "Watch others first and copy them late.", "correct": false, "feedback": "Not quite. Listen and respond confidently."}]}, {"id": "march", "label": "Quick March", "marker": "3", "x": "26%", "y": "78%", "clue": "The squad steps off together.", "question": "What matters most during the first steps?", "hint": "Think cadence, spacing, and team rhythm.", "choices": [{"text": "Step off with the correct foot, match cadence, and keep spacing.", "correct": true, "feedback": "Correct. Marching depends on rhythm and spacing."}, {"text": "Walk at your own comfortable speed.", "correct": false, "feedback": "Wrong response. The squad must move together."}, {"text": "Look down the whole time to watch your feet.", "correct": false, "feedback": "Not quite. Awareness and posture matter too."}]}, {"id": "review", "label": "After-Action Review", "marker": "4", "x": "76%", "y": "78%", "clue": "The sequence is complete and the instructor asks what improved.", "question": "Which review response is best?", "hint": "Good reflection is specific and constructive.", "choices": [{"text": "Identify one timing success and one point to improve next attempt.", "correct": true, "feedback": "Correct. Reflection turns practice into improvement."}, {"text": "Say everything was perfect and ignore feedback.", "correct": false, "feedback": "Wrong response. There is always something to refine."}, {"text": "Blame another cadet for every mistake.", "correct": false, "feedback": "Not quite. Team improvement needs responsibility."}]}]};</script>
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="scenario_page.js"></script>
+</body>
+</html>

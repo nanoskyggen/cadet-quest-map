@@ -1,0 +1,229 @@
+/* ============================================================
+   AIR TRAINING — "FLIGHT OPERATIONS TOWER" THEME
+   CSS-only structural enhancements layered on top of air_training.css
+   Adds flight strip rack sidebar, aviation tab styling, cockpit
+   instrument panel briefing, and runway marking decorations.
+   No HTML/JS changes needed.
+   ============================================================ */
+
+/* ---------- Sidebar: Flight strip rack ---------- */
+.sidebar {
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(73, 182, 255, 0.06), transparent 40%),
+    linear-gradient(180deg, var(--panel), var(--void));
+  position: relative;
+}
+/* Horizontal strip lines — like a flight strip rack */
+.sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 44px,
+      rgba(73, 182, 255, 0.03) 44px,
+      rgba(73, 182, 255, 0.03) 45px
+    );
+  pointer-events: none;
+}
+
+/* Nav buttons — aviation strip tab feel */
+.nav-btn {
+  border-left: 3px solid transparent;
+  transition: border-color .2s, background .2s;
+  position: relative;
+}
+.nav-btn:hover {
+  border-left-color: var(--air-dim);
+}
+.nav-btn.active {
+  border-left-color: var(--air-bright);
+}
+/* Active strip notch — like a flight strip pull-tab */
+.nav-btn.active::after {
+  content: "";
+  position: absolute;
+  right: 8px; top: 50%;
+  transform: translateY(-50%);
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--air-bright);
+  box-shadow: 0 0 8px var(--air-glow);
+}
+
+/* ---------- Section headers — flight ops prefix ---------- */
+.section-head .eyebrow {
+  position: relative;
+  padding-left: 20px;
+}
+.section-head .eyebrow::before {
+  content: "✈";
+  position: absolute;
+  left: 0;
+  color: var(--air);
+  font-size: 11px;
+  top: 0;
+}
+.section-head h1 {
+  position: relative;
+}
+.section-head h1::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--air-bright), transparent);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* ---------- Mission cards — flight plan cards ---------- */
+.mission-card {
+  position: relative;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+}
+/* Top-left departure strip notch */
+.mission-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--air-dim);
+  opacity: 0;
+  transition: opacity .2s;
+}
+/* Bottom runway threshold markings */
+.mission-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 12px;
+  width: 40px;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--air-dim) 0,
+    var(--air-dim) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  opacity: 0;
+  transition: opacity .2s;
+}
+.mission-card:hover:not(.locked)::before {
+  opacity: 0.6;
+}
+.mission-card:hover:not(.locked)::after {
+  opacity: 0.5;
+}
+.mission-card.done::before {
+  opacity: 0.5;
+  background: var(--green-dim);
+}
+
+/* ---------- Briefing panel — cockpit instrument panel ---------- */
+/* Background gradient enhancement only; ::after already used by base CSS
+   for the airplane watermark, so we enhance the background layer instead */
+.mission-banner {
+  background:
+    radial-gradient(circle at 90% 20%, rgba(73, 182, 255, 0.10), transparent 50%),
+    radial-gradient(circle at 15% 80%, rgba(255, 214, 107, 0.05), transparent 40%),
+    linear-gradient(180deg, var(--panel), var(--void)) !important;
+  border: 1px solid var(--line) !important;
+}
+
+/* ---------- Task brief — flight plan document ---------- */
+.task-brief {
+  border-left: 3px solid var(--air-dim) !important;
+  position: relative;
+}
+.task-brief::before {
+  content: "FLIGHT PLAN";
+  position: absolute;
+  top: -1px;
+  right: 10px;
+  font-size: 8px;
+  font-family: var(--mono);
+  letter-spacing: 2px;
+  color: var(--air-dim);
+  background: var(--panel);
+  padding: 0 6px;
+}
+
+/* ---------- Cards — instrument panel cards ---------- */
+.card {
+  border-top: 2px solid var(--line-soft);
+  position: relative;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--air);
+}
+
+/* ---------- Rank ladder — pilot qualification wings ---------- */
+.rank-row {
+  border-left: 3px solid var(--line-soft);
+  position: relative;
+}
+.rank-row.current {
+  border-left: 3px solid var(--air-bright);
+  box-shadow: -2px 0 12px rgba(73, 182, 255, 0.2);
+}
+
+/* ---------- Learn library cards — aviation reference manuals ---------- */
+.lib-card {
+  border-left: 3px solid var(--air-dim);
+  position: relative;
+}
+.lib-card::before {
+  content: "AIP";
+  position: absolute;
+  top: 8px; right: 10px;
+  font-size: 9px;
+  font-family: var(--mono);
+  letter-spacing: 1px;
+  color: var(--air-dim);
+  opacity: 0.5;
+}
+.lib-card.read {
+  border-left-color: var(--green-dim);
+}
+
+/* ---------- Tags — aviation designation feel ---------- */
+.tag {
+  border-radius: 3px;
+  font-family: var(--mono);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  background: rgba(73, 182, 255, 0.06);
+}
+
+/* ---------- Task console — operations console ---------- */
+.task-console {
+  border-top: 2px solid var(--air-dim);
+  position: relative;
+}
+.task-console::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--air-bright), var(--air-dim) 40%, transparent);
+}
+
+/* ---------- Step labels — clearance sequence ---------- */
+.task-step-label .step-num {
+  background: var(--air-dim) !important;
+  color: var(--abyss) !important;
+}

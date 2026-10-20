@@ -1,0 +1,133 @@
+/* ============================================================
+   SAILING FUNDAMENTALS — sailing_training.css
+   Module styles layered on top of cadet-html5.css
+   ============================================================ */
+
+/* ---------- App-bar stat chips ---------- */
+.sail-stat {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--c-panel-2); border: 1px solid var(--c-line);
+  border-radius: 999px; padding: 6px 11px; font-size: 12px; font-weight: 800;
+}
+.sail-stat__ico { font-size: 13px; }
+.sail-stat__lbl { color: var(--c-ink-3); letter-spacing: .5px; text-transform: uppercase; font-size: 10px; }
+.sail-stat__val { color: var(--c-sea-bright); }
+
+/* ---------- Rail progress ---------- */
+.sail-progress-row { display: flex; align-items: baseline; justify-content: space-between; margin: 6px 0 8px; }
+.sail-progress-row strong { font-size: 26px; font-weight: 900; color: var(--c-sea-bright); }
+.sail-small { font-size: 12.5px; }
+.sail-xp-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+
+/* ---------- Chapter list ---------- */
+.sail-chapter-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; counter-reset: chap; }
+.sail-chapter-list li { counter-increment: chap; }
+.sail-chapter-btn {
+  width: 100%; text-align: left; cursor: pointer; font: inherit;
+  display: flex; align-items: center; gap: 10px;
+  background: transparent; border: 1px solid transparent; border-radius: var(--c-radius);
+  padding: 9px 10px; color: var(--c-ink-2); transition: background .12s ease, border-color .12s ease;
+}
+.sail-chapter-btn:hover { background: var(--c-panel-2); border-color: var(--c-line); }
+.sail-chapter-btn:focus-visible { outline: 2px solid var(--c-sea); outline-offset: 1px; }
+.sail-chapter-btn .num {
+  flex: none; width: 24px; height: 24px; border-radius: 8px; display: grid; place-items: center;
+  font-size: 12px; font-weight: 900; background: var(--c-panel-3); color: var(--c-ink-2);
+}
+.sail-chapter-btn .txt { flex: 1 1 auto; font-size: 13px; font-weight: 700; }
+.sail-chapter-btn .tick { flex: none; font-size: 13px; color: var(--c-green); opacity: 0; }
+.sail-chapter-btn.is-active { background: var(--c-panel-3); border-color: var(--c-sea-dim); color: var(--c-ink); }
+.sail-chapter-btn.is-done .num { background: rgba(56, 217, 123, .18); color: var(--c-green); }
+.sail-chapter-btn.is-done .tick { opacity: 1; }
+
+/* ---------- Hero ---------- */
+.sail-hero { display: flex; gap: clamp(14px, 2.4vw, 26px); align-items: center; flex-wrap: wrap; }
+.sail-hero__badge img { border-radius: 16px; border: 2px solid rgba(255, 214, 107, .5); box-shadow: 0 8px 22px rgba(0,0,0,.35); }
+.sail-hero__text { flex: 1 1 320px; min-width: 0; }
+
+/* ---------- Simulator ---------- */
+.sail-sim { margin-top: 14px; }
+.sail-sim-controls { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-top: 14px; }
+.sail-ctrl { display: grid; gap: 6px; }
+.sail-ctrl label { font-size: 11px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--c-ink-2); }
+.sail-sim-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.sail-sim-feedback {
+  margin: 14px 0 0; padding: 12px 14px; border-radius: var(--c-radius);
+  background: var(--c-panel-2); border: 1px solid var(--c-line); border-left: 4px solid var(--c-sea);
+  font-size: 13px; font-weight: 700; color: var(--c-ink);
+}
+.sail-sim-feedback.good { border-left-color: var(--c-green); }
+.sail-sim-feedback.warn { border-left-color: var(--c-amber); }
+.sail-sim-feedback.bad { border-left-color: var(--c-red); }
+
+/* ---------- Reader ---------- */
+.sail-reader { display: grid; gap: 12px; }
+.sail-reader-summary { display: flex; gap: 14px; align-items: flex-start; flex-wrap: wrap; }
+.sail-reader-summary .body { flex: 1 1 300px; min-width: 0; }
+.sail-reader-summary h3 { margin: 0 0 6px; font-size: 17px; font-weight: 800; }
+.sail-reader-summary p { margin: 0; color: var(--c-ink-2); font-size: 13.5px; }
+
+/* ---------- Chapter article (inside dialog) ---------- */
+.sail-chapter-article { color: var(--c-paper-ink); }
+.sail-chapter-h { font-size: 20px; font-weight: 900; margin: 0 0 10px; color: var(--c-paper-ink); }
+.sail-chapter-body p { margin: 0 0 12px; font-size: 14.5px; line-height: 1.7; color: #24374f; }
+.sail-chapter-body strong { color: var(--c-paper-ink); }
+.sail-chapter-body ul { margin: 0 0 12px; padding-left: 20px; }
+.sail-chapter-body li { margin-bottom: 6px; font-size: 14px; color: #24374f; }
+.sail-chapter-body .callout {
+  background: #eef6ff; border: 1px solid #cfe3fb; border-left: 4px solid #2f6fbe;
+  border-radius: 10px; padding: 12px 14px; margin: 0 0 14px; font-size: 13.5px; color: #1c3a5c;
+}
+.sail-chapter-body .callout.warn { background: #fff6e6; border-color: #f4d9a6; border-left-color: #d99a2b; color: #5a3d0c; }
+.sail-chapter-body table { width: 100%; border-collapse: collapse; margin: 0 0 14px; font-size: 13px; }
+.sail-chapter-body th, .sail-chapter-body td { border: 1px solid var(--c-paper-line); padding: 8px 10px; text-align: left; }
+.sail-chapter-body th { background: var(--c-paper-2); font-weight: 800; }
+.sail-keypoints { background: var(--c-paper-2); border: 1px solid var(--c-paper-line); border-radius: 12px; padding: 14px 16px; }
+.sail-keypoints h4 { margin: 0 0 8px; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--c-paper-ink-2); }
+.sail-keypoints ul { margin: 0; padding-left: 18px; }
+.sail-keypoints li { font-size: 13.5px; margin-bottom: 5px; color: #24374f; }
+
+/* ---------- Practical checks ---------- */
+.sail-task-list { display: grid; gap: 12px; }
+.sail-task {
+  border: 1px solid var(--c-line); border-radius: var(--c-radius);
+  background: var(--c-panel-2); padding: 14px 16px;
+}
+.sail-task.is-done { border-color: rgba(56, 217, 123, .5); background: linear-gradient(160deg, rgba(56,217,123,.08), var(--c-panel-2)); }
+.sail-task__head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.sail-task__num { flex: none; width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font-weight: 900; font-size: 12px; background: var(--c-panel-3); color: var(--c-ink-2); }
+.sail-task.is-done .sail-task__num { background: rgba(56,217,123,.2); color: var(--c-green); }
+.sail-task__title { font-size: 14px; font-weight: 800; }
+.sail-task__prompt { font-size: 13px; color: var(--c-ink-2); margin: 0 0 10px; }
+.sail-task__opts { display: grid; gap: 8px; }
+.sail-opt {
+  text-align: left; cursor: pointer; font: inherit; font-size: 13px;
+  background: var(--c-void); border: 1px solid var(--c-line); color: var(--c-ink);
+  border-radius: var(--c-radius); padding: 10px 12px; transition: border-color .12s ease, background .12s ease;
+}
+.sail-opt:hover { border-color: var(--c-sea-dim); }
+.sail-opt.correct { border-color: var(--c-green); background: rgba(56,217,123,.12); }
+.sail-opt.wrong { border-color: var(--c-red); background: rgba(255,90,110,.12); }
+.sail-task__fb { margin: 10px 0 0; font-size: 12.5px; font-weight: 700; }
+.sail-task__fb.good { color: var(--c-green); }
+.sail-task__fb.bad { color: var(--c-red); }
+.sail-task__input { display: flex; gap: 8px; flex-wrap: wrap; }
+.sail-task__input input { flex: 1 1 160px; }
+
+/* ---------- Earn ---------- */
+.sail-earn { text-align: center; }
+.sail-earn .cadet-btn { margin-top: 8px; }
+.sail-earn.is-ready { border-color: rgba(255,214,107,.55); box-shadow: 0 0 0 1px rgba(255,214,107,.25), 0 12px 30px rgba(0,0,0,.4); }
+
+/* ---------- Badge dialog ---------- */
+.sail-badge-win { text-align: center; }
+.sail-badge-win img { border-radius: 18px; border: 3px solid var(--c-gold); box-shadow: 0 10px 26px rgba(0,0,0,.4); }
+.sail-badge-win h3 { margin: 14px 0 6px; font-size: 22px; font-weight: 900; }
+.sail-badge-win p { color: var(--c-ink-2); font-size: 13.5px; margin: 0 auto; max-width: 46ch; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 620px) {
+  .sail-stat__lbl { display: none; }
+  .sail-hero { text-align: center; justify-content: center; }
+  .cadet-appbar__actions { gap: 6px; }
+}

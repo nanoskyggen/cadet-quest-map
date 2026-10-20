@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HQ Mail — Badge Confirmations</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚓</text></svg>" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(160deg, #0b1730 0%, #10233f 55%, #0d1b30 100%);
+      color: #e8effc;
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+    .hq-standalone-wrap { text-align: center; max-width: 560px; width: 100%; }
+    .hq-standalone-flag { font-size: 44px; line-height: 1; margin-bottom: 12px; }
+    .hq-standalone-title {
+      font-size: 24px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #f5c84c; margin: 0 0 6px;
+    }
+    .hq-standalone-sub { color: #b8c8e2; font-size: 14px; margin: 0 0 26px; line-height: 1.6; }
+    .hq-standalone-btn {
+      display: inline-block; background: linear-gradient(135deg, #274a80, #1b335f);
+      color: #fff; text-decoration: none; font-weight: 600; font-size: 15px;
+      padding: 12px 26px; border-radius: 10px; border: 1px solid #3d5a94;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .hq-standalone-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.45); }
+    .hq-standalone-note { margin-top: 22px; font-size: 12.5px; color: #8fa3c6; line-height: 1.7; }
+    /* keep overlays behind the standalone content until explicitly opened */
+    .hq-standalone-wrap.z { display: none; }
+    @media (max-width: 520px) {
+      .hq-standalone-title { font-size: 19px; }
+      body { padding: 16px; }
+    }
+  </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+  <main class="hq-standalone-wrap" id="hqStandaloneIntro">
+    <div class="hq-standalone-flag">⚓</div>
+    <h1 class="hq-standalone-title" data-i18n="HQ Mail">HQ Mail</h1>
+    <p class="hq-standalone-sub" data-i18n="Badge confirmations from Cadet HQ">Badge confirmations from Cadet HQ</p>
+    <a class="hq-standalone-btn" id="hqOpenMail" href="#inbox">📮 <span data-i18n="Open my HQ Mail inbox">Open my HQ Mail inbox</span></a>
+    <p class="hq-standalone-note" data-i18n="Badge confirmations are addressed to your unit email and mirrored here. HQ Mail is available on every page from the profile dock.">Badge confirmations are addressed to your unit email and mirrored here. HQ Mail is available on every page from the profile dock.</p>
+  </main>
+
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script>
+    /* Auto-open the HQ Mail inbox when a cadet profile exists (otherwise the
+       profile gate opens first from boot()); the button always opens on demand. */
+    (function () {
+      function open() {
+        if (window.CadetHQ && typeof window.CadetHQ.openMail === 'function') {
+          window.CadetHQ.openMail();
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+          if (window.CadetHQ && window.CadetHQ.getProfile && window.CadetHQ.getProfile()) open();
+        });
+      } else {
+        if (window.CadetHQ && window.CadetHQ.getProfile && window.CadetHQ.getProfile()) open();
+      }
+      var btn = document.getElementById('hqOpenMail');
+      if (btn) {
+        btn.addEventListener('click', function (ev) {
+          ev.preventDefault();
+          open();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

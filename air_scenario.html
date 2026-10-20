@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title></title>
+  <link rel="stylesheet" href="scenario_page.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <link rel="stylesheet" href="mobile-fix.css" />
+</head>
+<body>
+  <main class="app">
+    <nav class="top-nav">
+      <a class="back-link" href="index.html" data-i18n="← Back to Quest Map">← Back to Quest Map</a>
+      <button class="small-btn" id="resetGame" type="button" data-i18n="Reset Scenario">Reset Scenario</button>
+          <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+</nav>
+    <section class="hero">
+      <article class="panel title-card">
+        <p class="eyebrow" id="eyebrow"></p>
+        <h1 id="pageTitle"></h1>
+        <p class="subtitle" id="subtitle"></p>
+      </article>
+      <aside class="panel score-card">
+        <h2 id="scoreTitle"></h2>
+        <div class="progress-shell"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="score-row">
+          <span><strong id="score">0</strong>/100 points</span>
+          <span><strong id="foundCount">0</strong>/<strong id="totalCount">4</strong> complete</span>
+        </div>
+      </aside>
+    </section>
+    <section class="game">
+      <article class="panel scene-panel">
+        <div class="scene-title"><h2 id="sceneTitle"></h2><span class="small-btn" id="stageLabel"></span></div>
+        <div class="scene-stage" aria-label="Interactive scenario scene"><div class="scene-art" id="sceneArt"></div></div>
+      </article>
+      <aside class="panel mission-panel">
+        <h2 id="missionTitle"></h2>
+        <p class="brief" id="brief"></p>
+        <ul class="mission-list" id="missionList"></ul>
+        <div class="feedback" id="feedback"></div>
+        <div class="challenge-card" id="challengeCard"><h3 id="challengeTitle"></h3><div class="choice-grid" id="choiceGrid"></div></div>
+        <div class="tools"><button class="btn" id="hintBtn" type="button" data-i18n="Give Hint">Give Hint</button><button class="btn secondary" id="autoDemo" type="button" data-i18n="Auto Demo Correct Path">Auto Demo Correct Path</button></div>
+        <div class="inventory" id="inventory"></div>
+      </aside>
+    </section>
+  </main>
+  <div class="badge-unlock" id="badgeUnlock" aria-hidden="true"><img id="badgeImage" alt="badge" /><h2 data-i18n="Badge Unlocked!">Badge Unlocked!</h2><p id="badgeText"></p></div>
+  <script>window.SCENARIO_CONFIG = {"badgeId": 13, "storageKey": "scenario13_air", "pageTitle": "Badge 13 Interactive Air Cadet Flight Path", "eyebrow": "Badge 13 Scenario • Air Program", "title": "Air Cadet Flight Path Quest", "subtitle": "Use air-blue pathway choices to complete weather, aircraft, radio, and runway safety checks.", "scoreTitle": "Flight Path Score", "sceneTitle": "Airfield Training Zone", "stageLabel": "Click air stations", "theme": ["#2f76d2", "#9ed8ff"], "badge": "assets/badges/badge_13_air_program.png", "brief": "Your team is preparing for an aviation-themed training rotation. Complete the air stations by making safe, observant choices.", "missionSteps": ["Check weather clues.", "Identify aircraft features.", "Use clear radio language.", "Confirm runway safety."], "startPrompt": "Click a glowing airfield station to begin.", "unlockText": "Air Program badge unlocked — flight path complete.", "sceneObjects": [{"x": "9%", "y": "13%", "size": "big", "html": "Weather<br>Board"}, {"x": "62%", "y": "12%", "size": "big", "html": "Glider<br>Hangar"}, {"x": "12%", "y": "70%", "size": "med", "html": "Radio<br>Desk"}, {"x": "68%", "y": "70%", "size": "med", "html": "Runway<br>Check"}], "tasks": [{"id": "weather", "label": "Weather Check", "marker": "1", "x": "22%", "y": "31%", "clue": "Cloud and wind conditions need review before aviation training.", "question": "Which weather choice is safest?", "hint": "Weather awareness comes before activity.", "choices": [{"text": "Check wind, visibility, and instructor guidance before continuing.", "correct": true, "feedback": "Correct. Weather checks support safe aviation learning."}, {"text": "Ignore weather because the activity is only a demo.", "correct": false, "feedback": "Wrong response. Weather awareness is essential."}, {"text": "Guess based on how the sky looked yesterday.", "correct": false, "feedback": "Not quite. Use current conditions."}]}, {"id": "aircraft", "label": "Aircraft ID", "marker": "2", "x": "76%", "y": "32%", "clue": "A glider is in the hangar for identification practice.", "question": "What should cadets identify first?", "hint": "Look for major safe visible features.", "choices": [{"text": "Identify wings, fuselage, tail, and cockpit area from a safe viewing point.", "correct": true, "feedback": "Correct. Basic parts help cadets understand aircraft layout."}, {"text": "Climb onto the aircraft for a closer look.", "correct": false, "feedback": "Wrong response. Respect equipment and safety boundaries."}, {"text": "Ignore labels and make up names.", "correct": false, "feedback": "Not quite. Use accurate terminology."}]}, {"id": "radio", "label": "Air Radio Call", "marker": "3", "x": "25%", "y": "78%", "clue": "The air station needs a short radio-style message.", "question": "Which message is clearest?", "hint": "Clear, concise, and ordered.", "choices": [{"text": "“Air station, this is cadet team one. Weather check complete. Over.”", "correct": true, "feedback": "Correct. The message is clear and concise."}, {"text": "“Hey, we did the thing maybe.”", "correct": false, "feedback": "Wrong response. Radio messages should be specific."}, {"text": "Speak as fast as possible to save time.", "correct": false, "feedback": "Not quite. Clarity matters more than speed."}]}, {"id": "runway", "label": "Runway Safety", "marker": "4", "x": "78%", "y": "78%", "clue": "Cadets approach the runway safety marker.", "question": "What should happen before entering the area?", "hint": "Boundaries and permission matter.", "choices": [{"text": "Stop at the marker, confirm permission, and follow instructor direction.", "correct": true, "feedback": "Correct. Runway areas require controlled access."}, {"text": "Cross quickly if nobody is looking.", "correct": false, "feedback": "Wrong response. That is unsafe."}, {"text": "Stand on the runway to take a picture.", "correct": false, "feedback": "Not quite. Stay in approved areas."}]}]};</script>
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="scenario_page.js"></script>
+</body>
+</html>

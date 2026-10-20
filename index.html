@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="Cadet Quest Map — Training Campus">Cadet Quest Map — Training Campus</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+  <link rel="stylesheet" href="mobile-fix.css" />
+</head>
+<body>
+  <main class="app">
+    <!-- ============ HERO BANNER ============ -->
+    <header class="hero-banner">
+      <div class="hero-bg-layer"></div>
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="hero-badge-row">
+            <span class="hero-crest">🇨🇦</span>
+            <p class="hero-eyebrow" data-i18n="Royal Canadian Cadets · First Year Program">Royal Canadian Cadets · First Year Program</p>
+            <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+          </div>
+          <h1 class="hero-title">CADET QUEST<span class="hero-title-accent" data-i18n="MAP">MAP</span></h1>
+          <p class="hero-subtitle" data-i18n="Explore the open training campus, complete interactive lessons, earn badges, and unlock second-year branch pathways. Navigate the main campus and specialist stations — from the airfield and seaside warship to the cyber range and music hall.">Explore the open training campus, complete interactive lessons, earn badges, and unlock second-year branch pathways. Navigate the main campus and specialist stations — from the airfield and seaside warship to the cyber range and music hall.</p>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-num" id="heroBadges">0</span>
+              <span class="hero-stat-label" data-i18n="Badges Earned">Badges Earned</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-num" id="heroTotal">17</span>
+              <span class="hero-stat-label" data-i18n="Total Quests">Total Quests</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-num" id="heroPct">0%</span>
+              <span class="hero-stat-label" data-i18n="Complete">Complete</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-progress-ring" id="heroProgressRing">
+            <svg viewBox="0 0 120 120" class="ring-svg">
+              <circle class="ring-bg" cx="60" cy="60" r="52" />
+              <circle class="ring-fg" cx="60" cy="60" r="52" id="ringFg" />
+            </svg>
+            <div class="ring-center">
+              <span class="ring-pct" id="ringPct">0%</span>
+              <span class="ring-label" data-i18n="Progress">Progress</span>
+            </div>
+          </div>
+          <div class="hero-profile-link">
+            <a href="avatar.html" class="profile-btn" id="profileBtn">
+              <span class="profile-btn-avatar" id="heroAvatarMini"><span class="hero-avatar-svg" id="heroAvatarSvg"></span><span class="hero-avatar-emoji" id="heroAvatarEmoji">🦭</span></span>
+              <span class="profile-btn-text">
+                <span class="profile-btn-title" data-i18n="My Profile">My Profile</span>
+                <span class="profile-btn-sub" id="heroAvatarName" data-i18n="Customize Avatar →">Customize Avatar →</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============ PROGRESS + GATE BAR ============ -->
+    <section class="control-bar">
+      <div class="control-progress">
+        <div class="progress-bar-shell"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="progress-row">
+          <span><strong id="completeCount">0</strong> / <strong id="totalCount">17</strong> badges earned</span>
+          <button class="reset-btn" id="resetProgress" type="button" data-i18n="↺ Reset Progress">↺ Reset Progress</button>
+        </div>
+      </div>
+      <div class="control-gate" id="branchGate">
+        <div class="branch-gate-locked" id="branchLocked">
+          <span class="branch-gate-icon">🔒</span>
+          <p id="branchLockedText">Complete <strong>11</strong> badges total, including at least one branch badge (Army ★, Air ✈, or Sea ⚓), to unlock second-year training.</p>
+        </div>
+        <div class="branch-buttons" id="branchButtons" style="display:none;">
+          <p class="branch-buttons-label" data-i18n="Second-Year Training Unlocked — Choose Your Path:">Second-Year Training Unlocked — Choose Your Path:</p>
+          <button class="branch-btn army" id="armyBranchBtn" type="button" style="display:none;">
+            <span class="branch-btn-icon">★</span>
+            <span class="branch-btn-text" data-i18n="Red Star — Army Cadet">Red Star — Army Cadet</span>
+            <span class="branch-btn-arrow">→</span>
+          </button>
+          <button class="branch-btn air" id="airBranchBtn" type="button" style="display:none;">
+            <span class="branch-btn-icon">✈</span>
+            <span class="branch-btn-text" data-i18n="Level 2 — Air Cadet">Level 2 — Air Cadet</span>
+            <span class="branch-btn-arrow">→</span>
+          </button>
+          <button class="branch-btn sea" id="seaBranchBtn" type="button" style="display:none;">
+            <span class="branch-btn-icon">⚓</span>
+            <span class="branch-btn-text" data-i18n="Phase 2 — Sea Cadet">Phase 2 — Sea Cadet</span>
+            <span class="branch-btn-arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MAP + LESSON WORKSPACE ============ -->
+    <section class="workspace">
+      <article class="panel map-panel">
+        <div class="map-topline">
+          <h2 data-i18n="Training Campus">Training Campus</h2>
+          <div class="legend">
+            <span><i class="dot"></i>Available</span>
+            <span><i class="dot done"></i>Completed</span>
+            <span><i class="dot lock"></i>Future lock state</span>
+          </div>
+        </div>
+
+        <!-- Map tab switcher -->
+        <div class="map-tabs" id="mapTabs">
+          <button class="map-tab active" data-map="main" type="button">
+            <span class="map-tab-ico">🗺️</span>
+            <span class="map-tab-txt" data-i18n="Main Campus">Main Campus</span>
+            <span class="map-tab-count" id="mainTabCount">12</span>
+          </button>
+          <button class="map-tab" data-map="specialist" type="button">
+            <span class="map-tab-ico">⚜️</span>
+            <span class="map-tab-txt" data-i18n="Specialist Stations">Specialist Stations</span>
+            <span class="map-tab-count" id="specTabCount">5</span>
+          </button>
+        </div>
+
+        <!-- Main campus map -->
+        <div class="map-wrap active" id="mapWrapMain" aria-label="Main cadet campus map">
+          <img class="map-image" src="assets/open_quest_map_v2.png" alt="Open cadet quest campus map with airfield, seaside warship, and training zones" />
+        </div>
+        <!-- Specialist stations map -->
+        <div class="map-wrap" id="mapWrapSpec" aria-label="Specialist training stations map">
+          <img class="map-image" src="assets/specialist_stations_map.png" alt="Specialist training stations map with cyber range, music hall, and expedition camp" />
+        </div>
+
+        <!-- Zone highlights overlay info -->
+        <div class="zone-callouts" id="zoneCallouts">
+          <div class="zone-callout air-callout">
+            <span class="zc-icon">✈</span>
+            <span class="zc-text" data-i18n="Airfield">Airfield</span>
+          </div>
+          <div class="zone-callout sea-callout">
+            <span class="zc-icon">⚓</span>
+            <span class="zc-text" data-i18n="Seaside · Canadian Warship">Seaside · Canadian Warship</span>
+          </div>
+        </div>
+      </article>
+
+      <aside class="panel lesson-panel" aria-live="polite">
+        <div class="lesson-hero" id="lessonHero">
+          <img id="lessonBadge" src="assets/badges/badge_01_cadet_basics.png" alt="Selected lesson badge" />
+          <h2 id="lessonTitle" data-i18n="Cadet Basics">Cadet Basics</h2>
+          <p id="lessonSubtitle" data-i18n="Select any badge on the map to start a lesson.">Select any badge on the map to start a lesson.</p>
+        </div>
+        <div class="lesson-body">
+          <div class="tag-row" id="tagRow"></div>
+          <h3 data-i18n="Lesson Brief">Lesson Brief</h3>
+          <p id="lessonBrief"></p>
+          <h3 data-i18n="Learning Objectives">Learning Objectives</h3>
+          <ul class="lesson-list" id="objectiveList"></ul>
+          <div class="challenge-box" id="challengeBox"></div>
+          <div class="scenario-panel" id="scenarioPanel"></div>
+          <div class="lesson-actions">
+            <button class="primary-btn" id="completeLesson" type="button" data-i18n="Complete Lesson + Earn Badge">Complete Lesson + Earn Badge</button>
+            <button class="ghost-btn" id="playScenario" type="button" data-i18n="Play Mini Scenario">Play Mini Scenario</button>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ============ BADGE INVENTORY (summary + link to profile) ============ -->
+    <section class="panel inventory">
+      <div class="inventory-summary">
+        <div class="inventory-summary-left">
+          <h2 data-i18n="🎖️ Badge Inventory">🎖️ Badge Inventory</h2>
+          <p class="inventory-summary-text"><strong id="invEarnedInline">0</strong> of <strong id="invTotalInline">17</strong> badges earned. Visit your profile to see your full badge collection, stats, and customize your cadet avatar.</p>
+        </div>
+        <a href="avatar.html" class="inventory-profile-link">
+          <span data-i18n="View Profile &amp; Badges">View Profile &amp; Badges</span>
+          <span class="inv-link-arrow">→</span>
+        </a>
+      </div>
+      <div class="badge-grid badge-grid-compact" id="badgeGrid"></div>
+    </section>
+
+    <!-- ============ ACHIEVEMENTS VAULT ============ -->
+    <section class="panel achievements-vault-panel" id="achievementsVaultPanel">
+      <div class="vault-header">
+        <h2 data-i18n="🏆 Secret Achievements Vault">🏆 Secret Achievements Vault</h2>
+        <span class="vault-counter" id="achCounter">0 / 6</span>
+      </div>
+      <p class="vault-subtitle" data-i18n="Hidden challenges await the most dedicated cadets. Unlock achievements by meeting secret conditions across the entire training program — the first year, second-year branches, and the Cyber Range.">Hidden challenges await the most dedicated cadets. Unlock achievements by meeting secret conditions across the entire training program — the first year, second-year branches, and the Cyber Range.</p>
+      <div class="achievements-vault" id="achievementsVault"></div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" data-i18n="Badge earned!">Badge earned!</div>
+
+  <!-- Secret Achievement unlock toast -->
+  <div class="ach-toast" id="achievementToast">
+    <div class="ach-toast-glow"></div>
+    <div class="ach-toast-icon">🏆</div>
+    <div class="ach-toast-body">
+      <div class="ach-toast-title" data-i18n="Secret Unlocked!">Secret Unlocked!</div>
+      <div class="ach-toast-name" data-i18n="Achievement Name">Achievement Name</div>
+      <div class="ach-toast-desc" data-i18n="Achievement description here.">Achievement description here.</div>
+    </div>
+  </div>
+
+  <!-- Army / Red Star unlock modal -->
+  <div class="branch-unlock-modal army-theme" id="armyUnlockModal" aria-hidden="true">
+    <div class="bum-overlay"></div>
+    <div class="bum-card">
+      <div class="bum-icon">★</div>
+      <h2 class="bum-title" data-i18n="Red Star Unlocked!">Red Star Unlocked!</h2>
+      <p class="bum-text">Outstanding work, Cadet. You have completed 11 training modules and earned the <strong data-i18n="Army Cadet Badge">Army Cadet Badge</strong>, securing your place in the <strong data-i18n="Red Star — Second Year">Red Star — Second Year</strong> Army program. A new campus map awaits with 12 advanced land-based modules covering leadership, expedition, advanced navigation, fieldcraft, survival, and more.</p>
+      <div class="bum-preview">
+        <img src="assets/year2_red_star_map.png" alt="Red Star Army campus map preview" />
+      </div>
+      <div class="bum-actions">
+        <button class="bum-btn primary" id="armyEnter" type="button" data-i18n="Enter Red Star Now →">Enter Red Star Now →</button>
+        <button class="bum-btn secondary" id="armyLater" type="button" data-i18n="Stay in First Year">Stay in First Year</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Air / Level 2 Training unlock modal -->
+  <div class="branch-unlock-modal air-theme" id="airUnlockModal" aria-hidden="true">
+    <div class="bum-overlay"></div>
+    <div class="bum-card">
+      <div class="bum-icon">✈</div>
+      <h2 class="bum-title" data-i18n="Level 2 Unlocked!">Level 2 Unlocked!</h2>
+      <p class="bum-text">Outstanding work, Cadet. You have completed 11 training modules and earned the <strong data-i18n="Air Cadet Badge">Air Cadet Badge</strong>, securing your place in <strong data-i18n="Level 2 — Air Cadet Training">Level 2 — Air Cadet Training</strong>. A new airbase map awaits with 12 aviation-focused modules covering airmanship, navigation, meteorology, aircraft principles, propulsion, and more.</p>
+      <div class="bum-preview">
+        <img src="assets/air_year2_map.png" alt="Proficiency Level 2 Air Cadet campus map preview" />
+      </div>
+      <div class="bum-actions">
+        <button class="bum-btn primary" id="airEnter" type="button" data-i18n="Enter Level 2 Now →">Enter Level 2 Now →</button>
+        <button class="bum-btn secondary" id="airLater" type="button" data-i18n="Stay in First Year">Stay in First Year</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sea / Phase 2 unlock modal -->
+  <div class="branch-unlock-modal sea-theme" id="seaUnlockModal" aria-hidden="true">
+    <div class="bum-overlay"></div>
+    <div class="bum-card">
+      <div class="bum-icon">⚓</div>
+      <h2 class="bum-title" data-i18n="Phase 2 Unlocked!">Phase 2 Unlocked!</h2>
+      <p class="bum-text">Outstanding work, Cadet. You have completed 11 training modules and earned the <strong data-i18n="Sea Cadet Badge">Sea Cadet Badge</strong>, securing your place in <strong data-i18n="Phase 2 — Sea Cadet Training">Phase 2 — Sea Cadet Training</strong>. A new harbour map awaits with 12 maritime modules covering seamanship, navigation, boatwork, rope work, sailing, meteorology, and more.</p>
+      <div class="bum-preview">
+        <img src="assets/sea_year2_map.png" alt="Phase 2 Sea Cadet campus map preview" />
+      </div>
+      <div class="bum-actions">
+        <button class="bum-btn primary" id="seaEnter" type="button" data-i18n="Enter Phase 2 Now →">Enter Phase 2 Now →</button>
+        <button class="bum-btn secondary" id="seaLater" type="button" data-i18n="Stay in First Year">Stay in First Year</button>
+      </div>
+    </div>
+  </div>
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="avatar-render.js"></script>
+  <script src="script.js?v=2"></script>
+</body>
+</html>

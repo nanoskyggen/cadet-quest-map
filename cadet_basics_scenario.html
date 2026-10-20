@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title></title>
+  <link rel="stylesheet" href="scenario_page.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <link rel="stylesheet" href="mobile-fix.css" />
+</head>
+<body>
+  <main class="app">
+    <nav class="top-nav">
+      <a class="back-link" href="index.html" data-i18n="← Back to Quest Map">← Back to Quest Map</a>
+      <button class="small-btn" id="resetGame" type="button" data-i18n="Reset Scenario">Reset Scenario</button>
+          <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+</nav>
+    <section class="hero">
+      <article class="panel title-card">
+        <p class="eyebrow" id="eyebrow"></p>
+        <h1 id="pageTitle"></h1>
+        <p class="subtitle" id="subtitle"></p>
+      </article>
+      <aside class="panel score-card">
+        <h2 id="scoreTitle"></h2>
+        <div class="progress-shell"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="score-row">
+          <span><strong id="score">0</strong>/100 points</span>
+          <span><strong id="foundCount">0</strong>/<strong id="totalCount">4</strong> complete</span>
+        </div>
+      </aside>
+    </section>
+    <section class="game">
+      <article class="panel scene-panel">
+        <div class="scene-title"><h2 id="sceneTitle"></h2><span class="small-btn" id="stageLabel"></span></div>
+        <div class="scene-stage" aria-label="Interactive scenario scene"><div class="scene-art" id="sceneArt"></div></div>
+      </article>
+      <aside class="panel mission-panel">
+        <h2 id="missionTitle"></h2>
+        <p class="brief" id="brief"></p>
+        <ul class="mission-list" id="missionList"></ul>
+        <div class="feedback" id="feedback"></div>
+        <div class="challenge-card" id="challengeCard"><h3 id="challengeTitle"></h3><div class="choice-grid" id="choiceGrid"></div></div>
+        <div class="tools"><button class="btn" id="hintBtn" type="button" data-i18n="Give Hint">Give Hint</button><button class="btn secondary" id="autoDemo" type="button" data-i18n="Auto Demo Correct Path">Auto Demo Correct Path</button></div>
+        <div class="inventory" id="inventory"></div>
+      </aside>
+    </section>
+  </main>
+  <div class="badge-unlock" id="badgeUnlock" aria-hidden="true"><img id="badgeImage" alt="badge" /><h2 data-i18n="Badge Unlocked!">Badge Unlocked!</h2><p id="badgeText"></p></div>
+  <script>window.SCENARIO_CONFIG = {"badgeId": 1, "storageKey": "scenario1_cadet_basics", "pageTitle": "Badge 1 Interactive Cadet Basics", "eyebrow": "Badge 1 Scenario • Cadet Basics", "title": "HQ Orientation Quest", "subtitle": "Explore Cadet HQ, make readiness decisions, and learn how the badge map works before starting the training journey.", "scoreTitle": "Orientation Score", "sceneTitle": "Cadet HQ Plaza", "stageLabel": "Click HQ stations", "theme": ["#2f6fbe", "#35a75a"], "badge": "assets/badges/badge_01_cadet_basics.png", "brief": "A new cadet has arrived at headquarters. Complete each orientation station by choosing the action that best shows respect, readiness, and awareness.", "missionSteps": ["Check in at HQ.", "Review the quest map and badge system.", "Meet the section leader.", "Choose a safe first training station."], "startPrompt": "Click a glowing HQ station to begin orientation.", "unlockText": "Cadet Basics badge unlocked — orientation complete.", "sceneObjects": [{"x": "8%", "y": "10%", "size": "big", "html": "HQ<br>Desk"}, {"x": "62%", "y": "12%", "size": "big", "html": "Quest<br>Map"}, {"x": "10%", "y": "68%", "size": "med", "html": "Section<br>Leader"}, {"x": "68%", "y": "68%", "size": "med", "html": "First<br>Station"}], "tasks": [{"id": "checkin", "label": "HQ Check-In", "marker": "1", "x": "18%", "y": "28%", "clue": "You arrive at Cadet HQ. Start with the action that shows respect and readiness.", "question": "What is the best first action at HQ?", "hint": "Think check-in, instructions, and respectful communication.", "choices": [{"text": "Check in, listen for instructions, and ask where your section is forming.", "correct": true, "feedback": "Correct. You have started with respect, awareness, and readiness."}, {"text": "Walk past the desk and start exploring alone.", "correct": false, "feedback": "Wrong response. Cadets should check in before moving into activities."}, {"text": "Wait outside and hope someone notices you.", "correct": false, "feedback": "Not quite. A new cadet should respectfully ask for direction."}]}, {"id": "map", "label": "Quest Map Review", "marker": "2", "x": "74%", "y": "30%", "clue": "The quest map shows open badge locations. You need to understand how progress works.", "question": "How should the learner use the map?", "hint": "The map supports choice, but not skipping instructions.", "choices": [{"text": "Review available badges, choose a station, and track completion as you learn.", "correct": true, "feedback": "Correct. The map supports open exploration with visible progress."}, {"text": "Click random badges until everything says complete.", "correct": false, "feedback": "Wrong response. Completion should represent learning, not random clicking."}, {"text": "Ignore the map because only the final badge matters.", "correct": false, "feedback": "Not quite. Each badge represents a skill milestone."}]}, {"id": "leader", "label": "Meet Section Leader", "marker": "3", "x": "22%", "y": "76%", "clue": "Your section leader gives a quick welcome and asks if you understand the first task.", "question": "What response best shows readiness?", "hint": "Good communication includes confirming and asking questions.", "choices": [{"text": "Confirm what you heard and ask a clear question if anything is uncertain.", "correct": true, "feedback": "Correct. Clear communication helps the whole team start well."}, {"text": "Pretend you understand even if you are confused.", "correct": false, "feedback": "Wrong response. Guessing can create safety and teamwork issues."}, {"text": "Interrupt and demand to pick the most exciting station first.", "correct": false, "feedback": "Not quite. Choice should still be respectful and organized."}]}, {"id": "station", "label": "Choose First Station", "marker": "4", "x": "78%", "y": "75%", "clue": "You can start at several stations. Pick the best approach for a first lesson.", "question": "Which station choice is strongest?", "hint": "A good first choice considers safety, readiness, and learning goals.", "choices": [{"text": "Choose a station that matches the briefing and explain why it helps your learning goal.", "correct": true, "feedback": "Correct. You connected choice with purpose."}, {"text": "Choose the hardest station to impress everyone.", "correct": false, "feedback": "Wrong response. Readiness matters more than showing off."}, {"text": "Choose no station and let the badge system sit unused.", "correct": false, "feedback": "Not quite. The goal is active learning."}]}]};</script>
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="scenario_page.js"></script>
+</body>
+</html>

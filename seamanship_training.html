@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Phase 2 Sea Cadet Seamanship &amp; Maritime Foundations — nautical terminology, parts of a ship, rank and rate, sea discipline and customs, traditions, and the ship as a community, with an interactive deck orientation trainer." />
+  <title data-i18n="Seamanship &amp; Maritime Foundations — Phase 2 Sea Cadet">Seamanship &amp; Maritime Foundations — Phase 2 Sea Cadet</title>
+  <link rel="stylesheet" href="cadet-html5.css?v=1" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <link rel="stylesheet" href="mobile-fix.css" />
+  <link rel="stylesheet" href="seamanship_training.css" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body class="cadet-body">
+
+  <a class="cadet-skip" href="#main" data-i18n="Skip to content">Skip to content</a>
+
+  <!-- ============ APP BAR ============ -->
+  <header class="cadet-appbar">
+    <div class="cadet-appbar__brand">
+      <div class="cadet-appbar__crest" aria-hidden="true">⚓</div>
+      <div>
+        <div class="cadet-appbar__title" data-i18n="Seamanship &amp; Maritime Foundations">Seamanship &amp; Maritime Foundations</div>
+        <div class="cadet-appbar__sub" data-i18n="Phase 2 · Sea Cadet">Phase 2 · Sea Cadet</div>
+      </div>
+    </div>
+    <div class="cadet-appbar__spacer"></div>
+    <div class="cadet-appbar__actions">
+      <div class="ship-stat"><span class="ship-stat__ico">⚡</span><span class="ship-stat__lbl" data-i18n="XP">XP</span><span class="ship-stat__val" id="topXP">0</span></div>
+      <div class="ship-stat"><span class="ship-stat__ico">🏅</span><span class="ship-stat__lbl" data-i18n="Badges">Badges</span><span class="ship-stat__val" id="topBadges">0</span></div>
+      <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+      <a class="cadet-btn cadet-btn--ghost cadet-btn--sm" href="sea_year2_map.html" data-i18n="← Back to Phase 2 Map">← Back to Phase 2 Map</a>
+    </div>
+  </header>
+
+  <!-- ============ LAYOUT ============ -->
+  <main id="main" class="cadet-layout cadet-layout--split">
+
+    <!-- ---------- RAIL ---------- -->
+    <aside class="cadet-rail" aria-label="Module navigation">
+      <section class="cadet-card">
+        <div class="cadet-eyebrow" data-i18n="Module Progress">Module Progress</div>
+        <div class="ship-progress-row">
+          <strong id="progressPct">0%</strong>
+          <span class="cadet-muted"><span id="progressCount">0</span>/<span id="progressTotal">7</span> <span data-i18n="chapters">chapters</span></span>
+        </div>
+        <div class="cadet-progress" aria-hidden="true"><i id="progressBar"></i></div>
+        <div class="ship-xp-row">
+          <span class="cadet-pill" id="xpPill">0 XP</span>
+          <span class="cadet-chip cadet-chip--muted" id="rankChip" data-i18n="Able Cadet">Able Cadet</span>
+        </div>
+      </section>
+
+      <nav class="cadet-card" aria-label="Chapters">
+        <div class="cadet-eyebrow" data-i18n="Chapters">Chapters</div>
+        <ol class="ship-chapter-list" id="chapterList"><!-- injected --></ol>
+      </nav>
+
+      <section class="cadet-card">
+        <div class="cadet-eyebrow" data-i18n="Skills Check">Skills Check</div>
+        <div class="cadet-progress cadet-progress--gold" aria-hidden="true"><i id="taskBar"></i></div>
+        <p class="cadet-muted ship-small"><span id="taskCount">0</span>/<span id="taskTotal">6</span> <span data-i18n="knowledge checks complete">knowledge checks complete</span></p>
+        <a class="cadet-btn cadet-btn--gold" href="seamanship_diagnostic.html" style="width:100%;justify-content:center;margin-top:6px">
+          🧭 <span data-i18n="Ship's Muster — Diagnostic Game">Ship's Muster — Diagnostic Game</span>
+        </a>
+        <button class="cadet-btn cadet-btn--ghost cadet-btn--sm" id="resetModule" type="button" style="width:100%;justify-content:center;margin-top:8px">
+          ↺ <span data-i18n="Reset Module">Reset Module</span>
+        </button>
+      </section>
+    </aside>
+
+    <!-- ---------- MAIN ---------- -->
+    <div class="cadet-main">
+
+      <!-- Hero -->
+      <section class="cadet-card ship-hero" aria-labelledby="heroTitle">
+        <div class="ship-hero__badge"><img src="assets/badges/badge_15_sea_program.png" alt="" width="96" height="96" /></div>
+        <div class="ship-hero__text">
+          <div class="cadet-eyebrow" data-i18n="Phase 2 · Module 301 · Core">Phase 2 · Module 301 · Core</div>
+          <h1 class="cadet-h1" id="heroTitle" data-i18n="Seamanship &amp; Maritime Foundations">Seamanship &amp; Maritime Foundations</h1>
+          <p class="cadet-lead" data-i18n="Learn the language and the culture of the sea. This module covers nautical terminology, the parts of a ship, the rank and rate structure, sea discipline and naval customs, the traditions of the Sea Cadets, and how a ship works as a community. Finish the chapters and the knowledge checks to earn your Sea Cadet badge.">Learn the language and the culture of the sea. This module covers nautical terminology, the parts of a ship, the rank and rate structure, sea discipline and naval customs, the traditions of the Sea Cadets, and how a ship works as a community. Finish the chapters and the knowledge checks to earn your Sea Cadet badge.</p>
+          <div class="cadet-chip-row">
+            <span class="cadet-chip" data-i18n="Seamanship">Seamanship</span>
+            <span class="cadet-chip" data-i18n="Core">Core</span>
+            <span class="cadet-chip cadet-chip--gold" data-i18n="Phase 2">Phase 2</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive trainer -->
+      <section class="cadet-card" aria-labelledby="simTitle">
+        <div class="cadet-card__head">
+          <div>
+            <div class="cadet-eyebrow" data-i18n="Interactive · HTML5 Canvas">Interactive · HTML5 Canvas</div>
+            <h2 class="cadet-h2" id="simTitle" data-i18n="Deck Orientation Trainer">Deck Orientation Trainer</h2>
+          </div>
+        </div>
+        <p class="cadet-lead ship-small" data-i18n="Port and starboard are fixed to the ship, not to you. The ship turns to a new heading each round — click the part of the ship the drill calls for. Port shows a red light, starboard a green light. Learn to think like a sailor.">Port and starboard are fixed to the ship, not to you. The ship turns to a new heading each round — click the part of the ship the drill calls for. Port shows a red light, starboard a green light. Learn to think like a sailor.</p>
+
+        <div class="cadet-canvas-stage ship-sim">
+          <canvas class="cadet-canvas" id="shipCanvas" width="900" height="460" role="img"
+                  aria-label="Interactive deck orientation trainer showing a ship at a random heading; click bow, stern, port or starboard"></canvas>
+          <div class="cadet-canvas-hud">
+            <div class="cadet-canvas-badge" id="hudTask">—</div>
+            <div class="cadet-canvas-badge" id="hudScore">—</div>
+            <div class="cadet-canvas-badge" id="hudStreak">—</div>
+          </div>
+        </div>
+
+        <div class="ship-sim-buttons">
+          <button class="cadet-btn cadet-btn--sm" id="btnReveal" type="button" data-i18n="Reveal labels">Reveal labels</button>
+          <button class="cadet-btn cadet-btn--sm" id="btnNewHeading" type="button" data-i18n="New heading">New heading</button>
+          <button class="cadet-btn cadet-btn--sm cadet-btn--primary" id="btnResetDrill" type="button" data-i18n="Reset drill">Reset drill</button>
+        </div>
+        <p class="ship-sim-feedback" id="shipFeedback" role="status" aria-live="polite"></p>
+      </section>
+
+      <!-- Chapter reader -->
+      <section class="cadet-card" aria-labelledby="readerTitle">
+        <div class="cadet-card__head">
+          <div>
+            <div class="cadet-eyebrow" data-i18n="Course Content">Course Content</div>
+            <h2 class="cadet-h2" id="readerTitle" data-i18n="Chapter Reader">Chapter Reader</h2>
+          </div>
+        </div>
+        <div class="ship-reader" id="readerBody">
+          <!-- injected: current chapter summary + open button -->
+        </div>
+      </section>
+
+      <!-- Knowledge checks -->
+      <section class="cadet-card" aria-labelledby="taskTitle">
+        <div class="cadet-card__head">
+          <div>
+            <div class="cadet-eyebrow" data-i18n="Knowledge Check">Knowledge Check</div>
+            <h2 class="cadet-h2" id="taskTitle" data-i18n="Knowledge Checks">Knowledge Checks</h2>
+          </div>
+        </div>
+        <div id="taskList" class="ship-task-list"><!-- injected --></div>
+      </section>
+
+      <!-- Earn badge -->
+      <section class="cadet-card ship-earn" aria-labelledby="earnTitle">
+        <h2 class="cadet-h2" id="earnTitle" data-i18n="Earn your Sea Cadet badge">Earn your Sea Cadet badge</h2>
+        <p class="cadet-lead ship-small" data-i18n="Complete all 7 chapters and all 6 knowledge checks, then claim your badge. A confirmation is sent to your unit email and mirrored in your HQ Mail inbox.">Complete all 7 chapters and all 6 knowledge checks, then claim your badge. A confirmation is sent to your unit email and mirrored in your HQ Mail inbox.</p>
+        <button class="cadet-btn cadet-btn--gold" id="claimBadge" type="button" disabled>
+          🏅 <span data-i18n="Claim Sea Cadet Badge">Claim Sea Cadet Badge</span>
+        </button>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="cadet-footer">
+    <span data-i18n="Cadet Quest Map · Phase 2 Sea Cadet · Seamanship &amp; Maritime Foundations">Cadet Quest Map · Phase 2 Sea Cadet · Seamanship &amp; Maritime Foundations</span>
+    <span data-i18n="Built on the HTML5 Cadet Shell">Built on the HTML5 Cadet Shell</span>
+  </footer>
+
+  <!-- ============ CHAPTER DIALOG (native <dialog>) ============ -->
+  <dialog class="cadet-dialog cadet-dialog--paper" id="chapterDialog" aria-labelledby="chapterDialogTitle">
+    <div class="cadet-dialog__head">
+      <h2 class="cadet-dialog__title" id="chapterDialogTitle">Chapter</h2>
+      <button class="cadet-dialog__close" type="button" data-close-dialog aria-label="Close">×</button>
+    </div>
+    <div class="cadet-dialog__body" id="chapterDialogBody"></div>
+    <div class="cadet-dialog__foot">
+      <button class="cadet-btn cadet-btn--ghost" type="button" data-close-dialog data-i18n="Close">Close</button>
+      <button class="cadet-btn cadet-btn--primary" type="button" id="chapterDone" data-i18n="Mark chapter complete">Mark chapter complete</button>
+    </div>
+  </dialog>
+
+  <!-- ============ BADGE DIALOG ============ -->
+  <dialog class="cadet-dialog" id="badgeDialog" aria-labelledby="badgeDialogTitle">
+    <div class="cadet-dialog__head">
+      <h2 class="cadet-dialog__title" id="badgeDialogTitle" data-i18n="Sea Cadet badge earned!">Sea Cadet badge earned!</h2>
+      <button class="cadet-dialog__close" type="button" data-close-dialog aria-label="Close">×</button>
+    </div>
+    <div class="cadet-dialog__body" id="badgeDialogBody"></div>
+    <div class="cadet-dialog__foot">
+      <button class="cadet-btn cadet-btn--ghost" type="button" data-close-dialog data-i18n="Close">Close</button>
+      <a class="cadet-btn cadet-btn--primary" href="sea_year2_map.html" data-i18n="Return to Phase 2 Map">Return to Phase 2 Map</a>
+    </div>
+  </dialog>
+
+  <template id="chapterTpl">
+    <article class="ship-chapter-article">
+      <h3 class="ship-chapter-h"></h3>
+      <div class="ship-chapter-body"></div>
+      <div class="ship-keypoints">
+        <h4 data-i18n="Key points">Key points</h4>
+        <ul></ul>
+      </div>
+    </article>
+  </template>
+
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet-html5.js?v=1"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="mobile-nav.js"></script>
+  <script src="seamanship_training.js?v=1"></script>
+</body>
+</html>

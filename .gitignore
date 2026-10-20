@@ -1,0 +1,22 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Python build caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Local dev / secrets
+.env
+.env.*
+*.local
+
+# Screenshots & scratch
+.screenshots/

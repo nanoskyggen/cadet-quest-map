@@ -1,0 +1,571 @@
+/* ============================================================
+   MULTIMODAL LEARNING ENHANCEMENT — Shared Accessibility Layer
+   Based on VARK multimodal learning research + dyslexic reader
+   support strategies (Trent University, Prodigy, iSpring).
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   1. DYSLEXIA-FRIENDLY READING MODE
+   When body.mm-dyslexia is active, switch to dyslexia-friendly
+   typography: increased letter-spacing, word-spacing, line-height,
+   and a font designed for readability.
+   ---------------------------------------------------------- */
+body.mm-dyslexia,
+body.mm-dyslexia .article-modal-body,
+body.mm-dyslexia .task-prompt,
+body.mm-dyslexia .mission-brief,
+body.mm-dyslexia .learn-grid,
+body.mm-dyslexia .lib-card .lc-desc {
+  font-family: "OpenDyslexic", "Lexend", "Verdana", "Arial", sans-serif !important;
+  letter-spacing: 0.035em !important;
+  word-spacing: 0.12em !important;
+  line-height: 1.75 !important;
+  font-size: 15px !important;
+}
+
+body.mm-dyslexia .article-modal-body h3,
+body.mm-dyslexia .mission-banner h2,
+body.mm-dyslexia .section-head h2 {
+  letter-spacing: 0.02em !important;
+  line-height: 1.4 !important;
+}
+
+/* ----------------------------------------------------------
+   2. HIGH CONTRAST MODE
+   Increases text/background contrast for visually impaired
+   readers and dyslexic readers who benefit from clearer
+   text boundaries.
+   ---------------------------------------------------------- */
+body.mm-high-contrast {
+  --ink-1: #ffffff;
+  --ink-2: #e8e8e8;
+  --ink-3: #c0c0c0;
+  --bg-0: #000000;
+  --bg-1: #0a0a0a;
+  --bg-2: #141414;
+  --border: #444444;
+}
+
+body.mm-high-contrast .article-modal,
+body.mm-high-contrast .task-card,
+body.mm-high-contrast .mission-card,
+body.mm-high-contrast .lib-card {
+  background: #1a1a1a !important;
+  border: 2px solid #666 !important;
+}
+
+body.mm-high-contrast .task-select,
+body.mm-high-contrast .task-option,
+body.mm-high-contrast button {
+  border-width: 2px !important;
+}
+
+/* ----------------------------------------------------------
+   3. REDUCED MOTION SUPPORT
+   Respects prefers-reduced-motion for vestibular disorders
+   and sensory sensitivity. Also toggled via mm-reduce-motion.
+   ---------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body.mm-reduce-motion *,
+body.mm-reduce-motion *::before,
+body.mm-reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* ----------------------------------------------------------
+   4. FOCUS VISIBILITY
+   Ensures keyboard focus is always clearly visible for
+   motor-impaired and screen-reader users.
+   ---------------------------------------------------------- */
+*:focus-visible {
+  outline: 3px solid #ffd700 !important;
+  outline-offset: 2px !important;
+  border-radius: 4px !important;
+}
+
+body.mm-high-contrast *:focus-visible {
+  outline: 4px solid #ffff00 !important;
+}
+
+/* ----------------------------------------------------------
+   5. MULTIMODAL TOOLBAR
+   A floating accessibility toolbar that lets cadets toggle
+   reading modes, text size, and read-aloud.
+   ---------------------------------------------------------- */
+#mm-toolbar {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 99998;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  background: rgba(20, 20, 28, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 8px 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+#mm-toolbar.mm-collapsed {
+  opacity: 0.5;
+  transform: scale(0.9);
+}
+
+#mm-toolbar.mm-collapsed:hover {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#mm-toolbar .mm-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 700;
+  padding: 0 4px;
+}
+
+.mm-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 7px 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.mm-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.mm-btn.active {
+  background: rgba(99, 179, 237, 0.25);
+  border-color: rgba(99, 179, 237, 0.5);
+  color: #63b3ed;
+}
+
+.mm-btn .mm-ico {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.mm-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 2px;
+}
+
+/* ----------------------------------------------------------
+   6. READ-ALOAD HIGHLIGHTING
+   When text-to-speech is reading, highlight the current
+   sentence/paragraph in a clear, non-distracting colour.
+   ---------------------------------------------------------- */
+.mm-reading {
+  background: rgba(255, 215, 0, 0.15) !important;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
+  transition: background 0.15s;
+}
+
+.mm-readable {
+  cursor: pointer;
+  position: relative;
+}
+
+.mm-readable::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2363b3ed'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3z'/%3E%3Cpath d='M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z' opacity='.6'/%3E%3C/svg%3E") center/contain no-repeat;
+  pointer-events: none;
+}
+
+.mm-readable:hover::after {
+  opacity: 0.6;
+}
+
+/* ----------------------------------------------------------
+   7. MULTIMODAL VISUAL FEEDBACK OVERLAY
+   When a task is completed, show a visual celebration
+   (confetti burst + colour flash) in addition to the
+   text toast. This provides multimodal feedback.
+   ---------------------------------------------------------- */
+#mm-feedback-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+.mm-confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  pointer-events: none;
+  animation: mm-confetti-fall 1.2s ease-out forwards;
+}
+
+@keyframes mm-confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(300px) rotate(360deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.mm-flash {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99997;
+  animation: mm-flash-pulse 0.6s ease-out forwards;
+}
+
+@keyframes mm-flash-pulse {
+  0% { background: rgba(34, 197, 94, 0); }
+  20% { background: rgba(34, 197, 94, 0.12); }
+  100% { background: rgba(34, 197, 94, 0); }
+}
+
+.mm-flash.mm-flash-error {
+  animation: mm-flash-pulse-error 0.6s ease-out forwards;
+}
+
+@keyframes mm-flash-pulse-error {
+  0% { background: rgba(239, 68, 68, 0); }
+  20% { background: rgba(239, 68, 68, 0.1); }
+  100% { background: rgba(239, 68, 68, 0); }
+}
+
+/* ----------------------------------------------------------
+   8. ENHANCED ARTICLE MODAL (Multimodal Text)
+   Richer article display with visual elements, key-fact
+   callout boxes, and read-aloud support.
+   ---------------------------------------------------------- */
+.mm-article-callout {
+  background: rgba(99, 179, 237, 0.1);
+  border-left: 3px solid rgba(99, 179, 237, 0.5);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  margin: 14px 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.mm-article-callout .mm-callout-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  color: rgba(99, 179, 237, 0.8);
+  margin-bottom: 4px;
+}
+
+.mm-article-tip {
+  background: rgba(52, 211, 153, 0.1);
+  border-left: 3px solid rgba(52, 211, 153, 0.5);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  margin: 14px 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.mm-article-tip .mm-tip-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  color: rgba(52, 211, 153, 0.8);
+  margin-bottom: 4px;
+}
+
+.mm-article-warning {
+  background: rgba(251, 191, 36, 0.1);
+  border-left: 3px solid rgba(251, 191, 36, 0.5);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  margin: 14px 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.mm-article-warning .mm-warning-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  color: rgba(251, 191, 36, 0.8);
+  margin-bottom: 4px;
+}
+
+.mm-article-steps {
+  counter-reset: mm-step;
+  list-style: none;
+  padding: 0;
+  margin: 14px 0;
+}
+
+.mm-article-steps li {
+  counter-increment: mm-step;
+  position: relative;
+  padding-left: 36px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.mm-article-steps li::before {
+  content: counter(mm-step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  background: rgba(99, 179, 237, 0.2);
+  border: 1px solid rgba(99, 179, 237, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #63b3ed;
+  font-family: var(--mono, monospace);
+}
+
+.mm-article-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.mm-article-icon-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.mm-article-icon-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 179, 237, 0.3);
+}
+
+.mm-article-icon-card .mm-ic {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.mm-article-icon-card .mm-ic-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2px;
+}
+
+.mm-article-icon-card .mm-ic-desc {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.4;
+}
+
+/* Article modal read-aloud button */
+.mm-article-read {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(99, 179, 237, 0.15);
+  border: 1px solid rgba(99, 179, 237, 0.3);
+  border-radius: 8px;
+  padding: 7px 14px;
+  color: #63b3ed;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mm-article-read:hover {
+  background: rgba(99, 179, 237, 0.25);
+}
+
+.mm-article-read.reading {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+/* ----------------------------------------------------------
+   9. COGNITIVE OVERLOAD REDUCTION
+   Progress indicators within long content and "take a break"
+   reminders. Content chunking with visual section dividers.
+   ---------------------------------------------------------- */
+.mm-break-reminder {
+  position: fixed;
+  bottom: 70px;
+  right: 16px;
+  z-index: 99996;
+  background: rgba(20, 20, 28, 0.97);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 14px;
+  padding: 16px 20px;
+  max-width: 280px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  font-family: "Inter", "Segoe UI", sans-serif;
+  animation: mm-slide-in 0.4s ease-out;
+}
+
+@keyframes mm-slide-in {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.mm-break-reminder .mm-br-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.mm-break-reminder .mm-br-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fbbf24;
+  margin-bottom: 4px;
+}
+
+.mm-break-reminder .mm-br-text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.mm-break-reminder .mm-br-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.mm-break-reminder .mm-br-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 6px 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mm-break-reminder .mm-br-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.mm-break-reminder .mm-br-btn.primary {
+  background: rgba(251, 191, 36, 0.2);
+  border-color: rgba(251, 191, 36, 0.4);
+  color: #fbbf24;
+}
+
+/* ----------------------------------------------------------
+   10. MOBILE RESPONSIVENESS
+   ---------------------------------------------------------- */
+@media (max-width: 768px) {
+  #mm-toolbar {
+    bottom: 8px;
+    right: 8px;
+    left: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 6px 8px;
+    border-radius: 12px;
+  }
+
+  #mm-toolbar .mm-label {
+    display: none;
+  }
+
+  .mm-btn {
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .mm-break-reminder {
+    bottom: 60px;
+    right: 8px;
+    left: 8px;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .mm-btn .mm-text {
+    display: none;
+  }
+
+  .mm-btn {
+    padding: 8px 10px;
+  }
+
+  .mm-btn .mm-ico {
+    font-size: 16px;
+  }
+}
+
+/* ----------------------------------------------------------
+   11. TEXT SIZE CONTROLS
+   ---------------------------------------------------------- */
+body.mm-text-lg .article-modal-body,
+body.mm-text-lg .task-prompt,
+body.mm-text-lg .mission-brief,
+body.mm-text-lg .lib-card .lc-desc {
+  font-size: 16px !important;
+}
+
+body.mm-text-xl .article-modal-body,
+body.mm-text-xl .task-prompt,
+body.mm-text-xl .mission-brief,
+body.mm-text-xl .lib-card .lc-desc {
+  font-size: 18px !important;
+}

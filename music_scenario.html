@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="Cadet Music Theory Quest Demo">Cadet Music Theory Quest Demo</title>
+  <link rel="stylesheet" href="music_scenario.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <link rel="stylesheet" href="mobile-fix.css" />
+</head>
+<body>
+  <main class="app">
+    <div class="music-top-row">
+      <a href="index.html" class="music-back-link" data-i18n="← Back to Quest Map">← Back to Quest Map</a>
+      <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+    </div>
+    <section class="hero">
+      <article class="panel title-panel">
+        <div class="badge-row">
+          <div class="music-badge" aria-hidden="true">♪</div>
+          <div>
+            <p class="eyebrow" data-i18n="Gamified Cadet Learning Prototype">Gamified Cadet Learning Prototype</p>
+            <h1 data-i18n="Music Theory Quest">Music Theory Quest</h1>
+          </div>
+        </div>
+        <p class="subtitle">Press play to hear a three-note pattern, drag notes into the staff slots, then submit your answer. A correct sequence unlocks the badge; an incorrect sequence gives animated feedback and a retry prompt.</p>
+      </article>
+
+      <aside class="panel quest-card">
+        <h2 data-i18n="Mission Rules">Mission Rules</h2>
+        <ul class="quest-list">
+          <li><span>1</span>Listen to the melody clue.</li>
+          <li><span>2</span>Drag notes into the three glowing staff slots.</li>
+          <li><span>3</span>Submit to test correct and wrong responses.</li>
+          <li><span>★</span>Unlock the Music Theory badge by matching C–E–G.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="panel game-panel">
+      <div class="topbar">
+        <button class="btn" id="playPattern" type="button" data-i18n="▶ Play Sound Pattern">▶ Play Sound Pattern</button>
+        <div class="pattern-display" id="patternDisplay" data-i18n="Audio clue ready: match the hidden 3-note pattern.">Audio clue ready: match the hidden 3-note pattern.</div>
+        <div class="score-pill">Score <span id="score">0</span>/100</div>
+      </div>
+
+      <div class="stage">
+        <section class="sound-tower" aria-label="sound playback station">
+          <h3 data-i18n="Sound Beacon">Sound Beacon</h3>
+          <div class="speaker-wrap" id="speakerWrap">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="speaker" aria-hidden="true"></div>
+          </div>
+          <p class="helper">Prototype note: the demo uses browser-generated tones, so no audio file is required. The target answer is <strong data-i18n="C – E – G">C – E – G</strong> for easy testing.</p>
+
+          <div class="note-bank" id="noteBank" aria-label="draggable note bank">
+            <div class="note-token" draggable="true" data-note="C">C</div>
+            <div class="note-token" draggable="true" data-note="D">D</div>
+            <div class="note-token" draggable="true" data-note="E">E</div>
+            <div class="note-token" draggable="true" data-note="F">F</div>
+            <div class="note-token" draggable="true" data-note="G">G</div>
+            <div class="note-token" draggable="true" data-note="A">A</div>
+            <div class="note-token" draggable="true" data-note="B">B</div>
+            <div class="note-token" draggable="true" data-note="C2">C′</div>
+          </div>
+        </section>
+
+        <section class="staff-board" aria-label="answer staff board">
+          <h3 data-i18n="Drag Notes to Match the Sound">Drag Notes to Match the Sound</h3>
+          <div class="staff">
+            <div class="staff-lines" aria-hidden="true"></div>
+            <div class="slots">
+              <div class="drop-slot" data-slot="0">Drop<br>Note 1</div>
+              <div class="drop-slot" data-slot="1">Drop<br>Note 2</div>
+              <div class="drop-slot" data-slot="2">Drop<br>Note 3</div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="btn" id="checkAnswer" type="button" data-i18n="Submit Answer">Submit Answer</button>
+            <button class="btn secondary" id="loadWrong" type="button" data-i18n="Load Wrong Example">Load Wrong Example</button>
+            <button class="btn secondary" id="loadCorrect" type="button" data-i18n="Load Correct Example">Load Correct Example</button>
+            <button class="btn secondary" id="resetBoard" type="button" data-i18n="Reset">Reset</button>
+          </div>
+
+          <div class="feedback" id="feedback" role="status" aria-live="polite">
+            <div class="feedback-icon">?</div>
+            <div>
+              <h4 data-i18n="Awaiting your answer">Awaiting your answer</h4>
+              <p data-i18n="Use the note tokens to build the melody you hear, then submit.">Use the note tokens to build the melody you hear, then submit.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+  <div class="badge-unlock" id="badgeUnlock" aria-hidden="true">
+    <div class="big-note">♪</div>
+    <h3 data-i18n="Badge Unlocked!">Badge Unlocked!</h3>
+    <p data-i18n="Music Theory: C–E–G triad matched.">Music Theory: C–E–G triad matched.</p>
+  </div>
+
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="music_scenario.js"></script>
+</body>
+</html>

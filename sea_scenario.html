@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title></title>
+  <link rel="stylesheet" href="scenario_page.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <link rel="stylesheet" href="mobile-fix.css" />
+</head>
+<body>
+  <main class="app">
+    <nav class="top-nav">
+      <a class="back-link" href="index.html" data-i18n="← Back to Quest Map">← Back to Quest Map</a>
+      <button class="small-btn" id="resetGame" type="button" data-i18n="Reset Scenario">Reset Scenario</button>
+          <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+</nav>
+    <section class="hero">
+      <article class="panel title-card">
+        <p class="eyebrow" id="eyebrow"></p>
+        <h1 id="pageTitle"></h1>
+        <p class="subtitle" id="subtitle"></p>
+      </article>
+      <aside class="panel score-card">
+        <h2 id="scoreTitle"></h2>
+        <div class="progress-shell"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="score-row">
+          <span><strong id="score">0</strong>/100 points</span>
+          <span><strong id="foundCount">0</strong>/<strong id="totalCount">4</strong> complete</span>
+        </div>
+      </aside>
+    </section>
+    <section class="game">
+      <article class="panel scene-panel">
+        <div class="scene-title"><h2 id="sceneTitle"></h2><span class="small-btn" id="stageLabel"></span></div>
+        <div class="scene-stage" aria-label="Interactive scenario scene"><div class="scene-art" id="sceneArt"></div></div>
+      </article>
+      <aside class="panel mission-panel">
+        <h2 id="missionTitle"></h2>
+        <p class="brief" id="brief"></p>
+        <ul class="mission-list" id="missionList"></ul>
+        <div class="feedback" id="feedback"></div>
+        <div class="challenge-card" id="challengeCard"><h3 id="challengeTitle"></h3><div class="choice-grid" id="choiceGrid"></div></div>
+        <div class="tools"><button class="btn" id="hintBtn" type="button" data-i18n="Give Hint">Give Hint</button><button class="btn secondary" id="autoDemo" type="button" data-i18n="Auto Demo Correct Path">Auto Demo Correct Path</button></div>
+        <div class="inventory" id="inventory"></div>
+      </aside>
+    </section>
+  </main>
+  <div class="badge-unlock" id="badgeUnlock" aria-hidden="true"><img id="badgeImage" alt="badge" /><h2 data-i18n="Badge Unlocked!">Badge Unlocked!</h2><p id="badgeText"></p></div>
+  <script>window.SCENARIO_CONFIG = {"badgeId": 15, "storageKey": "scenario15_sea", "pageTitle": "Badge 15 Interactive Sea Cadet Harbour Skills", "eyebrow": "Badge 15 Scenario • Sea Program", "title": "Sea Cadet Harbour Skills Quest", "subtitle": "Use navy-black pathway choices to complete PFD, knot, chart, and canoe safety decisions.", "scoreTitle": "Harbour Skills Score", "sceneTitle": "Harbour Training Dock", "stageLabel": "Click harbour stations", "theme": ["#081628", "#2f6fbe"], "badge": "assets/badges/badge_15_sea_program.png", "brief": "Your team is rotating through harbour skills. Complete each station by choosing safe, accurate nautical responses.", "missionSteps": ["Check safety gear.", "Match a knot to its purpose.", "Read the chart symbol.", "Prepare for paddle station."], "startPrompt": "Click a glowing harbour station to begin.", "unlockText": "Sea Program badge unlocked — harbour skills complete.", "sceneObjects": [{"x": "9%", "y": "13%", "size": "big", "html": "PFD<br>Rack"}, {"x": "62%", "y": "12%", "size": "big", "html": "Knot<br>Table"}, {"x": "12%", "y": "70%", "size": "med", "html": "Chart<br>Desk"}, {"x": "68%", "y": "70%", "size": "med", "html": "Canoe<br>Dock"}], "tasks": [{"id": "pfd", "label": "PFD Safety", "marker": "1", "x": "22%", "y": "31%", "clue": "Before water activity, each cadet needs safety gear checked.", "question": "What is the best PFD action?", "hint": "Fit and fastening are key.", "choices": [{"text": "Choose the correct size, fasten it properly, and confirm fit with supervision.", "correct": true, "feedback": "Correct. PFD safety starts before entering the water."}, {"text": "Carry the PFD instead of wearing it.", "correct": false, "feedback": "Wrong response. It must be worn correctly."}, {"text": "Use any size as long as the colour looks right.", "correct": false, "feedback": "Not quite. Fit matters."}]}, {"id": "knot", "label": "Knot Table", "marker": "2", "x": "76%", "y": "32%", "clue": "A rope task asks which knot is used for a secure loop.", "question": "What should the cadet do?", "hint": "Match knot to purpose.", "choices": [{"text": "Choose the knot taught for a secure loop and explain its use.", "correct": true, "feedback": "Correct. Knots should be selected by purpose."}, {"text": "Tie the fastest knot even if it slips.", "correct": false, "feedback": "Wrong response. A slipping knot is not suitable."}, {"text": "Avoid checking the knot after tying.", "correct": false, "feedback": "Not quite. Knots should be checked."}]}, {"id": "chart", "label": "Chart Desk", "marker": "3", "x": "25%", "y": "78%", "clue": "The chart desk shows symbols near the dock area.", "question": "Which chart-reading action is best?", "hint": "Symbols communicate important water information.", "choices": [{"text": "Identify the symbol, confirm meaning, and use it in the route plan.", "correct": true, "feedback": "Correct. Chart symbols support safe planning."}, {"text": "Guess the symbol because all water areas are the same.", "correct": false, "feedback": "Wrong response. Symbols exist for a reason."}, {"text": "Ignore the chart and only look outside.", "correct": false, "feedback": "Not quite. Use both chart and real-world observation."}]}, {"id": "canoe", "label": "Canoe Dock", "marker": "4", "x": "78%", "y": "78%", "clue": "The canoe station is ready.", "question": "What should happen before launch?", "hint": "Safety check before activity.", "choices": [{"text": "Confirm PFDs, paddle control, dock instructions, and supervisor permission.", "correct": true, "feedback": "Correct. Launch preparation reduces risk."}, {"text": "Push off immediately to be first.", "correct": false, "feedback": "Wrong response. Do not launch without checks."}, {"text": "Stand in the canoe at the dock for fun.", "correct": false, "feedback": "Not quite. Stability and instructions matter."}]}]};</script>
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="scenario_page.js"></script>
+</body>
+</html>

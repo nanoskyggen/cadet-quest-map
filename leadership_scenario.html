@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title></title>
+  <link rel="stylesheet" href="scenario_page.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <link rel="stylesheet" href="mobile-fix.css" />
+</head>
+<body>
+  <main class="app">
+    <nav class="top-nav">
+      <a class="back-link" href="index.html" data-i18n="← Back to Quest Map">← Back to Quest Map</a>
+      <button class="small-btn" id="resetGame" type="button" data-i18n="Reset Scenario">Reset Scenario</button>
+          <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+</nav>
+    <section class="hero">
+      <article class="panel title-card">
+        <p class="eyebrow" id="eyebrow"></p>
+        <h1 id="pageTitle"></h1>
+        <p class="subtitle" id="subtitle"></p>
+      </article>
+      <aside class="panel score-card">
+        <h2 id="scoreTitle"></h2>
+        <div class="progress-shell"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="score-row">
+          <span><strong id="score">0</strong>/100 points</span>
+          <span><strong id="foundCount">0</strong>/<strong id="totalCount">4</strong> complete</span>
+        </div>
+      </aside>
+    </section>
+    <section class="game">
+      <article class="panel scene-panel">
+        <div class="scene-title"><h2 id="sceneTitle"></h2><span class="small-btn" id="stageLabel"></span></div>
+        <div class="scene-stage" aria-label="Interactive scenario scene"><div class="scene-art" id="sceneArt"></div></div>
+      </article>
+      <aside class="panel mission-panel">
+        <h2 id="missionTitle"></h2>
+        <p class="brief" id="brief"></p>
+        <ul class="mission-list" id="missionList"></ul>
+        <div class="feedback" id="feedback"></div>
+        <div class="challenge-card" id="challengeCard"><h3 id="challengeTitle"></h3><div class="choice-grid" id="choiceGrid"></div></div>
+        <div class="tools"><button class="btn" id="hintBtn" type="button" data-i18n="Give Hint">Give Hint</button><button class="btn secondary" id="autoDemo" type="button" data-i18n="Auto Demo Correct Path">Auto Demo Correct Path</button></div>
+        <div class="inventory" id="inventory"></div>
+      </aside>
+    </section>
+  </main>
+  <div class="badge-unlock" id="badgeUnlock" aria-hidden="true"><img id="badgeImage" alt="badge" /><h2 data-i18n="Badge Unlocked!">Badge Unlocked!</h2><p id="badgeText"></p></div>
+  <script>window.SCENARIO_CONFIG = {"badgeId": 5, "storageKey": "scenario5_leadership", "pageTitle": "Badge 5 Interactive Leadership Foundations", "eyebrow": "Badge 5 Scenario • Leadership Foundations", "title": "Junior Leader Mission Brief", "subtitle": "Lead a small cadet team by clarifying the objective, assigning roles, and checking understanding.", "scoreTitle": "Leadership Score", "sceneTitle": "Leadership Campfire", "stageLabel": "Click leadership steps", "theme": ["#7b4fd6", "#f5c84c"], "badge": "assets/badges/badge_05_leadership.png", "brief": "You have been asked to guide a four-cadet team through a short station rotation. Make leadership decisions that create clarity and confidence.", "missionSteps": ["Clarify the mission.", "Assign roles.", "Check understanding.", "Give feedback after the attempt."], "startPrompt": "Click a glowing leadership step to begin.", "unlockText": "Leadership Foundations badge unlocked — team mission complete.", "sceneObjects": [{"x": "10%", "y": "14%", "size": "big", "html": "Mission<br>Board"}, {"x": "64%", "y": "15%", "size": "big", "html": "Role<br>Cards"}, {"x": "14%", "y": "70%", "size": "med", "html": "Team<br>Circle"}, {"x": "68%", "y": "70%", "size": "med", "html": "Feedback<br>Point"}], "tasks": [{"id": "objective", "label": "Clarify Objective", "marker": "1", "x": "22%", "y": "32%", "clue": "Your team needs to know the purpose of the station rotation.", "question": "Which opening brief is strongest?", "hint": "Start with goal, safety, and outcome.", "choices": [{"text": "“Our goal is to complete three stations safely and learn one skill at each.”", "correct": true, "feedback": "Correct. The mission is clear and safe."}, {"text": "“Just follow me.”", "correct": false, "feedback": "Wrong response. The team needs more clarity."}, {"text": "“Do whatever seems fun.”", "correct": false, "feedback": "Not quite. Leadership needs direction."}]}, {"id": "roles", "label": "Assign Roles", "marker": "2", "x": "76%", "y": "34%", "clue": "Four cadets need useful roles.", "question": "Which role plan works best?", "hint": "Roles should help the team complete the mission.", "choices": [{"text": "Assign timekeeper, instruction reader, equipment checker, and coordinator.", "correct": true, "feedback": "Correct. Each role supports the task."}, {"text": "Assign all jobs to one person.", "correct": false, "feedback": "Wrong response. That overloads one teammate."}, {"text": "Assign no roles and hope people notice what to do.", "correct": false, "feedback": "Not quite. Clear roles reduce confusion."}]}, {"id": "understanding", "label": "Check Understanding", "marker": "3", "x": "25%", "y": "78%", "clue": "Before starting, you need to make sure the team understands.", "question": "What should you ask?", "hint": "Invite questions and confirm the plan.", "choices": [{"text": "“Can each person repeat their role, and does anyone have a question?”", "correct": true, "feedback": "Correct. This confirms understanding."}, {"text": "“No questions allowed.”", "correct": false, "feedback": "Wrong response. Questions can prevent mistakes."}, {"text": "“I already explained it, so just start.”", "correct": false, "feedback": "Not quite. A quick check saves time later."}]}, {"id": "feedback", "label": "Give Feedback", "marker": "4", "x": "78%", "y": "78%", "clue": "The team finishes the rotation.", "question": "Which feedback is best?", "hint": "Good feedback is specific and balanced.", "choices": [{"text": "Name one success, one improvement, and thank the team for effort.", "correct": true, "feedback": "Correct. Balanced feedback helps growth."}, {"text": "Only point out mistakes.", "correct": false, "feedback": "Wrong response. That can reduce confidence."}, {"text": "Say nothing and leave.", "correct": false, "feedback": "Not quite. Reflection is part of leadership."}]}]};</script>
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="scenario_page.js"></script>
+</body>
+</html>

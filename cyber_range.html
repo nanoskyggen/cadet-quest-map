@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="Badge 17 Cyber Security Range VM">Badge 17 Cyber Security Range VM</title>
+  <link rel="stylesheet" href="cyber_range.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <link rel="stylesheet" href="mobile-fix.css" />
+</head>
+<body>
+  <main class="vm-shell">
+    <div class="vm-top-row">
+      <a class="back-link" href="index.html" data-i18n="← Back to Quest Map">← Back to Quest Map</a>
+      <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+    </div>
+
+    <section class="login-screen" id="loginScreen">
+      <div class="login-card">
+        <img src="assets/badges/badge_17_cyber_security.png" alt="Cyber badge" />
+        <p class="eyebrow" data-i18n="CADETSEC VIRTUAL RANGE">CADETSEC VIRTUAL RANGE</p>
+        <h1 data-i18n="Cyber Workstation Login">Cyber Workstation Login</h1>
+        <p class="login-copy" data-i18n="Log into the simulated VM to begin your cyber security badge range. Use the training credentials shown below.">Log into the simulated VM to begin your cyber security badge range. Use the training credentials shown below.</p>
+        <div class="credential-strip"><span>Username: <strong data-i18n="cadet">cadet</strong></span><span>Password: <strong data-i18n="range">range</strong></span></div>
+        <label>Username<input id="username" autocomplete="off" value="cadet" /></label>
+        <label>Password<input id="password" type="password" value="range" /></label>
+        <button class="primary-btn" id="loginBtn" type="button" data-i18n="Boot Cyber Range VM">Boot Cyber Range VM</button>
+        <div class="login-error" id="loginError" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="desktop hidden" id="desktop">
+      <header class="topbar">
+        <div><strong data-i18n="CadetSec VM">CadetSec VM</strong><span id="clock" data-i18n="training session">training session</span></div>
+        <div class="scoreboard"><span id="vmScore" data-i18n="0 XP">0 XP</span><span id="vmProgress" data-i18n="0/11 complete">0/11 complete</span></div>
+      </header>
+
+      <section class="desktop-grid">
+        <aside class="ticket-panel">
+          <a class="sidebar-back-link" href="index.html" data-i18n="← Back to Cadet Map">← Back to Cadet Map</a>
+          <div class="panel-title" data-i18n="Incident Tickets">Incident Tickets</div>
+          <div id="ticketList"></div>
+          <button class="secondary-btn" id="resetRange" type="button" data-i18n="Reset VM Progress">Reset VM Progress</button>
+        </aside>
+
+        <section class="vm-window mission-window">
+          <div class="window-bar"><span class="lights"></span><strong id="missionTitle" data-i18n="Mission Control">Mission Control</strong></div>
+          <div class="mission-body">
+            <div class="mission-layout">
+              <figure class="scenario-visual" id="scenarioVisual" aria-label="Scenario image"></figure>
+              <div class="mission-copy">
+                <p class="mission-brief" id="missionBrief" data-i18n="Select an incident ticket to begin.">Select an incident ticket to begin.</p>
+                <div class="mission-tags" id="missionTags"></div>
+                <div class="checklist" id="checklist"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="vm-window evidence-window">
+          <div class="window-bar"><span class="lights"></span><strong id="activeToolTitle" data-i18n="Analyst Workbench">Analyst Workbench</strong></div>
+          <div class="tool-dock" id="toolDock"></div>
+          <pre class="terminal-output" id="toolOutput" data-i18n="Welcome to CadetSec VM. Select an incident ticket, open tools, and complete the action sequence.">Welcome to CadetSec VM. Select an incident ticket, open tools, and complete the action sequence.</pre>
+        </section>
+
+        <section class="vm-window action-window">
+          <div class="window-bar"><span class="lights"></span><strong data-i18n="Virtual Task Workspace">Virtual Task Workspace</strong></div>
+          <div class="action-grid" id="actionGrid"></div>
+          <div class="feedback" id="feedback" aria-live="polite" data-i18n="Awaiting VM login and mission selection.">Awaiting VM login and mission selection.</div>
+        </section>
+      </section>
+
+      <section class="unlock-modal" id="unlockModal">
+        <div class="unlock-card">
+          <img src="assets/badges/badge_17_cyber_security.png" alt="Cyber badge" />
+          <h2 data-i18n="Cyber Security Badge Unlocked">Cyber Security Badge Unlocked</h2>
+          <p data-i18n="All 11 virtual range missions are complete. Badge 17 has been saved back to the Cadet Quest Map.">All 11 virtual range missions are complete. Badge 17 has been saved back to the Cadet Quest Map.</p>
+          <a href="index.html" class="primary-btn" data-i18n="Return to Quest Map">Return to Quest Map</a>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="cyber_range.js"></script>
+</body>
+</html>

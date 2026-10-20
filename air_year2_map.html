@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="Level 2 Air Cadet Map — Cadet Quest Map">Level 2 Air Cadet Map — Cadet Quest Map</title>
+  <link rel="stylesheet" href="air_year2_map.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+  <link rel="stylesheet" href="mobile-fix.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <section class="panel title-card">
+        <p class="eyebrow" data-i18n="Level 2 / Air Cadet / ✈">Level 2 / Air Cadet / ✈</p>
+        <h1 data-i18n="Cadet Quest Map — Level 2 (Air Cadet)">Cadet Quest Map — Level 2 (Air Cadet)</h1>
+        <p class="subtitle" data-i18n="You have earned your Air Cadet Badge and your place in the Level 2 aviation program. Click badge locations on the airbase map to preview intermediate lessons, complete challenges, and collect Air Cadet badges. Build on your Proficiency Level 1 foundations with airmanship, meteorology, navigation, aircraft principles, and flight operations modules.">You have earned your Air Cadet Badge and your place in the Level 2 aviation program. Click badge locations on the airbase map to preview intermediate lessons, complete challenges, and collect Air Cadet badges. Build on your Proficiency Level 1 foundations with airmanship, meteorology, navigation, aircraft principles, and flight operations modules.</p>
+        <div class="title-card-bottom-row">
+          <a href="index.html" class="back-link" data-i18n="← Back to Cadet Quest Map">← Back to Cadet Quest Map</a>
+          <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+        </div>
+      </section>
+      <aside class="panel progress-card">
+        <h2 data-i18n="Level 2 Progress">Level 2 Progress</h2>
+        <div class="progress-bar-shell"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="progress-row">
+          <span><strong id="completeCount">0</strong> / <strong id="totalCount">12</strong> Air Cadet badges earned</span>
+          <button class="reset-btn" id="resetProgress" type="button" data-i18n="Reset Level 2">Reset Level 2</button>
+        </div>
+      </aside>
+    </header>
+
+    <section class="workspace">
+      <article class="panel map-panel">
+        <div class="map-topline">
+          <h2 data-i18n="Air Cadet Training Airbase">Air Cadet Training Airbase</h2>
+          <div class="legend">
+            <span><i class="dot"></i>Available</span>
+            <span><i class="dot done"></i>Completed</span>
+            <span><i class="dot lock"></i>Locked</span>
+          </div>
+        </div>
+        <div class="map-wrap" id="mapWrap" aria-label="Interactive Level 2 Air Cadet quest map">
+          <img class="map-image" src="assets/air_year2_map.png" alt="Level 2 Air Cadet training airbase map with badge locations" />
+        </div>
+      </article>
+
+      <aside class="panel lesson-panel" aria-live="polite">
+        <div class="lesson-hero" id="lessonHero">
+          <img id="lessonBadge" src="assets/badges/badge_13_air_program.png" alt="Selected lesson badge" />
+          <h2 id="lessonTitle" data-i18n="Airmanship & Aviation Foundations">Airmanship & Aviation Foundations</h2>
+          <p id="lessonSubtitle" data-i18n="Select any badge on the map to start a lesson.">Select any badge on the map to start a lesson.</p>
+        </div>
+        <div class="lesson-body">
+          <div class="tag-row" id="tagRow"></div>
+          <h3 data-i18n="Lesson Brief">Lesson Brief</h3>
+          <p id="lessonBrief"></p>
+          <h3 data-i18n="Learning Objectives">Learning Objectives</h3>
+          <ul class="lesson-list" id="objectiveList"></ul>
+          <div class="challenge-box" id="challengeBox"></div>
+          <div class="scenario-panel" id="scenarioPanel"></div>
+          <div class="lesson-actions">
+            <button class="primary-btn" id="completeLesson" type="button" data-i18n="Complete Lesson + Earn Air Cadet Badge">Complete Lesson + Earn Air Cadet Badge</button>
+            <button class="ghost-btn" id="playScenario" type="button" data-i18n="Play Mini Scenario">Play Mini Scenario</button>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel inventory">
+      <h2 data-i18n="Air Cadet Badge Inventory">Air Cadet Badge Inventory</h2>
+      <div class="badge-grid" id="badgeGrid"></div>
+    </section>
+
+    <section class="panel phase-bridge">
+      <h2 data-i18n="Program Progression">Program Progression</h2>
+      <div class="bridge-row">
+        <div class="bridge-cell done">
+          <span class="bridge-ico">★</span>
+          <span class="bridge-label" data-i18n="Phase 1 — Green Star">Phase 1 — Green Star</span>
+          <span class="bridge-status" data-i18n="Completed">Completed</span>
+        </div>
+        <div class="bridge-arrow">→</div>
+        <div class="bridge-cell active">
+          <span class="bridge-ico">✈</span>
+          <span class="bridge-label" data-i18n="Level 2 — Air Cadet">Level 2 — Air Cadet</span>
+          <span class="bridge-status" data-i18n="In Progress">In Progress</span>
+        </div>
+        <div class="bridge-arrow locked">→</div>
+        <div class="bridge-cell locked">
+          <span class="bridge-ico">✈</span>
+          <span class="bridge-label" data-i18n="Level 3 — Advanced Aviation">Level 3 — Advanced Aviation</span>
+          <span class="bridge-status" data-i18n="Locked">Locked</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" data-i18n="Air Cadet badge earned!">Air Cadet badge earned!</div>
+  <div class="phase-complete-modal" id="phaseCompleteModal">
+    <div class="pcm-overlay"></div>
+    <div class="pcm-card">
+      <div class="pcm-icon">✈</div>
+      <h2 class="pcm-title" data-i18n="Level 2 Air Cadet Program Complete!">Level 2 Air Cadet Program Complete!</h2>
+      <p class="pcm-text" data-i18n="Outstanding work, Cadet. You have earned all 12 Air Cadet badges and mastered the Level 2 aviation curriculum. The Advanced Aviation program awaits — return to the quest map to see what comes next.">Outstanding work, Cadet. You have earned all 12 Air Cadet badges and mastered the Level 2 aviation curriculum. The Advanced Aviation program awaits — return to the quest map to see what comes next.</p>
+      <div class="pcm-actions">
+        <button class="pcm-btn primary" id="pcmClose" type="button" data-i18n="Continue Training">Continue Training</button>
+      </div>
+    </div>
+  </div>
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="air_year2_map.js?v=2"></script>
+</body>
+</html>

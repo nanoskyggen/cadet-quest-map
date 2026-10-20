@@ -1,0 +1,36 @@
+=== INDEX 39 ===
+It is morning. Your fire kept you warm through the night and your shelter held up against the rain. Your water bottle is nearly empty and you are getting thirsty. You can hear running water in the distance — a stream about 100 metres downhill. You follow the sound and find a clear, fast-running stream. What do you do?
+
+=== INDEX 40 ===
+It is your second day. You have shelter, fire, and water — your survival basics are secured. Now you hear something in the distance: an aircraft engine. This could be a search plane looking for you. You have your whistle, your signal mirror, and three potential fire locations. You have about 30 seconds before the sound fades. What do you do?
+
+=== INDEX 41 ===
+Now that you are calm, you need to observe your surroundings and make a plan. The sky is clouding over and the temperature is dropping. You estimate you have about 2 hours of daylight left. You have a small daypack with a water bottle, a knife, a whistle, and a lighter. What do you observe and prioritize?
+
+=== INDEX 42 ===
+Reference materials covering the theory behind each bushcraft and survival training module from the Red Star wilderness survival syllabus (PO 224). Read these before or after missions to deepen your understanding of survival psychology, shelters, fire, water, foraging, and signalling. Reading articles also earns a small XP bonus.
+
+=== INDEX 43 ===
+The Bushcraft & Survival training pathway is built in sequence following the Red Star wilderness survival syllabus (PO 224). Each module teaches core survival knowledge and then tests it with a hands-on simulation. Complete modules in order to unlock the next.
+
+=== INDEX 44 ===
+The correct filter order (bottom to top) is: cloth/grass (catches fines) → fine sand → crushed charcoal (removes chemicals and odors) → fine sand → pour water through. Remember: this filters sediment only — you must still boil or chemically treat the water to kill pathogens.
+
+=== INDEX 45 ===
+The correct fuel order is: Tinder (catches spark) → Kindling (catches from tinder) → Wood Fuel (sustains flame) → Bulk Firewood (long-lasting heat). Each stage must be properly alight before adding the next, or you will smother the fire.
+
+=== INDEX 46 ===
+The correct order for building a debris shelter is: 1) Find a ridgepole, 2) Prop one end elevated, 3) Lean rib branches to form the A-frame, 4) Pile insulating debris over the frame. The debris layer should be at least 30cm thick for adequate insulation.
+
+=== INDEX 47 ===
+The five elements of survival in priority order are: Attitude, Shelter, Water, Fire, Food. Your mental attitude is the most critical — without the will to survive, nothing else matters. Shelter and water come before fire and food because exposure and dehydration kill faster than hunger.
+
+=== INDEX 48 ===
+Welcome to Operation Wildwood. Your Bushcraft & Survival training covers the psychology of survival, the seven enemies of survival, emergency shelter construction, fire lighting and maintenance, water sourcing and purification, foraging awareness, and rescue signalling. You will master the S.T.O.P. procedure, the survival priorities rule of three, the fire triangle, shelter site selection, and universal distress signals. Complete training modules to earn XP, climb the rank ladder, and file your survival SITREPs.
+
+=== INDEX 49 ===
+You are stranded alone in the wilderness with nightfall approaching. The Survival Trail is a multi-stage interactive scenario that tests everything you have learned. Make the right decisions at each stage — S.T.O.P., build shelter, light a fire, purify water, and signal for rescue. Every choice affects your survival condition meters. Complete all stages successfully to earn the Survival Trail badge. Toggle on the campfire music for an immersive wilderness atmosphere.
+
+=== INDEX 50 ===
+You blow three sharp whistle blasts, pause, and repeat. You flash your signal mirror three times toward the aircraft. You light your three pre-prepared fire locations arranged in a triangle 35 metres apart. The universal distress signal is THREE of anything — three whistles, three flashes, three fires in a triangle. Your multiple signal methods catch the search crew's attention. The aircraft circles, waggles its wings — they have seen you! Rescue is on the way. You did everything right.
+

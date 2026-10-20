@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="Cadet HQ — Citizenship & Teamwork Command">Cadet HQ — Citizenship & Teamwork Command</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="citizenship_training.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+  <link rel="stylesheet" href="mobile-fix.css" />
+  <link rel="stylesheet" href="multimodal.css" />
+</head>
+<body>
+  <!-- ========== TOP BAR ========== -->
+  <header class="topbar">
+    <div class="brand">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Toggle menu">☰</button>
+      <div class="crest">🤝</div>
+      <div class="brand-text">
+        <div class="t1" data-i18n="CADET HQ">CADET HQ</div>
+        <div class="t2" data-i18n="Citizenship &amp; Teamwork">Citizenship &amp; Teamwork</div>
+      </div>
+    </div>
+    <div class="top-stats">
+      <div class="top-stat"><span class="ico">⭐</span><span class="lbl" data-i18n="Rank">Rank</span><span class="val" id="topRank">—</span></div>
+      <div class="top-stat"><span class="ico">⚡</span><span class="lbl">XP</span><span class="val" id="topXP">0</span></div>
+      <div class="top-stat"><span class="ico">🏆</span><span class="lbl" data-i18n="Badges">Badges</span><span class="val" id="topBadges">0</span></div>
+            <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+<a class="back-link" href="index.html" data-i18n="← Back to Quest Map">← Back to Quest Map</a>
+    </div>
+  </header>
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="pilot-card">
+      <div class="avatar">🤝</div>
+      <div class="rank-name" id="pilotRank" data-i18n="Citizen Recruit">Citizen Recruit</div>
+      <div class="callsign" id="pilotCallsign" data-i18n="CALLSIGN: CITIZEN-1">CALLSIGN: CITIZEN-1</div>
+      <div class="xp-bar"><div class="xp-fill" id="xpFill"></div></div>
+      <div class="xp-text" id="xpText" data-i18n="0 / 300 XP">0 / 300 XP</div>
+    </div>
+
+    <div class="nav-label" data-i18n="Operations">Operations</div>
+    <nav id="mainNav">
+      <button class="nav-btn active" data-section="command" type="button"><span class="ico">🤝</span><span class="txt" data-i18n="Command">Command</span></button>
+      <button class="nav-btn" data-section="training" type="button"><span class="ico">📋</span><span class="txt" data-i18n="Training">Training</span><span class="badge-dot" id="navTrainingCount">6</span></button>
+      <button class="nav-btn" data-section="missions" type="button"><span class="ico">🎯</span><span class="txt" data-i18n="Missions">Missions</span><span class="badge-dot" id="navMissionCount">6</span></button>
+      <button class="nav-btn" data-section="analysis" type="button"><span class="ico">📊</span><span class="txt" data-i18n="Analysis">Analysis</span></button>
+      <button class="nav-btn" data-section="sitrep" type="button"><span class="ico">📡</span><span class="txt" data-i18n="SITREP">SITREP</span></button>
+      <button class="nav-btn" data-section="ranks" type="button"><span class="ico">⭐</span><span class="txt" data-i18n="Ranks">Ranks</span></button>
+      <button class="nav-btn" data-section="learn" type="button"><span class="ico">📚</span><span class="txt" data-i18n="Learn">Learn</span></button>
+      <button class="nav-btn" data-section="arena" type="button"><span class="ico">🏘️</span><span class="txt" data-i18n="Teamwork Arena">Teamwork Arena</span></button>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN ========== -->
+  <main class="main">
+
+    <!-- ===== COMMAND (Dashboard) ===== -->
+    <section class="section active" id="section-command">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Command Overview">▸ Command Overview</div>
+        <h1 data-i18n="Community Service Command">Community Service Command</h1>
+        <p data-i18n="Welcome to the Citizenship &amp; Teamwork training command. Your mission is to develop the values, standards, and teamwork skills that define a cadet in the community. You will explore the aim of the Canadian Cadet Program, practise respectful participation, lead community engagement projects, and learn to support your section, flight, or division through real scenarios. Complete training modules to earn XP, climb the rank ladder, and file your SITREPs.">Welcome to the Citizenship &amp; Teamwork training command. Your mission is to develop the values, standards, and teamwork skills that define a cadet in the community. You will explore the aim of the Canadian Cadet Program, practise respectful participation, lead community engagement projects, and learn to support your section, flight, or division through real scenarios. Complete training modules to earn XP, climb the rank ladder, and file your SITREPs.</p>
+      </div>
+
+      <!-- Metrics row -->
+      <div class="grid grid-4" style="margin-bottom: 20px;">
+        <div class="metric">
+          <div class="m-ico">🎯</div>
+          <div class="m-val" id="cmdMissionsDone">0</div>
+          <div class="m-lbl" data-i18n="Missions Complete">Missions Complete</div>
+          <div class="m-sub" id="cmdMissionsTotal" data-i18n="of 6">of 6</div>
+        </div>
+        <div class="metric">
+          <div class="m-ico">⚡</div>
+          <div class="m-val" id="cmdXP">0</div>
+          <div class="m-lbl" data-i18n="Total XP">Total XP</div>
+          <div class="m-sub" id="cmdXPNext" data-i18n="+300 to next rank">+300 to next rank</div>
+        </div>
+        <div class="metric warn">
+          <div class="m-ico">📡</div>
+          <div class="m-val" id="cmdSitreps">0</div>
+          <div class="m-lbl" data-i18n="SITREPs Filed">SITREPs Filed</div>
+          <div class="m-sub" data-i18n="Filing recommended">Filing recommended</div>
+        </div>
+        <div class="metric">
+          <div class="m-ico">🏆</div>
+          <div class="m-val" id="cmdBadges">0</div>
+          <div class="m-lbl" data-i18n="Badges Earned">Badges Earned</div>
+          <div class="m-sub" id="cmdBadgeTotal" data-i18n="of 6">of 6</div>
+        </div>
+      </div>
+
+      <!-- Mission briefing + threat panel -->
+      <div class="briefing">
+        <div class="mission-banner">
+          <div class="tag-row">
+            <span class="tag green" data-i18n="CITIZENSHIP / COMMUNITY">CITIZENSHIP / COMMUNITY</span>
+            <span class="tag live" id="opStatusTag" data-i18n="ACTIVE">ACTIVE</span>
+            <span class="tag" data-i18n="VALUES &amp; STANDARDS">VALUES &amp; STANDARDS</span>
+          </div>
+          <h2 data-i18n="Current Operation: Community Engagement Rotation">Current Operation: Community Engagement Rotation</h2>
+          <p class="mission-sub">Your commanding officer has cleared your section to begin the Citizenship &amp; Teamwork training rotation. Work through each module in sequence — values and standards, respectful participation, teamwork dynamics, community service planning, leadership in the community, and the civic reflection review. Each mission is a hands-on simulation where you will use the values handbook, teamwork playbook, community service guide, and leadership manual just like a real cadet leading a community project.</p>
+
+          <div class="chapter-list" id="chapterList">
+            <!-- chapters injected by JS -->
+          </div>
+        </div>
+
+        <div class="threat-panel">
+          <h2><span class="ico">⚠️</span> Teamwork Risk Assessment</h2>
+          <p class="muted" style="font-size:12px; line-height:1.6;" data-i18n="Teamwork and citizenship risks cadets must remain aware of during community operations. Risk levels update as you progress.">Teamwork and citizenship risks cadets must remain aware of during community operations. Risk levels update as you progress.</p>
+          <div class="threat-meter">
+            <div class="threat-bar"><div class="threat-fill" id="threatFill" style="width: 20%;"></div></div>
+            <div class="threat-labels"><span data-i18n="SAFE">SAFE</span><span data-i18n="CAUTION">CAUTION</span><span data-i18n="HIGH">HIGH</span></div>
+          </div>
+          <div id="threatItems">
+            <div class="threat-item">
+              <div class="ti-ico">🗣️</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Poor Communication">Poor Communication</div>
+                <div class="ti-desc" data-i18n="Failing to listen and share information breaks down team coordination and trust.">Failing to listen and share information breaks down team coordination and trust.</div>
+              </div>
+              <div class="ti-level med" data-i18n="MED">MED</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">⚖️</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Unfair Resource Sharing">Unfair Resource Sharing</div>
+                <div class="ti-desc" data-i18n="Hoarding tools or workload creates resentment and reduces mission effectiveness.">Hoarding tools or workload creates resentment and reduces mission effectiveness.</div>
+              </div>
+              <div class="ti-level med" data-i18n="MED">MED</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">😤</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Conflict Escalation">Conflict Escalation</div>
+                <div class="ti-desc" data-i18n="Unresolved disagreements can fracture the section and damage community relationships.">Unresolved disagreements can fracture the section and damage community relationships.</div>
+              </div>
+              <div class="ti-level low" data-i18n="LOW">LOW</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">📉</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Low Morale">Low Morale</div>
+                <div class="ti-desc" data-i18n="A team that feels unsupported will disengage from the mission and the community.">A team that feels unsupported will disengage from the mission and the community.</div>
+              </div>
+              <div class="ti-level low" data-i18n="LOW">LOW</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TRAINING (Module List) ===== -->
+    <section class="section" id="section-training">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Training Modules">▸ Training Modules</div>
+        <h1 data-i18n="Training Pathway">Training Pathway</h1>
+        <p>The Citizenship &amp; Teamwork training pathway is built in sequence. Each module teaches core values and teamwork skills and then tests them with a hands-on simulation. Complete modules in order to unlock the next.</p>
+      </div>
+      <div class="mission-grid" id="trainingGrid">
+        <!-- training cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- ===== MISSIONS (Active Task Console) ===== -->
+    <section class="section" id="section-missions">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Mission Simulator">▸ Mission Simulator</div>
+        <h1 id="missionHeaderTitle" data-i18n="Select a Mission">Select a Mission</h1>
+        <p id="missionHeaderSub" data-i18n="Choose a training module from the Training tab, or pick a mission below to enter the simulator.">Choose a training module from the Training tab, or pick a mission below to enter the simulator.</p>
+      </div>
+
+      <div id="missionSelector" class="mission-grid">
+        <!-- mission selector cards -->
+      </div>
+
+      <div id="missionConsole" style="display:none;">
+        <!-- Active task console injected here -->
+      </div>
+    </section>
+
+    <!-- ===== ANALYSIS ===== -->
+    <section class="section" id="section-analysis">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Performance Analysis">▸ Performance Analysis</div>
+        <h1 data-i18n="Citizenship Performance Dashboard">Citizenship Performance Dashboard</h1>
+        <p data-i18n="Track your progress across citizenship and teamwork training modules. XP is awarded for completing mission tasks correctly. Wrong attempts reduce your mission score but you can retry.">Track your progress across citizenship and teamwork training modules. XP is awarded for completing mission tasks correctly. Wrong attempts reduce your mission score but you can retry.</p>
+      </div>
+
+      <div class="grid grid-2" style="margin-bottom: 20px;">
+        <div class="card xp-ring-wrap" style="align-items:center; justify-content:center;">
+          <div class="xp-ring">
+            <svg width="120" height="120">
+              <circle class="ring-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="ring-fg" cx="60" cy="60" r="50" id="xpRingFg" stroke-dasharray="314" stroke-dashoffset="314"></circle>
+            </svg>
+            <div class="ring-text">
+              <div class="rt-val" id="ringXP">0</div>
+              <div class="rt-lbl" id="ringRankLabel" data-i18n="Recruit">Recruit</div>
+            </div>
+          </div>
+          <div>
+            <h2 style="margin-bottom:6px;" data-i18n="Career Progression">Career Progression</h2>
+            <p class="muted" style="font-size:12px; line-height:1.6; max-width:300px;">You are working toward <strong id="nextRankName" style="color:var(--green-bright)" data-i18n="Citizen Cadet">Citizen Cadet</strong>. Complete missions to earn XP and climb the ranks.</p>
+            <p class="mono" style="font-size:11px; color:var(--ink-3); margin-top:8px;" id="ringXPToNext" data-i18n="0 / 300 XP to next rank">0 / 300 XP to next rank</p>
+          </div>
+        </div>
+
+        <div class="card chart-card">
+          <h2><span class="ico">📊</span> XP by Module</h2>
+          <div class="chart-canvas">
+            <div class="bar-chart" id="xpBarChart">
+              <!-- bars injected -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h2><span class="ico">✅</span> Accuracy</h2>
+          <div class="m-val mono" style="font-size:28px; font-weight:800; color:var(--green);" id="accuracyPct">100%</div>
+          <p class="muted" style="font-size:12px; margin-top:6px;" data-i18n="Correct first-try task completions">Correct first-try task completions</p>
+        </div>
+        <div class="card">
+          <h2><span class="ico">🔄</span> Total Attempts</h2>
+          <div class="m-val mono" style="font-size:28px; font-weight:800; color:var(--amber);" id="totalAttempts">0</div>
+          <p class="muted" style="font-size:12px; margin-top:6px;" data-i18n="Across all missions">Across all missions</p>
+        </div>
+        <div class="card">
+          <h2><span class="ico">⏱️</span> Best Streak</h2>
+          <div class="m-val mono" style="font-size:28px; font-weight:800; color:var(--green-bright);" id="bestStreak">0</div>
+          <p class="muted" style="font-size:12px; margin-top:6px;" data-i18n="Consecutive correct tasks">Consecutive correct tasks</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SITREP ===== -->
+    <section class="section" id="section-sitrep">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Situation Reports">▸ Situation Reports</div>
+        <h1 data-i18n="SITREP Filing">SITREP Filing</h1>
+        <p data-i18n="A Situation Report (SITREP) is how cadets communicate mission status to their commanding officer. File a SITREP after each training module to log what you learned and any areas to improve.">A Situation Report (SITREP) is how cadets communicate mission status to their commanding officer. File a SITREP after each training module to log what you learned and any areas to improve.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h2><span class="ico">📝</span> File New SITREP</h2>
+          <div class="sitrep-form" style="margin-top:14px;">
+            <div class="sitrep-field">
+              <label for="sitrepMission" data-i18n="Mission Reference">Mission Reference</label>
+              <select class="task-select" id="sitrepMission">
+                <option value="" data-i18n="Select a completed mission…">Select a completed mission…</option>
+              </select>
+            </div>
+            <div class="sitrep-field">
+              <label for="sitrepStatus" data-i18n="Overall Status">Overall Status</label>
+              <select class="task-select" id="sitrepStatus">
+                <option value="" data-i18n="Choose status…">Choose status…</option>
+                <option value="NOMINAL" data-i18n="NOMINAL — All objectives met">NOMINAL — All objectives met</option>
+                <option value="MINOR_HAZARD" data-i18n="MINOR HAZARD — Completed with caution">MINOR HAZARD — Completed with caution</option>
+                <option value="ABORTED" data-i18n="ABORTED — Mission not completed">ABORTED — Mission not completed</option>
+              </select>
+            </div>
+            <div class="sitrep-field">
+              <label for="sitrepSummary" data-i18n="Summary of Events">Summary of Events</label>
+              <textarea class="task-note" id="sitrepSummary" data-i18n-placeholder="Summarise what happened during the mission. Include any teamwork challenges identified and lessons learned. (Min 20 characters)"></textarea>
+            </div>
+            <button class="btn btn-primary" id="fileSitrepBtn" type="button" data-i18n="📡 File SITREP">📡 File SITREP</button>
+            <div class="task-feedback" id="sitrepFeedback"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2><span class="ico">📋</span> SITREP Log</h2>
+          <div class="sitrep-log" id="sitrepLog" style="margin-top:14px;">
+            <p class="muted center" style="padding:20px;" data-i18n="No SITREPs filed yet. Complete a mission and file your first report.">No SITREPs filed yet. Complete a mission and file your first report.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RANKS ===== -->
+    <section class="section" id="section-ranks">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Rank Progression">▸ Rank Progression</div>
+        <h1 data-i18n="Rank Ladder">Rank Ladder</h1>
+        <p data-i18n="As you complete citizenship and teamwork training modules and earn XP, you advance through the community service cadet ranks. Each rank unlocks new responsibilities and recognition.">As you complete citizenship and teamwork training modules and earn XP, you advance through the community service cadet ranks. Each rank unlocks new responsibilities and recognition.</p>
+      </div>
+      <div class="card">
+        <div class="rank-list" id="rankList">
+          <!-- rank rows injected -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LEARN ===== -->
+    <section class="section" id="section-learn">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Learning Library">▸ Learning Library</div>
+        <h1 data-i18n="Citizenship Knowledge Base">Citizenship Knowledge Base</h1>
+        <p data-i18n="Reference materials covering the theory behind each citizenship and teamwork training module. Read these before or after missions to deepen your understanding of values, community service, teamwork, and leadership. Reading articles also earns a small XP bonus.">Reference materials covering the theory behind each citizenship and teamwork training module. Read these before or after missions to deepen your understanding of values, community service, teamwork, and leadership. Reading articles also earns a small XP bonus.</p>
+      </div>
+      <div class="lib-grid" id="learnGrid">
+        <!-- learn cards injected -->
+      </div>
+    </section>
+
+    <!-- ===== TEAMWORK ARENA (Interactive Game) ===== -->
+    <section class="section" id="section-arena">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Interactive Teamwork Trainer">▸ Interactive Teamwork Trainer</div>
+        <h1 data-i18n="Teamwork Arena — Community Service Simulator">Teamwork Arena — Community Service Simulator</h1>
+        <p data-i18n="Step into the role of section leader coordinating a community service operation. Assign cadets to tasks, resolve team conflicts, share resources fairly, keep morale high, and maximise community impact. Five hands-on teamwork modes test your citizenship and leadership skills in real time — no multiple-choice questions, just teamwork. Build your skills until every decision strengthens the team and the community.">Step into the role of section leader coordinating a community service operation. Assign cadets to tasks, resolve team conflicts, share resources fairly, keep morale high, and maximise community impact. Five hands-on teamwork modes test your citizenship and leadership skills in real time — no multiple-choice questions, just teamwork. Build your skills until every decision strengthens the team and the community.</p>
+      </div>
+
+      <div class="arena-game-wrap">
+        <!-- LEFT: Challenge display + interaction area -->
+        <div class="arena-main-card">
+          <!-- Challenge type indicator + timer -->
+          <div class="arena-header-bar">
+            <div class="ta-mode-badge" id="taModeBadge" data-i18n="SELECT MODE">SELECT MODE</div>
+            <div class="ta-challenge-title" id="taChallengeTitle" data-i18n="Ready at the community centre">Ready at the community centre</div>
+            <div class="ta-timer-mini">
+              <div class="ta-timer-fill" id="taTimerFill"></div>
+              <div class="ta-timer-text" id="taTimerText">—</div>
+            </div>
+          </div>
+
+          <!-- Dynamic challenge area (injected by JS per mode) -->
+          <div class="ta-challenge-area" id="taChallengeArea">
+            <div class="ta-idle-prompt">
+              <div class="ta-idle-ico">🏘️</div>
+              <h2 data-i18n="Five Teamwork Qualification Modes">Five Teamwork Qualification Modes</h2>
+              <div class="ta-mode-list">
+                <div class="ta-mode-item"><span class="ta-mode-ico">📋</span><div><strong data-i18n="Task Allocation">Task Allocation</strong> — Match each cadet to the community task that fits their skills. Assign quickly and correctly under time pressure.</div></div>
+                <div class="ta-mode-item"><span class="ta-mode-ico">🤝</span><div><strong data-i18n="Conflict Resolution">Conflict Resolution</strong> — A disagreement erupts in the section. Choose the right approach to resolve it constructively before morale drops.</div></div>
+                <div class="ta-mode-item"><span class="ta-mode-ico">⚖️</span><div><strong data-i18n="Resource Sharing">Resource Sharing</strong> — Limited tools and supplies must be distributed fairly. Balance the workload across all teams.</div></div>
+                <div class="ta-mode-item"><span class="ta-mode-ico">💪</span><div><strong data-i18n="Morale Management">Morale Management</strong> — Watch your team's morale meter. Respond to events at the right moment to keep spirits high.</div></div>
+                <div class="ta-mode-item"><span class="ta-mode-ico">🌍</span><div><strong data-i18n="Community Impact">Community Impact</strong> — Prioritise service tasks for maximum community benefit. Think strategically about what helps the most people.</div></div>
+              </div>
+              <p class="muted" style="font-size:12px; margin-top:14px;">Press <strong data-i18n="Start Qualification">Start Qualification</strong> to begin. Modes are called one at a time in random order.</p>
+            </div>
+          </div>
+
+          <!-- Feedback -->
+          <div class="ta-feedback info" id="taFeedback">Press <strong data-i18n="Start Qualification">Start Qualification</strong> to begin. Teamwork modes will be called one at a time.</div>
+
+          <!-- Control buttons -->
+          <div class="ta-controls">
+            <button class="btn btn-primary" id="taStartBtn" type="button" data-i18n="▶ Start Qualification">▶ Start Qualification</button>
+            <button class="btn btn-ghost" id="taNextBtn" type="button" disabled data-i18n="▶ Next Mode">▶ Next Mode</button>
+            <button class="btn btn-gold" id="taExamBtn" type="button" data-i18n="🏆 Exam Mode (5 Rounds)">🏆 Exam Mode (5 Rounds)</button>
+            <button class="btn btn-ghost" id="taResetBtn" type="button" data-i18n="↻ Reset">↻ Reset</button>
+          </div>
+        </div>
+
+        <!-- RIGHT: Team view + stats + log -->
+        <div class="arena-side">
+          <!-- Team status view -->
+          <div class="arena-stat-card arena-team-card">
+            <h3><span class="ico">🤝</span> Team Status</h3>
+            <div class="ta-team-wrap" id="taTeamWrap"></div>
+          </div>
+
+          <div class="arena-stat-card">
+            <h3><span class="ico">🎯</span> Arena Stats</h3>
+            <div class="ps-row"><span data-i18n="Score">Score</span><span class="ps-val" id="taScore">0</span></div>
+            <div class="ps-row"><span data-i18n="Correct">Correct</span><span class="ps-val" id="taCorrect">0</span></div>
+            <div class="ps-row"><span data-i18n="Wrong">Wrong</span><span class="ps-val" id="taWrong">0</span></div>
+            <div class="ps-row"><span data-i18n="Streak">Streak</span><span class="ps-val" id="taStreak">0</span></div>
+            <div class="ps-row"><span data-i18n="Round">Round</span><span class="ps-val" id="taRound">0</span></div>
+          </div>
+
+          <div class="arena-stat-card">
+            <h3><span class="ico">📋</span> Arena Log</h3>
+            <div class="ta-log-list" id="taLogList">
+              <p class="muted" style="font-size:11px; padding:8px;" data-i18n="No decisions made yet.">No decisions made yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== TOAST ========== -->
+  <div class="toast" id="toast">
+    <span class="toast-ico" id="toastIco">✅</span>
+    <span id="toastText" data-i18n="Notification">Notification</span>
+  </div>
+
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="mobile-nav.js"></script>
+  <script src="citizenship_training.js"></script>
+  <script src="multimodal.js"></script>
+</body>
+</html>

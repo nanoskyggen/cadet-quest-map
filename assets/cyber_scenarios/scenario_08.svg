@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 460" role="img" aria-label="Active Directory Compromise cyber scenario illustration">
+  <defs>
+    <radialGradient id="glow" cx="28%" cy="18%" r="70%"><stop offset="0" stop-color="#ffd655" stop-opacity="0.36"/><stop offset="0.58" stop-color="#071527" stop-opacity="0.95"/><stop offset="1" stop-color="#030712"/></radialGradient>
+    <linearGradient id="panel" x1="0" x2="1"><stop offset="0" stop-color="#0e2944"/><stop offset="1" stop-color="#07111f"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity="0.45"/></filter>
+  </defs>
+  <rect width="720" height="460" rx="34" fill="url(#glow)"/>
+  <path d="M0 378 C150 320 260 430 420 366 S620 326 720 386 L720 460 L0 460 Z" fill="#ffd655" opacity="0.12"/>
+  <g opacity="0.18" stroke="#ffd655" stroke-width="2">
+    <path d="M52 72 H220 V130 H330"/><path d="M500 60 V130 H650"/><path d="M92 388 H260 V330 H388"/><path d="M520 350 H628 V276"/>
+    <circle cx="220" cy="130" r="7" fill="#ffd655"/><circle cx="500" cy="130" r="7" fill="#ffd655"/><circle cx="388" cy="330" r="7" fill="#ffd655"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="44" y="48" width="632" height="356" rx="28" fill="url(#panel)" stroke="#ffd655" stroke-opacity="0.58"/>
+    <rect x="44" y="48" width="632" height="58" rx="28" fill="#ffffff" opacity="0.07"/>
+    <circle cx="78" cy="78" r="9" fill="#ff6876"/><circle cx="106" cy="78" r="9" fill="#ffd655"/><circle cx="134" cy="78" r="9" fill="#22f5bf"/>
+  </g>
+  <text x="70" y="153" fill="#ffd655" font-family="Arial, sans-serif" font-size="23" font-weight="800" letter-spacing="5">IDENTITY</text>
+  <text x="70" y="198" fill="#eef8ff" font-family="Arial, sans-serif" font-size="34" font-weight="900">Ticket 8: Active Directory Compromise</text>
+  <g transform="translate(518 144)">
+    <rect x="0" y="0" width="104" height="104" rx="28" fill="#ffd655" opacity="0.18" stroke="#ffd655" stroke-width="3"/>
+    <text x="52" y="67" text-anchor="middle" fill="#ffd655" font-family="Arial, sans-serif" font-size="46" font-weight="900">◆</text>
+  </g>
+  <rect x="70" y="225" width="430" height="2" fill="#ffd655" opacity="0.6"/>
+  <text x="70" y="262" fill="#dffcff" font-family="Arial, sans-serif" font-size="20">• Domain Admin change</text><text x="70" y="296" fill="#dffcff" font-family="Arial, sans-serif" font-size="20">• DC login</text><text x="70" y="330" fill="#dffcff" font-family="Arial, sans-serif" font-size="20">• Escalate severity</text>
+  <text x="70" y="382" fill="#9fbdd2" font-family="Arial, sans-serif" font-size="16">Use the VM tools, verify evidence, then complete the defensive task.</text>
+</svg>

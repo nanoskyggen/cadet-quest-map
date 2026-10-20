@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg11" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a2214"/><stop offset="1" stop-color="#0d1208"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#bg11)"/>
+  <!-- folded map -->
+  <g transform="translate(40,40)">
+    <rect x="0" y="0" width="120" height="90" fill="#1a2a14" stroke="#9ab36a" stroke-width="2" rx="4"/>
+    <g stroke="#5a7a3a" stroke-width="0.5" opacity="0.5">
+      <line x1="0" y1="30" x2="120" y2="30"/><line x1="0" y1="60" x2="120" y2="60"/>
+      <line x1="40" y1="0" x2="40" y2="90"/><line x1="80" y1="0" x2="80" y2="90"/>
+    </g>
+    <ellipse cx="60" cy="45" rx="15" ry="10" fill="none" stroke="#8a7a3a" stroke-width="1"/>
+    <text x="60" y="105" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#9ab36a">Oriented Map</text>
+  </g>
+  <!-- compass -->
+  <g transform="translate(280,90)">
+    <circle cx="0" cy="0" r="50" fill="#0d1808" stroke="#c9a227" stroke-width="3"/>
+    <circle cx="0" cy="0" r="42" fill="none" stroke="#9ab36a" stroke-width="1" opacity="0.4"/>
+    <text x="0" y="-35" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#ff6876" font-weight="bold">N</text>
+    <text x="38" y="4" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#9ab36a">E</text>
+    <text x="0" y="42" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#9ab36a">S</text>
+    <text x="-38" y="4" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#9ab36a">W</text>
+    <!-- needle pointing SE (155°) -->
+  </g>
+  <g transform="translate(280,90) rotate(155)">
+    <polygon points="0,-36 5,0 0,10 -5,0" fill="#ff6876"/>
+    <polygon points="0,10 5,0 0,36 -5,0" fill="#eef8e8" opacity="0.7"/>
+    <circle cx="0" cy="0" r="4" fill="#c9a227"/>
+  </g>
+  <text x="280" y="160" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#c9a227" font-weight="bold">155° MAG</text>
+  <!-- route arrow -->
+  <g transform="translate(100,130)">
+    <path d="M0,0 Q40,-20 80,-10" stroke="#b8d97a" stroke-width="2" fill="none" stroke-dasharray="5,3"/>
+    <polygon points="80,-10 74,-16 74,-4" fill="#b8d97a"/>
+    <text x="40" y="15" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#b8d97a">→ Checkpoint</text>
+  </g>
+  <text x="200" y="265" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#9ab36a" opacity="0.7">Route Navigation &amp; Compass</text>
+</svg>

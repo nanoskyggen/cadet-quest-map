@@ -1,0 +1,354 @@
+/* ============================================================
+   i18n.css — Language switcher styling
+   The switcher is a compact EN | FR pill toggle.
+   When a page provides a #langSwitcher container inside its
+   nav/header, the switcher renders inline. Otherwise it
+   floats fixed top-right as a fallback.
+   ============================================================ */
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(16, 35, 61, 0.85);
+  border: 1.5px solid rgba(245, 200, 76, 0.5);
+  border-radius: 8px;
+  padding: 2px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+  z-index: 99999;
+  flex-shrink: 0;
+}
+
+/* Floating fallback version (when no container provided) */
+#langSwitcher.lang-switcher:not(.lang-switcher-inline) {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 30px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.lang-btn:hover {
+  background: rgba(245, 200, 76, 0.15);
+  color: #f5c84c;
+}
+
+.lang-btn.active {
+  background: #f5c84c;
+  color: #10233d;
+}
+
+/* ── Dark nav contexts (topbar on training pages) ── */
+.topbar .lang-switcher,
+.topbar #langSwitcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(245, 200, 76, 0.35);
+  box-shadow: none;
+}
+
+.topbar .lang-btn {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.topbar .lang-btn:hover {
+  background: rgba(245, 200, 76, 0.12);
+  color: #f5c84c;
+}
+
+.topbar .lang-btn.active {
+  background: #f5c84c;
+  color: #10233d;
+}
+
+/* ── Hero banner (index.html — dark gradient header) ── */
+.hero-badge-row .lang-switcher,
+.hero-badge-row #langSwitcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  margin-left: auto;
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(245, 200, 76, 0.4);
+  box-shadow: none;
+}
+
+.hero-banner .lang-btn,
+.hero-badge-row .lang-btn {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.hero-banner .lang-btn:hover,
+.hero-badge-row .lang-btn:hover {
+  background: rgba(245, 200, 76, 0.15);
+  color: #f5c84c;
+}
+
+.hero-banner .lang-btn.active,
+.hero-badge-row .lang-btn.active {
+  background: #f5c84c;
+  color: #10233d;
+}
+
+/* ── Avatar nav (dark navy bar) ── */
+.avatar-nav .lang-switcher,
+.avatar-nav #langSwitcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(245, 200, 76, 0.35);
+  box-shadow: none;
+}
+
+.avatar-nav .lang-btn {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.avatar-nav .lang-btn:hover {
+  background: rgba(245, 200, 76, 0.15);
+  color: #f5c84c;
+}
+
+.avatar-nav .lang-btn.active {
+  background: #f5c84c;
+  color: #10233d;
+}
+
+/* ── Scenario top-nav (light background) ── */
+.top-nav .lang-switcher,
+.top-nav #langSwitcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  background: rgba(16, 35, 61, 0.08);
+  border-color: rgba(16, 35, 61, 0.2);
+  box-shadow: none;
+}
+
+.top-nav .lang-btn {
+  color: rgba(16, 35, 61, 0.5);
+}
+
+.top-nav .lang-btn:hover {
+  background: rgba(16, 35, 61, 0.08);
+  color: #10233d;
+}
+
+.top-nav .lang-btn.active {
+  background: #10233d;
+  color: #f5c84c;
+}
+
+/* ── Year2 map header (light card panels) ── */
+.header .lang-switcher,
+.header #langSwitcher,
+.title-card .lang-switcher,
+.title-card #langSwitcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  background: rgba(16, 35, 61, 0.08);
+  border-color: rgba(16, 35, 61, 0.2);
+  box-shadow: none;
+}
+
+.header .lang-btn,
+.title-card .lang-btn {
+  color: rgba(16, 35, 61, 0.5);
+}
+
+.header .lang-btn:hover,
+.title-card .lang-btn:hover {
+  background: rgba(16, 35, 61, 0.08);
+  color: #10233d;
+}
+
+.header .lang-btn.active,
+.title-card .lang-btn.active {
+  background: #10233d;
+  color: #f5c84c;
+}
+
+/* ── Escape room (dark themed) ── */
+.er-hud .lang-switcher,
+.er-hud #langSwitcher,
+.er-shell .lang-switcher,
+.er-shell #langSwitcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(245, 200, 76, 0.35);
+  box-shadow: none;
+}
+
+.er-hud .lang-btn,
+.er-shell .lang-btn {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.er-hud .lang-btn:hover,
+.er-shell .lang-btn:hover {
+  background: rgba(245, 200, 76, 0.12);
+  color: #f5c84c;
+}
+
+.er-hud .lang-btn.active,
+.er-shell .lang-btn.active {
+  background: #f5c84c;
+  color: #10233d;
+}
+
+/* ── Cyber range / VM shell (dark) ── */
+.vm-shell .lang-switcher,
+.vm-shell #langSwitcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(245, 200, 76, 0.35);
+  box-shadow: none;
+}
+
+.vm-shell .lang-btn {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.vm-shell .lang-btn:hover {
+  background: rgba(245, 200, 76, 0.12);
+  color: #f5c84c;
+}
+
+.vm-shell .lang-btn.active {
+  background: #f5c84c;
+  color: #10233d;
+}
+
+/* ── Generic inline wrapper (any nav with .nav-lang-slot) ── */
+.nav-lang-slot .lang-switcher,
+.nav-lang-slot #langSwitcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  box-shadow: none;
+}
+
+/* ── Music scenario (light background, .music-top-row) ── */
+.music-top-row .lang-switcher,
+.music-top-row #langSwitcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  background: rgba(16, 35, 61, 0.08);
+  border-color: rgba(16, 35, 61, 0.2);
+  box-shadow: none;
+}
+
+.music-top-row .lang-btn {
+  color: rgba(16, 35, 61, 0.5);
+}
+
+.music-top-row .lang-btn:hover {
+  background: rgba(16, 35, 61, 0.08);
+  color: #10233d;
+}
+
+.music-top-row .lang-btn.active {
+  background: #10233d;
+  color: #f5c84c;
+}
+
+/* ── Year2 map title-card bottom row (light) ── */
+.title-card-bottom-row .lang-switcher,
+.title-card-bottom-row #langSwitcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  background: rgba(16, 35, 61, 0.08);
+  border-color: rgba(16, 35, 61, 0.2);
+  box-shadow: none;
+}
+
+.title-card-bottom-row .lang-btn {
+  color: rgba(16, 35, 61, 0.5);
+}
+
+.title-card-bottom-row .lang-btn:hover {
+  background: rgba(16, 35, 61, 0.08);
+  color: #10233d;
+}
+
+.title-card-bottom-row .lang-btn.active {
+  background: #10233d;
+  color: #f5c84c;
+}
+
+/* ── Escape room top row (dark) ── */
+.er-top-row .lang-switcher,
+.er-top-row #langSwitcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(245, 200, 76, 0.35);
+  box-shadow: none;
+}
+
+.er-top-row .lang-btn {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.er-top-row .lang-btn:hover {
+  background: rgba(245, 200, 76, 0.12);
+  color: #f5c84c;
+}
+
+.er-top-row .lang-btn.active {
+  background: #f5c84c;
+  color: #10233d;
+}
+
+/* ── Cyber range top row (dark) ── */
+.vm-top-row .lang-switcher,
+.vm-top-row #langSwitcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(245, 200, 76, 0.35);
+  box-shadow: none;
+}
+
+.vm-top-row .lang-btn {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.vm-top-row .lang-btn:hover {
+  background: rgba(245, 200, 76, 0.12);
+  color: #f5c84c;
+}
+
+.vm-top-row .lang-btn.active {
+  background: #f5c84c;
+  color: #10233d;
+}

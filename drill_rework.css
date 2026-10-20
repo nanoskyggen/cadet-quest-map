@@ -1,0 +1,109 @@
+/* ============================================================
+   DRILL TRAINING — "PARADE SQUARE" THEME
+   CSS-only structural enhancements for the drill training page.
+   Adds parade ground line markings, drill command styling, and
+   CFP 201 manual references. No HTML/JS changes.
+   ============================================================ */
+
+/* ---------- Sidebar: Parade square board ---------- */
+.sidebar {
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(71, 107, 159, 0.06), transparent 40%),
+    linear-gradient(180deg, var(--panel), var(--void));
+  position: relative;
+}
+/* Parade square line markings */
+.sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 36px, rgba(245, 200, 76, 0.02) 36px, rgba(245, 200, 76, 0.02) 37px);
+  pointer-events: none;
+}
+
+/* Nav buttons — drill formation positions */
+.nav-btn {
+  border-left: 3px solid transparent;
+  transition: border-color .2s, background .2s;
+}
+.nav-btn:hover {
+  border-left-color: var(--steel-dim);
+}
+.nav-btn.active {
+  border-left-color: var(--steel-bright);
+}
+
+/* ---------- Section headers — drill command prefix ---------- */
+.section-head .eyebrow {
+  position: relative;
+  padding-left: 22px;
+}
+.section-head .eyebrow::before {
+  content: "▮";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 12px;
+  top: -1px;
+}
+.section-head h1 {
+  position: relative;
+}
+.section-head h1::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--steel-bright), transparent);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* ---------- Mission cards — drill movement cards ---------- */
+.mission-card {
+  position: relative;
+  border-style: solid;
+  border-width: 1px;
+}
+/* Left accent stripe — like a rank shoulder board */
+.mission-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--steel-dim);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.mission-card:hover:not(.locked)::before {
+  opacity: 0.6;
+}
+.mission-card.done::before {
+  opacity: 0.5;
+  background: var(--green);
+}
+
+/* ---------- Cards — parade formation panels ---------- */
+.card {
+  border-top: 2px solid var(--line);
+  position: relative;
+}
+.card::after {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--gold);
+}
+
+/* ---------- Tags — drill command feel ---------- */
+.tag {
+  border-radius: 2px;
+  font-family: var(--mono);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 10px;
+}

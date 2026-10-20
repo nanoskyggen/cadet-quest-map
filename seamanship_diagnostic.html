@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Ship's Muster — the Phase 2 Sea Cadet seamanship diagnostic game. Muster the ship's company, answer practical seamanship challenges, and get a competency profile with a recommended training path." />
+  <title data-i18n="Ship's Muster — Seamanship Diagnostic">Ship's Muster — Seamanship Diagnostic</title>
+  <link rel="stylesheet" href="cadet-html5.css?v=1" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <link rel="stylesheet" href="mobile-fix.css" />
+  <link rel="stylesheet" href="seamanship_diagnostic.css" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body class="cadet-body">
+
+  <a class="cadet-skip" href="#main" data-i18n="Skip to content">Skip to content</a>
+
+  <!-- ============ APP BAR ============ -->
+  <header class="cadet-appbar">
+    <div class="cadet-appbar__brand">
+      <div class="cadet-appbar__crest" aria-hidden="true">⚓</div>
+      <div>
+        <div class="cadet-appbar__title" data-i18n="Ship's Muster">Ship's Muster</div>
+        <div class="cadet-appbar__sub" data-i18n="Phase 2 · Seamanship Diagnostic">Phase 2 · Seamanship Diagnostic</div>
+      </div>
+    </div>
+    <div class="cadet-appbar__spacer"></div>
+    <div class="cadet-appbar__actions">
+      <div class="diag-stat"><span class="diag-stat__ico">⚡</span><span class="diag-stat__lbl" data-i18n="XP">XP</span><span class="diag-stat__val" id="topXP">0</span></div>
+      <div class="diag-stat"><span class="diag-stat__ico">🎖️</span><span class="diag-stat__lbl" data-i18n="Best">Best</span><span class="diag-stat__val" id="bestScore">—</span></div>
+      <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+      <a class="cadet-btn cadet-btn--ghost cadet-btn--sm" href="sea_year2_map.html" data-i18n="← Back to Phase 2 Map">← Back to Phase 2 Map</a>
+    </div>
+  </header>
+
+  <!-- ============ LAYOUT ============ -->
+  <main id="main" class="cadet-layout cadet-layout--split">
+
+    <!-- ---------- RAIL ---------- -->
+    <aside class="cadet-rail" aria-label="Diagnostic navigation">
+      <section class="cadet-card">
+        <div class="cadet-eyebrow" data-i18n="Muster Progress">Muster Progress</div>
+        <div class="diag-progress-row">
+          <strong id="coursePct">0%</strong>
+          <span class="cadet-muted"><span id="courseCount">0</span>/<span id="courseTotal">12</span> <span data-i18n="stations">stations</span></span>
+        </div>
+        <div class="cadet-progress" aria-hidden="true"><i id="courseBar"></i></div>
+        <div class="diag-xp-row">
+          <span class="cadet-pill" id="xpPill">0 XP</span>
+          <span class="cadet-chip cadet-chip--muted" id="ratingChip" data-i18n="New Entry">New Entry</span>
+        </div>
+      </section>
+
+      <section class="cadet-card" aria-label="Competency strands">
+        <div class="cadet-eyebrow" data-i18n="Competency Strands">Competency Strands</div>
+        <ul class="diag-strand-list" id="strandList"><!-- injected --></ul>
+      </section>
+
+      <section class="cadet-card">
+        <div class="cadet-eyebrow" data-i18n="What this is">What this is</div>
+        <p class="cadet-muted diag-small" data-i18n="A diagnostic game that identifies what you should learn next. Muster the crew at each station; the results screen builds your competency profile and an ordered recommended training path.">A diagnostic game that identifies what you should learn next. Muster the crew at each station; the results screen builds your competency profile and an ordered recommended training path.</p>
+        <a class="cadet-btn cadet-btn--ghost cadet-btn--sm" href="seamanship_training.html" style="width:100%;justify-content:center;margin-top:6px">
+          ⚓ <span data-i18n="Open Seamanship &amp; Maritime Foundations">Open Seamanship &amp; Maritime Foundations</span>
+        </a>
+        <button class="cadet-btn cadet-btn--ghost cadet-btn--sm" id="resetDiagnostic" type="button" style="width:100%;justify-content:center;margin-top:8px">
+          ↺ <span data-i18n="Reset Diagnostic">Reset Diagnostic</span>
+        </button>
+      </section>
+    </aside>
+
+    <!-- ---------- MAIN ---------- -->
+    <div class="cadet-main">
+
+      <!-- Hero -->
+      <section class="cadet-card diag-hero" aria-labelledby="heroTitle">
+        <div class="diag-hero__badge"><img src="assets/badges/badge_15_sea_program.png" alt="" width="88" height="88" /></div>
+        <div class="diag-hero__text">
+          <div class="cadet-eyebrow" data-i18n="Phase 2 · Module 301 · Assessment">Phase 2 · Module 301 · Assessment</div>
+          <h1 class="cadet-h1" id="heroTitle" data-i18n="Ship's Muster">Ship's Muster</h1>
+          <p class="cadet-lead" data-i18n="Take charge of the ship's company and muster the crew at twelve stations around the deck. At each station you face a practical seamanship challenge. Your answers build a competency profile across six strands, and HQ recommends exactly what to teach you next.">Take charge of the ship's company and muster the crew at twelve stations around the deck. At each station you face a practical seamanship challenge. Your answers build a competency profile across six strands, and HQ recommends exactly what to teach you next.</p>
+          <div class="cadet-chip-row">
+            <span class="cadet-chip" data-i18n="Seamanship">Seamanship</span>
+            <span class="cadet-chip" data-i18n="Diagnostic">Diagnostic</span>
+            <span class="cadet-chip cadet-chip--gold" data-i18n="Phase 2">Phase 2</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Muster stage -->
+      <section class="cadet-card" aria-labelledby="stageTitle">
+        <div class="cadet-card__head">
+          <div>
+            <div class="cadet-eyebrow" data-i18n="Interactive · HTML5 Canvas">Interactive · HTML5 Canvas</div>
+            <h2 class="cadet-h2" id="stageTitle" data-i18n="The Muster Deck">The Muster Deck</h2>
+          </div>
+          <button class="cadet-btn cadet-btn--primary cadet-btn--sm" id="setSail" type="button" data-i18n="Muster the Crew ▶">Muster the Crew ▶</button>
+        </div>
+        <div class="cadet-canvas-stage diag-stage">
+          <canvas class="cadet-canvas" id="courseCanvas" width="900" height="480" role="img"
+                  aria-label="Top-down deck plan of a ship showing twelve numbered muster stations and the cadet marker"></canvas>
+          <div class="cadet-canvas-hud">
+            <div class="cadet-canvas-badge" id="hudWaypoint" data-i18n="Station —">Station —</div>
+            <div class="cadet-canvas-badge" id="hudStrand" data-i18n="Strand —">Strand —</div>
+            <div class="cadet-canvas-badge" id="hudSpeed" data-i18n="Watch —">Watch —</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Challenge panel -->
+      <section class="cadet-card diag-challenge" id="challengePanel" aria-labelledby="challengeTitle" aria-live="polite">
+        <div class="cadet-eyebrow" id="challengeStrand" data-i18n="Awaiting orders">Awaiting orders</div>
+        <h2 class="cadet-h2" id="challengeTitle" data-i18n="Muster the crew to begin the diagnostic">Muster the crew to begin the diagnostic</h2>
+        <p class="cadet-lead diag-small" id="challengePrompt" data-i18n="Press “Muster the Crew” to call the company to stations. The cadet marker will move to the first station and a challenge will appear here.">Press “Muster the Crew” to call the company to stations. The cadet marker will move to the first station and a challenge will appear here.</p>
+        <div class="diag-options" id="challengeOptions"></div>
+        <div class="diag-feedback" id="challengeFeedback" role="status" aria-live="polite"></div>
+        <div class="diag-challenge-foot">
+          <button class="cadet-btn cadet-btn--primary" id="nextWaypoint" type="button" disabled data-i18n="Next station ▶">Next station ▶</button>
+        </div>
+      </section>
+
+      <!-- Results panel -->
+      <section class="cadet-card diag-results" id="resultsPanel" hidden aria-labelledby="resultsTitle">
+        <div class="cadet-eyebrow" data-i18n="Muster Complete">Muster Complete</div>
+        <h2 class="cadet-h2" id="resultsTitle" data-i18n="Your Competency Profile">Your Competency Profile</h2>
+
+        <div class="diag-results-grid">
+          <div class="diag-score-card">
+            <p class="diag-score-label" data-i18n="Overall score">Overall score</p>
+            <p class="diag-score-big" id="resultOverall">0<span>%</span></p>
+            <p class="diag-score-rating"><span data-i18n="Rating">Rating</span>: <strong id="resultRating">New Entry</strong></p>
+            <p class="cadet-muted diag-small" id="resultSummary"></p>
+          </div>
+          <div class="diag-radar-wrap">
+            <canvas id="radarCanvas" width="360" height="320" role="img" aria-label="Radar chart of competency strands"></canvas>
+          </div>
+        </div>
+
+        <h3 class="cadet-h3" data-i18n="Competency strands">Competency strands</h3>
+        <div class="diag-bars" id="resultBars"></div>
+
+        <h3 class="cadet-h3" data-i18n="Recommended training path">Recommended training path</h3>
+        <p class="cadet-muted diag-small" data-i18n="Ordered weakest-first — what HQ recommends you learn next.">Ordered weakest-first — what HQ recommends you learn next.</p>
+        <ol class="diag-path" id="resultPath"></ol>
+
+        <div class="diag-results-actions">
+          <button class="cadet-btn cadet-btn--gold" id="sailAgain" type="button" data-i18n="↺ Muster again">↺ Muster again</button>
+          <a class="cadet-btn cadet-btn--primary" href="seamanship_training.html" data-i18n="Open Seamanship &amp; Maritime Foundations">Open Seamanship &amp; Maritime Foundations</a>
+          <button class="cadet-btn cadet-btn--ghost" id="sendReport" type="button" data-i18n="✉ Send report to HQ Mail">✉ Send report to HQ Mail</button>
+          <a class="cadet-btn cadet-btn--ghost" href="sea_year2_map.html" data-i18n="Back to Phase 2 Map">Back to Phase 2 Map</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="cadet-footer">
+    <span data-i18n="Cadet Quest Map · Phase 2 Sea Cadet · Ship's Muster">Cadet Quest Map · Phase 2 Sea Cadet · Ship's Muster</span>
+    <span data-i18n="Built on the HTML5 Cadet Shell">Built on the HTML5 Cadet Shell</span>
+  </footer>
+
+  <!-- ============ BRIEF DIALOG (native <dialog>) ============ -->
+  <dialog class="cadet-dialog cadet-dialog--paper" id="briefDialog" aria-labelledby="briefTitle">
+    <div class="cadet-dialog__head">
+      <h2 class="cadet-dialog__title" id="briefTitle" data-i18n="Ship's Muster — Briefing">Ship's Muster — Briefing</h2>
+      <button class="cadet-dialog__close" type="button" data-close-dialog aria-label="Close">×</button>
+    </div>
+    <div class="cadet-dialog__body" id="briefBody"></div>
+    <div class="cadet-dialog__foot">
+      <button class="cadet-btn cadet-btn--ghost" type="button" data-close-dialog data-i18n="Not now">Not now</button>
+      <button class="cadet-btn cadet-btn--primary" type="button" id="briefStart" data-i18n="Muster the Crew ▶">Muster the Crew ▶</button>
+    </div>
+  </dialog>
+
+  <!-- ============ REPORT DIALOG ============ -->
+  <dialog class="cadet-dialog cadet-dialog--paper" id="reportDialog" aria-labelledby="reportTitle">
+    <div class="cadet-dialog__head">
+      <h2 class="cadet-dialog__title" id="reportTitle" data-i18n="Report sent to HQ Mail">Report sent to HQ Mail</h2>
+      <button class="cadet-dialog__close" type="button" data-close-dialog aria-label="Close">×</button>
+    </div>
+    <div class="cadet-dialog__body" id="reportBody"></div>
+    <div class="cadet-dialog__foot">
+      <button class="cadet-btn cadet-btn--primary" type="button" data-close-dialog data-i18n="Close">Close</button>
+    </div>
+  </dialog>
+
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet-html5.js?v=1"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="mobile-nav.js"></script>
+  <script src="seamanship_diagnostic.js?v=1"></script>
+</body>
+</html>

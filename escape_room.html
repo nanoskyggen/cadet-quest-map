@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="Cadet Escape Room — Capstone Challenge">Cadet Escape Room — Capstone Challenge</title>
+  <link rel="stylesheet" href="escape_room.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+  <link rel="stylesheet" href="mobile-fix.css" />
+</head>
+<body class="er-body">
+  <main class="er-shell">
+
+    <div class="er-top-row">
+      <a class="er-back-link" href="index.html" data-i18n="← Back to Cadet Quest Map">← Back to Cadet Quest Map</a>
+      <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+    </div>
+
+    <!-- ═══════ HUD BAR ═══════ -->
+    <div class="er-hud" id="erHud" style="display:none;">
+      <div class="er-hud-brand">
+        <img src="assets/badges/badge_19_escape_room.png" alt="Escape Room badge" />
+        <div class="er-hud-brand-text">
+          <strong data-i18n="ESCAPE ROOM">ESCAPE ROOM</strong>
+          <span data-i18n="Capstone Challenge">Capstone Challenge</span>
+        </div>
+      </div>
+      <div class="er-hud-stats">
+        <div class="er-hud-stat er-timer" id="erTimerWrap">
+          <span class="er-hud-stat-num" id="erTimer">20:00</span>
+          <span class="er-hud-stat-label" data-i18n="Time Left">Time Left</span>
+        </div>
+        <div class="er-hud-stat">
+          <span class="er-hud-stat-num" id="erRoomNum">1/5</span>
+          <span class="er-hud-stat-label" data-i18n="Rooms">Rooms</span>
+        </div>
+        <div class="er-hud-stat">
+          <span class="er-hud-stat-num" id="erHints">3</span>
+          <span class="er-hud-stat-label" data-i18n="Hints Left">Hints Left</span>
+        </div>
+        <div class="er-progress-dots" id="erProgressDots"></div>
+        <button class="er-music-btn" id="erMusicBtn" type="button">
+          <span class="er-music-icon">🎵</span>
+          <span class="er-music-bars"><span></span><span></span><span></span><span></span></span>
+          <span class="er-music-label" data-i18n="Music Off">Music Off</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════ INTRO / BRIEFING ═══════ -->
+    <section class="er-intro" id="erIntro">
+      <div class="er-intro-bg"></div>
+      <div class="er-intro-content">
+        <p class="er-intro-eyebrow" data-i18n="🎖 Royal Canadian Cadets · Capstone Challenge">🎖 Royal Canadian Cadets · Capstone Challenge</p>
+        <h1>CADET <span class="er-accent" data-i18n="ESCAPE ROOM">ESCAPE ROOM</span></h1>
+        <p class="er-intro-sub" data-i18n="You have been locked inside the abandoned Cadet Training Bunker. The only way out is to solve five training-room puzzles — each drawn from the skills you learned across the entire first-year program. Collect a clue fragment from each room, then crack the final master vault lock to escape. The clock is ticking. Move smartly, Cadet.">You have been locked inside the abandoned Cadet Training Bunker. The only way out is to solve five training-room puzzles — each drawn from the skills you learned across the entire first-year program. Collect a clue fragment from each room, then crack the final master vault lock to escape. The clock is ticking. Move smartly, Cadet.</p>
+        <div class="er-intro-badge-row">
+          <div class="er-intro-badge"><div class="er-intro-badge-icon">🪖</div><span class="er-intro-badge-label" data-i18n="Drill & Uniform">Drill & Uniform</span></div>
+          <div class="er-intro-badge"><div class="er-intro-badge-icon">📡</div><span class="er-intro-badge-label" data-i18n="Radio">Radio</span></div>
+          <div class="er-intro-badge"><div class="er-intro-badge-icon">🧭</div><span class="er-intro-badge-label" data-i18n="Navigation">Navigation</span></div>
+          <div class="er-intro-badge"><div class="er-intro-badge-icon">⚕️</div><span class="er-intro-badge-label" data-i18n="First Aid">First Aid</span></div>
+          <div class="er-intro-badge"><div class="er-intro-badge-icon">🔥</div><span class="er-intro-badge-label" data-i18n="Survival">Survival</span></div>
+        </div>
+        <div class="er-intro-rules">
+          <h3 data-i18n="📋 Mission Briefing">📋 Mission Briefing</h3>
+          <p><strong data-i18n="Objective:">Objective:</strong> Escape the bunker by solving all 5 training puzzles and the final master lock.</p>
+          <p><strong data-i18n="Time Limit:">Time Limit:</strong> 20 minutes. Manage your time across all rooms.</p>
+          <p><strong data-i18n="Hints:">Hints:</strong> You have 3 hints total. Use them wisely — they do not refill.</p>
+          <p><strong data-i18n="Clue Fragments:">Clue Fragments:</strong> Each room yields one number fragment. Combine all 5 at the final vault to escape.</p>
+          <p><strong data-i18n="Knowledge:">Knowledge:</strong> Everything you need was taught in your first-year training modules. Trust your training.</p>
+        </div>
+        <button class="er-start-btn" id="erStartBtn" type="button" data-i18n="🔓 Begin Escape">🔓 Begin Escape</button>
+      </div>
+    </section>
+
+    <!-- ═══════ GAME SCREEN ═══════ -->
+    <section class="er-game" id="erGame">
+      <div class="er-room" id="erRoom">
+        <!-- Room content rendered dynamically by JS -->
+      </div>
+    </section>
+
+    <!-- ═══════ VICTORY SCREEN ═══════ -->
+    <section class="er-victory" id="erVictory">
+      <div class="er-victory-rays"></div>
+      <img class="er-victory-badge" src="assets/badges/badge_19_escape_room.png" alt="Escape Room badge earned" />
+      <h2 data-i18n="YOU ESCAPED!">YOU ESCAPED!</h2>
+      <p class="er-victory-sub" data-i18n="Outstanding work, Cadet. You applied everything you learned across the first-year training program to solve every puzzle and crack the master vault. The Escape Room badge has been saved to your Cadet Quest Map.">Outstanding work, Cadet. You applied everything you learned across the first-year training program to solve every puzzle and crack the master vault. The Escape Room badge has been saved to your Cadet Quest Map.</p>
+      <div class="er-victory-stats">
+        <div class="er-victory-stat"><span class="er-victory-stat-num" id="erFinalTime">--:--</span><span class="er-victory-stat-label" data-i18n="Escape Time">Escape Time</span></div>
+        <div class="er-victory-stat"><span class="er-victory-stat-num" id="erFinalHints">3</span><span class="er-victory-stat-label" data-i18n="Hints Remaining">Hints Remaining</span></div>
+        <div class="er-victory-stat"><span class="er-victory-stat-num" id="erFinalRank">--</span><span class="er-victory-stat-label" data-i18n="Cadet Rating">Cadet Rating</span></div>
+      </div>
+      <div class="er-victory-actions">
+        <a href="index.html" class="er-victory-btn primary" data-i18n="🎖 Return to Quest Map">🎖 Return to Quest Map</a>
+        <button class="er-victory-btn secondary" id="erReplayBtn" type="button" data-i18n="🔄 Play Again">🔄 Play Again</button>
+      </div>
+    </section>
+
+    <!-- Door transition overlay -->
+    <div class="er-door-transition" id="erDoorTransition">
+      <div class="er-door-visual">
+        <div class="er-door-frame">
+          <div class="er-door-panel left"></div>
+          <div class="er-door-panel right"></div>
+        </div>
+        <div class="er-door-light"></div>
+      </div>
+      <div class="er-door-text" id="erDoorText" data-i18n="Room Unlocked">Room Unlocked</div>
+    </div>
+
+    <!-- Toast -->
+    <div class="er-toast" id="erToast" data-i18n="Message">Message</div>
+
+  </main>
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="escape_room.js"></script>
+</body>
+</html>

@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="Operation Greenstar — Army Cadet Training Command">Operation Greenstar — Army Cadet Training Command</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="army_training.css" />
+  <link rel="stylesheet" href="army_rework.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+  <link rel="stylesheet" href="mobile-fix.css" />
+  <link rel="stylesheet" href="multimodal.css" />
+</head>
+<body>
+  <!-- ========== TOP BAR ========== -->
+  <header class="topbar">
+    <div class="brand">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Toggle menu">☰</button>
+      <div class="crest">🎖️</div>
+      <div class="brand-text">
+        <div class="t1" data-i18n="GREENSTAR COMMAND">GREENSTAR COMMAND</div>
+        <div class="t2" data-i18n="Army Cadet Training">Army Cadet Training</div>
+      </div>
+    </div>
+    <div class="top-stats">
+      <div class="top-stat"><span class="ico">⭐</span><span class="lbl" data-i18n="Rank">Rank</span><span class="val" id="topRank">—</span></div>
+      <div class="top-stat"><span class="ico">⚡</span><span class="lbl">XP</span><span class="val" id="topXP">0</span></div>
+      <div class="top-stat"><span class="ico">🏆</span><span class="lbl" data-i18n="Badges">Badges</span><span class="val" id="topBadges">0</span></div>
+            <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+<a class="back-link" href="index.html" data-i18n="← Back to Quest Map">← Back to Quest Map</a>
+    </div>
+  </header>
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="pilot-card">
+      <div class="avatar">🪖</div>
+      <div class="rank-name" id="pilotRank" data-i18n="Army Cadet Recruit">Army Cadet Recruit</div>
+      <div class="callsign" id="pilotCallsign" data-i18n="CALLSIGN: ROOKIE-1">CALLSIGN: ROOKIE-1</div>
+      <div class="xp-bar"><div class="xp-fill" id="xpFill"></div></div>
+      <div class="xp-text" id="xpText" data-i18n="0 / 300 XP">0 / 300 XP</div>
+    </div>
+
+    <div class="nav-label" data-i18n="Operations">Operations</div>
+    <nav id="mainNav">
+      <button class="nav-btn active" data-section="command" type="button"><span class="ico">🏅</span><span class="txt" data-i18n="Command">Command</span></button>
+      <button class="nav-btn" data-section="training" type="button"><span class="ico">📋</span><span class="txt" data-i18n="Training">Training</span><span class="badge-dot" id="navTrainingCount">11</span></button>
+      <button class="nav-btn" data-section="missions" type="button"><span class="ico">🎯</span><span class="txt" data-i18n="Missions">Missions</span><span class="badge-dot" id="navMissionCount">11</span></button>
+      <button class="nav-btn" data-section="analysis" type="button"><span class="ico">📊</span><span class="txt" data-i18n="Analysis">Analysis</span></button>
+      <button class="nav-btn" data-section="sitrep" type="button"><span class="ico">📟</span><span class="txt" data-i18n="SITREP">SITREP</span></button>
+      <button class="nav-btn" data-section="ranks" type="button"><span class="ico">⭐</span><span class="txt" data-i18n="Ranks">Ranks</span></button>
+      <button class="nav-btn" data-section="range" type="button"><span class="ico">🏕️</span><span class="txt" data-i18n="Field Range">Field Range</span><span class="badge-dot" id="navRangeDot">★</span></button>
+      <button class="nav-btn" data-section="learn" type="button"><span class="ico">📚</span><span class="txt" data-i18n="Learn">Learn</span></button>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN ========== -->
+  <main class="main">
+
+    <!-- ===== COMMAND (Dashboard) ===== -->
+    <section class="section active" id="section-command">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Command Overview">▸ Command Overview</div>
+        <h1 data-i18n="Mission Control">Mission Control</h1>
+        <p data-i18n="Welcome to Operation Greenstar. Your Army cadet training program covers the full Green Star curriculum — from followership and team responsibilities to marksmanship, range safety, field training, and map reading. Complete training modules to earn XP, climb the rank ladder, and file your SITREPs.">Welcome to Operation Greenstar. Your Army cadet training program covers the full Green Star curriculum — from followership and team responsibilities to marksmanship, range safety, field training, and map reading. Complete training modules to earn XP, climb the rank ladder, and file your SITREPs.</p>
+      </div>
+
+      <!-- Metrics row -->
+      <div class="grid grid-4" style="margin-bottom: 20px;">
+        <div class="metric">
+          <div class="m-ico">🎯</div>
+          <div class="m-val" id="cmdMissionsDone">0</div>
+          <div class="m-lbl" data-i18n="Missions Complete">Missions Complete</div>
+          <div class="m-sub" id="cmdMissionsTotal" data-i18n="of 11">of 11</div>
+        </div>
+        <div class="metric">
+          <div class="m-ico">⚡</div>
+          <div class="m-val" id="cmdXP">0</div>
+          <div class="m-lbl" data-i18n="Total XP">Total XP</div>
+          <div class="m-sub" id="cmdXPNext" data-i18n="+300 to next rank">+300 to next rank</div>
+        </div>
+        <div class="metric warn">
+          <div class="m-ico">📟</div>
+          <div class="m-val" id="cmdSitreps">0</div>
+          <div class="m-lbl" data-i18n="SITREPs Filed">SITREPs Filed</div>
+          <div class="m-sub" data-i18n="Filing recommended">Filing recommended</div>
+        </div>
+        <div class="metric">
+          <div class="m-ico">🏆</div>
+          <div class="m-val" id="cmdBadges">0</div>
+          <div class="m-lbl" data-i18n="Badges Earned">Badges Earned</div>
+          <div class="m-sub" id="cmdBadgeTotal" data-i18n="of 11">of 11</div>
+        </div>
+      </div>
+
+      <!-- Mission briefing + threat panel -->
+      <div class="briefing">
+        <div class="mission-banner">
+          <div class="tag-row">
+            <span class="tag army" data-i18n="OPERATION GREENSTAR">OPERATION GREENSTAR</span>
+            <span class="tag live" id="opStatusTag" data-i18n="ACTIVE">ACTIVE</span>
+            <span class="tag" data-i18n="GREEN STAR PHASE">GREEN STAR PHASE</span>
+          </div>
+          <h2 data-i18n="Current Operation: Green Star Fieldcraft">Current Operation: Green Star Fieldcraft</h2>
+          <p class="mission-sub" data-i18n="Your commanding officer has cleared you to begin the Army cadet Green Star training rotation. Work through each performance objective in sequence. Each mission is a hands-on field simulation — you will use section orders, rifle diagrams, range manuals, sight pictures, rank charts, field kits, and map-and-compass tools just like a real Army cadet in the field.">Your commanding officer has cleared you to begin the Army cadet Green Star training rotation. Work through each performance objective in sequence. Each mission is a hands-on field simulation — you will use section orders, rifle diagrams, range manuals, sight pictures, rank charts, field kits, and map-and-compass tools just like a real Army cadet in the field.</p>
+
+          <div class="chapter-list" id="chapterList">
+            <!-- chapters injected by JS -->
+          </div>
+        </div>
+
+        <div class="threat-panel">
+          <h2><span class="ico">⚠️</span> Hazard Assessment</h2>
+          <p class="muted" style="font-size:12px; line-height:1.6;" data-i18n="Field and range hazards cadets must remain aware of during training. Threat levels update as you progress.">Field and range hazards cadets must remain aware of during training. Threat levels update as you progress.</p>
+          <div class="threat-meter">
+            <div class="threat-bar"><div class="threat-fill" id="threatFill" style="width: 35%;"></div></div>
+            <div class="threat-labels"><span data-i18n="SAFE">SAFE</span><span data-i18n="CAUTION">CAUTION</span><span data-i18n="HIGH">HIGH</span></div>
+          </div>
+          <div id="threatItems">
+            <div class="threat-item">
+              <div class="ti-ico">🔫</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Range Safety Violation">Range Safety Violation</div>
+                <div class="ti-desc" data-i18n="Mishandling the Daisy 853C, skipping the safety rod, or ignoring cease fire commands.">Mishandling the Daisy 853C, skipping the safety rod, or ignoring cease fire commands.</div>
+              </div>
+              <div class="ti-level high" data-i18n="HIGH">HIGH</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">🧭</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Navigation Error">Navigation Error</div>
+                <div class="ti-desc" data-i18n="Wrong grid references, ignored declination, or misread contour lines put you off course.">Wrong grid references, ignored declination, or misread contour lines put you off course.</div>
+              </div>
+              <div class="ti-level med" data-i18n="MED">MED</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">🥶</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Cold Weather Exposure">Cold Weather Exposure</div>
+                <div class="ti-desc" data-i18n="Improper layering or cotton base layers lead to hypothermia on overnight field exercises.">Improper layering or cotton base layers lead to hypothermia on overnight field exercises.</div>
+              </div>
+              <div class="ti-level med" data-i18n="MED">MED</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">📋</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Communication Breakdown">Communication Breakdown</div>
+                <div class="ti-desc" data-i18n="Poor followership, unclear reporting, or dishonest self-assessment undermines team coordination.">Poor followership, unclear reporting, or dishonest self-assessment undermines team coordination.</div>
+              </div>
+              <div class="ti-level low" data-i18n="LOW">LOW</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TRAINING (Module List) ===== -->
+    <section class="section" id="section-training">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Training Modules">▸ Training Modules</div>
+        <h1 data-i18n="Training Pathway">Training Pathway</h1>
+        <p data-i18n="The Army cadet Green Star training pathway is built in sequence. Each module teaches core fieldcraft knowledge and then tests it with a hands-on simulation. Complete modules in order to unlock the next.">The Army cadet Green Star training pathway is built in sequence. Each module teaches core fieldcraft knowledge and then tests it with a hands-on simulation. Complete modules in order to unlock the next.</p>
+      </div>
+      <div class="mission-grid" id="trainingGrid">
+        <!-- training cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- ===== MISSIONS (Active Task Console) ===== -->
+    <section class="section" id="section-missions">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Mission Simulator">▸ Mission Simulator</div>
+        <h1 id="missionHeaderTitle" data-i18n="Select a Mission">Select a Mission</h1>
+        <p id="missionHeaderSub" data-i18n="Choose a training module from the Training tab, or pick a mission below to enter the simulator.">Choose a training module from the Training tab, or pick a mission below to enter the simulator.</p>
+      </div>
+
+      <div id="missionSelector" class="mission-grid">
+        <!-- mission selector cards -->
+      </div>
+
+      <div id="missionConsole" style="display:none;">
+        <!-- Active task console injected here -->
+      </div>
+    </section>
+
+    <!-- ===== ANALYSIS ===== -->
+    <section class="section" id="section-analysis">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Performance Analysis">▸ Performance Analysis</div>
+        <h1 data-i18n="Cadet Performance Dashboard">Cadet Performance Dashboard</h1>
+        <p data-i18n="Track your progress across training modules. XP is awarded for completing mission tasks correctly. Wrong attempts reduce your mission score but you can retry.">Track your progress across training modules. XP is awarded for completing mission tasks correctly. Wrong attempts reduce your mission score but you can retry.</p>
+      </div>
+
+      <div class="grid grid-2" style="margin-bottom: 20px;">
+        <div class="card xp-ring-wrap" style="align-items:center; justify-content:center;">
+          <div class="xp-ring">
+            <svg width="120" height="120">
+              <circle class="ring-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="ring-fg" cx="60" cy="60" r="50" id="xpRingFg" stroke-dasharray="314" stroke-dashoffset="314"></circle>
+            </svg>
+            <div class="ring-text">
+              <div class="rt-val" id="ringXP">0</div>
+              <div class="rt-lbl" id="ringRankLabel" data-i18n="Recruit">Recruit</div>
+            </div>
+          </div>
+          <div>
+            <h2 style="margin-bottom:6px;" data-i18n="Career Progression">Career Progression</h2>
+            <p class="muted" style="font-size:12px; line-height:1.6; max-width:300px;">You are working toward <strong id="nextRankName" style="color:var(--army-bright)" data-i18n="Army Cadet">Army Cadet</strong>. Complete missions to earn XP and climb the ranks.</p>
+            <p class="mono" style="font-size:11px; color:var(--ink-3); margin-top:8px;" id="ringXPToNext" data-i18n="0 / 300 XP to next rank">0 / 300 XP to next rank</p>
+          </div>
+        </div>
+
+        <div class="card chart-card">
+          <h2><span class="ico">📊</span> XP by Module</h2>
+          <div class="chart-canvas">
+            <div class="bar-chart" id="xpBarChart">
+              <!-- bars injected -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h2><span class="ico">✅</span> Accuracy</h2>
+          <div class="m-val mono" style="font-size:28px; font-weight:800; color:var(--green);" id="accuracyPct">100%</div>
+          <p class="muted" style="font-size:12px; margin-top:6px;" data-i18n="Correct first-try task completions">Correct first-try task completions</p>
+        </div>
+        <div class="card">
+          <h2><span class="ico">🔄</span> Total Attempts</h2>
+          <div class="m-val mono" style="font-size:28px; font-weight:800; color:var(--amber);" id="totalAttempts">0</div>
+          <p class="muted" style="font-size:12px; margin-top:6px;" data-i18n="Across all missions">Across all missions</p>
+        </div>
+        <div class="card">
+          <h2><span class="ico">⏱️</span> Best Streak</h2>
+          <div class="m-val mono" style="font-size:28px; font-weight:800; color:var(--army-bright);" id="bestStreak">0</div>
+          <p class="muted" style="font-size:12px; margin-top:6px;" data-i18n="Consecutive correct tasks">Consecutive correct tasks</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SITREP ===== -->
+    <section class="section" id="section-sitrep">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Situation Reports">▸ Situation Reports</div>
+        <h1 data-i18n="SITREP Filing">SITREP Filing</h1>
+        <p data-i18n="A Situation Report (SITREP) is how Army cadets communicate mission status to their commanding officer. File a SITREP after each mission to log what you learned and any hazards you identified.">A Situation Report (SITREP) is how Army cadets communicate mission status to their commanding officer. File a SITREP after each mission to log what you learned and any hazards you identified.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h2><span class="ico">📝</span> File New SITREP</h2>
+          <div class="sitrep-form" style="margin-top:14px;">
+            <div class="sitrep-field">
+              <label for="sitrepMission" data-i18n="Mission Reference">Mission Reference</label>
+              <select class="task-select" id="sitrepMission">
+                <option value="" data-i18n="Select a completed mission…">Select a completed mission…</option>
+              </select>
+            </div>
+            <div class="sitrep-field">
+              <label for="sitrepStatus" data-i18n="Overall Status">Overall Status</label>
+              <select class="task-select" id="sitrepStatus">
+                <option value="" data-i18n="Choose status…">Choose status…</option>
+                <option value="NOMINAL" data-i18n="NOMINAL — All objectives met">NOMINAL — All objectives met</option>
+                <option value="MINOR_HAZARD" data-i18n="MINOR HAZARD — Completed with caution">MINOR HAZARD — Completed with caution</option>
+                <option value="ABORTED" data-i18n="ABORTED — Mission not completed">ABORTED — Mission not completed</option>
+              </select>
+            </div>
+            <div class="sitrep-field">
+              <label for="sitrepSummary" data-i18n="Summary of Events">Summary of Events</label>
+              <textarea class="task-note" id="sitrepSummary" data-i18n-placeholder="Summarise what happened during the mission. Include any hazards identified and lessons learned. (Min 20 characters)"></textarea>
+            </div>
+            <button class="btn btn-primary" id="fileSitrepBtn" type="button" data-i18n="📟 File SITREP">📟 File SITREP</button>
+            <div class="task-feedback" id="sitrepFeedback"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2><span class="ico">📋</span> SITREP Log</h2>
+          <div class="sitrep-log" id="sitrepLog" style="margin-top:14px;">
+            <p class="muted center" style="padding:20px;" data-i18n="No SITREPs filed yet. Complete a mission and file your first report.">No SITREPs filed yet. Complete a mission and file your first report.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RANKS ===== -->
+    <section class="section" id="section-ranks">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Rank Progression">▸ Rank Progression</div>
+        <h1 data-i18n="Rank Ladder">Rank Ladder</h1>
+        <p data-i18n="As you complete training modules and earn XP, you advance through the Army cadet ranks. Each rank unlocks new responsibilities and recognition.">As you complete training modules and earn XP, you advance through the Army cadet ranks. Each rank unlocks new responsibilities and recognition.</p>
+      </div>
+      <div class="card">
+        <div class="rank-list" id="rankList">
+          <!-- rank rows injected -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FIELD RANGE (Fieldcraft Game) ===== -->
+    <section class="section" id="section-range">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Fieldcraft Simulator">▸ Fieldcraft Simulator</div>
+        <h1 data-i18n="Patrol Range — Fieldcraft Tactics">Patrol Range — Fieldcraft Tactics</h1>
+        <p>You are the section commander. Your cadet section is tasked with patrol missions across hostile terrain. Enemy sentries scan the ground using the principles of <em data-i18n="why things are seen">why things are seen</em> — shape, shine, shadow, silhouette, surface, spacing, and movement. Use field signals to direct each cadet's movement, choose the right technique for the ground, and keep them concealed. Score points for stealthy advances, successful observations, and reaching objectives undetected.</p>
+      </div>
+
+      <div class="fc-wrap">
+        <!-- Tactical map -->
+        <div class="fc-map-col">
+          <div class="fc-map-frame">
+            <svg class="fc-map" id="fcMap" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"></svg>
+            <div class="fc-scan-overlay" id="fcScanOverlay"></div>
+          </div>
+          <div class="fc-map-legend">
+            <span class="fl-item"><span class="fl-dot fl-cadet"></span>Cadet (concealed)</span>
+            <span class="fl-item"><span class="fl-dot fl-exposed"></span>Cadet (exposed)</span>
+            <span class="fl-item"><span class="fl-dot fl-sentry"></span>Enemy sentry</span>
+            <span class="fl-item"><span class="fl-dot fl-obj"></span>Objective</span>
+            <span class="fl-item"><span class="fl-dot fl-cover"></span>Cover / concealment</span>
+          </div>
+        </div>
+
+        <!-- Control panel -->
+        <div class="fc-panel-col">
+          <div class="fc-scoreboard">
+            <div class="fc-score-box">
+              <div class="fs-lbl" data-i18n="Score">Score</div>
+              <div class="fs-val" id="fcScore">0</div>
+            </div>
+            <div class="fc-score-box">
+              <div class="fs-lbl" data-i18n="Objective">Objective</div>
+              <div class="fs-val" id="fcObjective">0</div>
+            </div>
+            <div class="fc-score-box">
+              <div class="fs-lbl" data-i18n="Wave">Wave</div>
+              <div class="fs-val" id="fcWave">1</div>
+            </div>
+            <div class="fc-score-box warn">
+              <div class="fs-lbl" data-i18n="Detected">Detected</div>
+              <div class="fs-val" id="fcDetected">0</div>
+            </div>
+          </div>
+
+          <div class="fc-status-strip" id="fcStatusStrip">
+            <span class="fc-status-ico">🪖</span>
+            <span class="fc-status-txt" id="fcStatusTxt" data-i18n="Standby — press Start Patrol to deploy your section.">Standby — press Start Patrol to deploy your section.</span>
+          </div>
+
+          <div class="fc-selected" id="fcSelectedBox">
+            <div class="fcs-empty" id="fcsEmpty" data-i18n="No cadet selected. Click a friendly contact on the tactical map.">No cadet selected. Click a friendly contact on the tactical map.</div>
+            <div class="fcs-detail" id="fcsDetail" style="display:none;">
+              <div class="fcs-callsign" id="fcsCallsign">—</div>
+              <div class="fcs-info">
+                <div><span class="fcs-k" data-i18n="Technique">Technique</span><span class="fcs-v" id="fcsTech">—</span></div>
+                <div><span class="fcs-k" data-i18n="Movement">Movement</span><span class="fcs-v" id="fcsMove">—</span></div>
+                <div><span class="fcs-k" data-i18n="Heading">Heading</span><span class="fcs-v" id="fcsHeading">—</span></div>
+                <div><span class="fcs-k" data-i18n="Position">Position</span><span class="fcs-v" id="fcsPos">—</span></div>
+                <div><span class="fcs-k" data-i18n="Concealment">Concealment</span><span class="fcs-v" id="fcsConceal">—</span></div>
+                <div><span class="fcs-k" data-i18n="Distance to obj">Distance to obj</span><span class="fcs-v" id="fcsDist">—</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Field signals command panel -->
+          <div class="fc-signals" id="fcSignalsPanel">
+            <div class="fc-signals-head">
+              <span class="fs-ico">🤚</span>
+              <span class="fs-title" data-i18n="Field Signal — Silent Command">Field Signal — Silent Command</span>
+            </div>
+
+            <!-- Movement technique selector -->
+            <div class="fc-tech-row" id="fcTechRow">
+              <div class="fc-tech-lbl" data-i18n="Movement Technique">Movement Technique</div>
+              <div class="fc-tech-chips" id="fcTechChips">
+                <button class="fc-tech-chip" type="button" data-tech="leopard">🐍 Leopard Crawl<span class="fc-tech-sub" data-i18n="slow · stealthy">slow · stealthy</span></button>
+                <button class="fc-tech-chip" type="button" data-tech="monkey">🐒 Monkey Run<span class="fc-tech-sub" data-i18n="medium · crouched">medium · crouched</span></button>
+                <button class="fc-tech-chip selected" type="button" data-tech="ghost">🚶 Ghost Walk<span class="fc-tech-sub" data-i18n="fast · exposed">fast · exposed</span></button>
+              </div>
+            </div>
+
+            <div class="fc-signal-builder" id="fcSignalBuilder">
+              <div class="fc-step">
+                <div class="fc-step-lbl" data-i18n="1 — Select cadet (callsign)">1 — Select cadet (callsign)</div>
+                <div class="fc-chips" id="fcCallChips"></div>
+              </div>
+              <div class="fc-step">
+                <div class="fc-step-lbl" data-i18n="2 — Hand signal">2 — Hand signal</div>
+                <div class="fc-chips" id="fcSignalChips"></div>
+              </div>
+              <div class="fc-step">
+                <div class="fc-step-lbl" data-i18n="3 — Direction / detail">3 — Direction / detail</div>
+                <div class="fc-chips" id="fcDetailChips"></div>
+              </div>
+              <div class="fc-built-line" id="fcBuiltLine">
+                <span class="fbl-static" data-i18n="Signal:">Signal:</span>
+                <span class="fbl-text" id="fblText" data-i18n="— select components —">— select components —</span>
+              </div>
+              <div class="fc-actions">
+                <button class="btn btn-primary" id="fcSendBtn" type="button" disabled data-i18n="🤚 Send Signal">🤚 Send Signal</button>
+                <button class="btn btn-ghost" id="fcClearBtn" type="button" data-i18n="Clear">Clear</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="fc-terminal" id="fcTerminal"><div class="fc-ln fc-ln-dim" data-i18n="// field log will appear here…">// field log will appear here…</div></div>
+
+          <div class="fc-game-ctrl">
+            <button class="btn btn-primary" id="fcStartBtn" type="button" data-i18n="▶ Start Patrol">▶ Start Patrol</button>
+            <button class="btn btn-ghost" id="fcPauseBtn" type="button" disabled data-i18n="⏸ Pause">⏸ Pause</button>
+            <button class="btn btn-ghost" id="fcHowBtn" type="button" data-i18n="❓ How to Play">❓ How to Play</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- How to play modal -->
+      <div class="fc-modal-overlay" id="fcModalOverlay" style="display:none;">
+        <div class="fc-modal">
+          <div class="fc-modal-head">
+            <h2 data-i18n="How to Play — Patrol Range">How to Play — Patrol Range</h2>
+            <button class="fc-modal-close" id="fcModalClose" type="button">✕</button>
+          </div>
+          <div class="fc-modal-body">
+            <h3 data-i18n="Mission">Mission</h3>
+            <p>You command a four-cadet section on patrol. Enemy sentries patrol the terrain and will detect any cadet who breaks the principles of <em data-i18n="why things are seen">why things are seen</em>. Your task is to move the section to each objective undetected using silent field signals.</p>
+            <h3 data-i18n="How to Direct a Cadet">How to Direct a Cadet</h3>
+            <p>1. <strong data-i18n="Click">Click</strong> a friendly contact (green dot) on the tactical map to select it. Its data block appears in the control panel.</p>
+            <p>2. <strong data-i18n="Build a field signal">Build a field signal</strong> by clicking chips in order: callsign → hand signal → direction/detail.</p>
+            <p>3. <strong data-i18n="Send the signal.">Send the signal.</strong> The cadet follows your order and moves across the terrain.</p>
+            <h3 data-i18n="Movement Techniques">Movement Techniques</h3>
+            <p>• <strong data-i18n="Leopard Crawl">Leopard Crawl</strong> — slowest, lowest profile, hardest to detect. Use in open ground.</p>
+            <p>• <strong data-i18n="Monkey Run">Monkey Run</strong> — medium speed, crouched. Good for partial cover.</p>
+            <p>• <strong data-i18n="Ghost Walk">Ghost Walk</strong> — fast, upright. Only safe in dead ground or behind solid cover.</p>
+            <p>• <strong data-i18n="Halt">Halt</strong> — freeze in place. Drops your detection risk to zero while still.</p>
+            <h3 data-i18n="Field Signals">Field Signals</h3>
+            <p>• <strong data-i18n="Advance">Advance</strong> + direction — move the cadet in that compass direction.</p>
+            <p>• <strong data-i18n="Halt">Halt</strong> — stop and freeze; concealment improves while still.</p>
+            <p>• <strong data-i18n="Take Cover">Take Cover</strong> — dash to nearest cover/concealment marker.</p>
+            <p>• <strong data-i18n="Observe">Observe</strong> — hold position and scan; can spot nearby sentries.</p>
+            <h3 data-i18n="Why Things Are Seen">Why Things Are Seen</h3>
+            <p>Sentries detect cadets who show <strong data-i18n="shape">shape</strong> (silhouette against sky), <strong data-i18n="shine">shine</strong> (reflective gear), <strong data-i18n="shadow">shadow</strong>, <strong data-i18n="silhouette">silhouette</strong>, <strong data-i18n="movement">movement</strong>, <strong data-i18n="spacing">spacing</strong> (regular intervals look unnatural), or <strong data-i18n="surface">surface</strong> (contrasting colour). Moving fast in the open is the quickest way to be detected. Use cover, move slowly, and choose the right technique for the ground.</p>
+            <h3 data-i18n="Scoring">Scoring</h3>
+            <p>• <strong>+50</strong> per cadet reaching an objective undetected.</p>
+            <p>• <strong>+10</strong> per successful observation of a sentry.</p>
+            <p>• <strong>−20</strong> per detection (cadet compromised).</p>
+            <p data-i18n="• Complete all four cadets to advance the wave and spawn a harder patrol.">• Complete all four cadets to advance the wave and spawn a harder patrol.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LEARN ===== -->
+    <section class="section" id="section-learn">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Learning Library">▸ Learning Library</div>
+        <h1 data-i18n="Fieldcraft Knowledge Base">Fieldcraft Knowledge Base</h1>
+        <p data-i18n="Reference materials covering the theory behind each Green Star training module. Read these before or after missions to deepen your understanding. Reading articles also earns a small XP bonus.">Reference materials covering the theory behind each Green Star training module. Read these before or after missions to deepen your understanding. Reading articles also earns a small XP bonus.</p>
+      </div>
+      <div class="lib-grid" id="learnGrid">
+        <!-- learn cards injected -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== TOAST ========== -->
+  <div class="toast" id="toast">
+    <span class="toast-ico" id="toastIco">✅</span>
+    <span id="toastText" data-i18n="Notification">Notification</span>
+  </div>
+
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="mobile-nav.js"></script>
+  <script src="army_training.js"></script>
+  <script src="multimodal.js"></script>
+</body>
+</html>

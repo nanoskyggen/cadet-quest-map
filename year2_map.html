@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="Red Star Army Cadet Map — Cadet Quest Map">Red Star Army Cadet Map — Cadet Quest Map</title>
+  <link rel="stylesheet" href="year2_map.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+  <link rel="stylesheet" href="mobile-fix.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <section class="panel title-card">
+        <p class="eyebrow" data-i18n="Red Star / Canadian Army Cadet / ★ Second Year">Red Star / Canadian Army Cadet / ★ Second Year</p>
+        <h1 data-i18n="Cadet Quest Map — Red Star (Army Cadet)">Cadet Quest Map — Red Star (Army Cadet)</h1>
+        <p class="subtitle" data-i18n="You have earned your place in the Red Star program — the second star in the Canadian Army Cadet progression (Green → Red → Silver → Gold). Tap badge locations on the Red Star training camp map to preview advanced lessons, complete challenges, and collect Red Star badges. Build on your Green Star foundations with leadership, fieldcraft, expedition, and advanced skill modules.">You have earned your place in the Red Star program — the second star in the Canadian Army Cadet progression (Green → Red → Silver → Gold). Tap badge locations on the Red Star training camp map to preview advanced lessons, complete challenges, and collect Red Star badges. Build on your Green Star foundations with leadership, fieldcraft, expedition, and advanced skill modules.</p>
+        <div class="title-card-bottom-row">
+          <a href="index.html" class="back-link" data-i18n="← Back to Cadet Quest Map">← Back to Cadet Quest Map</a>
+          <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+        </div>
+      </section>
+      <aside class="panel progress-card">
+        <h2 data-i18n="Red Star Progress">Red Star Progress</h2>
+        <div class="progress-bar-shell"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="progress-row">
+          <span><strong id="completeCount">0</strong> / <strong id="totalCount">12</strong> Red Star badges earned</span>
+          <button class="reset-btn" id="resetProgress" type="button" data-i18n="Reset Red Star">Reset Red Star</button>
+        </div>
+      </aside>
+    </header>
+
+    <section class="workspace">
+      <article class="panel map-panel">
+        <div class="map-topline">
+          <h2 data-i18n="Red Star Cadet Training Camp">Red Star Cadet Training Camp</h2>
+          <div class="legend">
+            <span><i class="dot"></i>Available</span>
+            <span><i class="dot done"></i>Completed</span>
+            <span><i class="dot lock"></i>Locked</span>
+          </div>
+        </div>
+        <div class="map-wrap" id="mapWrap" aria-label="Interactive Red Star Canadian Army Cadet quest map">
+          <img class="map-image" src="assets/year2_red_star_map.png" alt="Red Star Canadian Army Cadet training camp map with advanced badge locations" />
+        </div>
+      </article>
+
+      <aside class="panel lesson-panel" aria-live="polite">
+        <div class="lesson-hero" id="lessonHero">
+          <img id="lessonBadge" src="assets/badges/badge_05_leadership.png" alt="Selected lesson badge" />
+          <h2 id="lessonTitle" data-i18n="Leadership Fundamentals">Leadership Fundamentals</h2>
+          <p id="lessonSubtitle" data-i18n="Select any badge on the map to start a lesson.">Select any badge on the map to start a lesson.</p>
+        </div>
+        <div class="lesson-body">
+          <div class="tag-row" id="tagRow"></div>
+          <h3 data-i18n="Lesson Brief">Lesson Brief</h3>
+          <p id="lessonBrief"></p>
+          <h3 data-i18n="Learning Objectives">Learning Objectives</h3>
+          <ul class="lesson-list" id="objectiveList"></ul>
+          <div class="challenge-box" id="challengeBox"></div>
+          <div class="scenario-panel" id="scenarioPanel"></div>
+          <div class="lesson-actions">
+            <button class="primary-btn" id="completeLesson" type="button" data-i18n="Complete Lesson + Earn Red Star Badge">Complete Lesson + Earn Red Star Badge</button>
+            <button class="ghost-btn" id="playScenario" type="button" data-i18n="Play Mini Scenario">Play Mini Scenario</button>
+            <a class="ghost-btn launch-training-btn" id="launchTraining" href="leadership_training.html" data-i18n="🧭 Launch Leadership Fundamentals">🧭 Launch Leadership Fundamentals</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel inventory">
+      <h2 data-i18n="Red Star Badge Inventory">Red Star Badge Inventory</h2>
+      <div class="badge-grid" id="badgeGrid"></div>
+    </section>
+
+    <section class="panel phase-bridge">
+      <h2 data-i18n="Program Progression">Program Progression</h2>
+      <div class="bridge-row">
+        <div class="bridge-cell done">
+          <span class="bridge-ico">★</span>
+          <span class="bridge-label" data-i18n="Phase 1 — Green Star">Phase 1 — Green Star</span>
+          <span class="bridge-status" data-i18n="Completed">Completed</span>
+        </div>
+        <div class="bridge-arrow">→</div>
+        <div class="bridge-cell active">
+          <span class="bridge-ico">★</span>
+          <span class="bridge-label" data-i18n="Red Star — Canadian Army Cadet">Red Star — Canadian Army Cadet</span>
+          <span class="bridge-status" data-i18n="In Progress">In Progress</span>
+        </div>
+        <div class="bridge-arrow locked">→</div>
+        <div class="bridge-cell locked">
+          <span class="bridge-ico">★</span>
+          <span class="bridge-label" data-i18n="Phase 3 — Gold Star">Phase 3 — Gold Star</span>
+          <span class="bridge-status" data-i18n="Locked">Locked</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" data-i18n="Red Star badge earned!">Red Star badge earned!</div>
+  <div class="phase-complete-modal" id="phaseCompleteModal">
+    <div class="pcm-overlay"></div>
+    <div class="pcm-card">
+      <div class="pcm-star">★</div>
+      <h2 class="pcm-title" data-i18n="Red Star Program Complete!">Red Star Program Complete!</h2>
+      <p class="pcm-text" data-i18n="Outstanding work, Cadet. You have earned all 12 Red Star badges and mastered the Red Star Canadian Army Cadet curriculum. The Gold Star program awaits — return to the quest map to see what comes next.">Outstanding work, Cadet. You have earned all 12 Red Star badges and mastered the Red Star Canadian Army Cadet curriculum. The Gold Star program awaits — return to the quest map to see what comes next.</p>
+      <div class="pcm-actions">
+        <button class="pcm-btn primary" id="pcmClose" type="button" data-i18n="Continue Training">Continue Training</button>
+      </div>
+    </div>
+  </div>
+  <script src="translations_en.js"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="year2_map.js?v=2"></script>
+</body>
+</html>

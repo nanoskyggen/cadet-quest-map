@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="Operation Wildwood — Bushcraft & Survival Training">Operation Wildwood — Bushcraft & Survival Training</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="bushcraft_training.css" />
+  <link rel="stylesheet" href="i18n.css" />
+  <link rel="stylesheet" href="cadet_hq.css?v=1" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+  <link rel="stylesheet" href="mobile-fix.css" />
+  <link rel="stylesheet" href="multimodal.css" />
+</head>
+<body>
+  <!-- ========== TOP BAR ========== -->
+  <header class="topbar">
+    <div class="brand">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Toggle menu">☰</button>
+      <div class="crest">🔥</div>
+      <div class="brand-text">
+        <div class="t1" data-i18n="WILDWOOD COMMAND">WILDWOOD COMMAND</div>
+        <div class="t2" data-i18n="Bushcraft & Survival">Bushcraft & Survival</div>
+      </div>
+    </div>
+    <div class="top-stats">
+      <div class="top-stat"><span class="ico">⭐</span><span class="lbl" data-i18n="Rank">Rank</span><span class="val" id="topRank">—</span></div>
+      <div class="top-stat"><span class="ico">⚡</span><span class="lbl">XP</span><span class="val" id="topXP">0</span></div>
+      <div class="top-stat"><span class="ico">🏆</span><span class="lbl" data-i18n="Badges">Badges</span><span class="val" id="topBadges">0</span></div>
+      <div id="langSwitcher" class="lang-switcher lang-switcher-inline"></div>
+      <a class="back-link" href="year2_map.html" data-i18n="← Back to Red Star Map">← Back to Red Star Map</a>
+    </div>
+  </header>
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="pilot-card">
+      <div class="avatar">🔥</div>
+      <div class="rank-name" id="pilotRank" data-i18n="Survival Recruit">Survival Recruit</div>
+      <div class="callsign" id="pilotCallsign" data-i18n="CALLSIGN: WOODS-1">CALLSIGN: WOODS-1</div>
+      <div class="xp-bar"><div class="xp-fill" id="xpFill"></div></div>
+      <div class="xp-text" id="xpText" data-i18n="0 / 300 XP">0 / 300 XP</div>
+    </div>
+
+    <div class="nav-label" data-i18n="Operations">Operations</div>
+    <nav id="mainNav">
+      <button class="nav-btn active" data-section="command" type="button"><span class="ico">🏆</span><span class="txt" data-i18n="Command">Command</span></button>
+      <button class="nav-btn" data-section="training" type="button"><span class="ico">📋</span><span class="txt" data-i18n="Training">Training</span><span class="badge-dot" id="navTrainingCount">8</span></button>
+      <button class="nav-btn" data-section="missions" type="button"><span class="ico">🎯</span><span class="txt" data-i18n="Missions">Missions</span><span class="badge-dot" id="navMissionCount">8</span></button>
+      <button class="nav-btn" data-section="analysis" type="button"><span class="ico">📊</span><span class="txt" data-i18n="Analysis">Analysis</span></button>
+      <button class="nav-btn" data-section="sitrep" type="button"><span class="ico">📝</span><span class="txt" data-i18n="SITREP">SITREP</span></button>
+      <button class="nav-btn" data-section="ranks" type="button"><span class="ico">⭐</span><span class="txt" data-i18n="Ranks">Ranks</span></button>
+      <button class="nav-btn" data-section="learn" type="button"><span class="ico">📚</span><span class="txt" data-i18n="Learn">Learn</span></button>
+      <button class="nav-btn" data-section="trail" type="button"><span class="ico">🔥</span><span class="txt" data-i18n="Survival Trail">Survival Trail</span></button>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN ========== -->
+  <main class="main">
+
+    <!-- ===== COMMAND (Dashboard) ===== -->
+    <section class="section active" id="section-command">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Command Overview">▸ Command Overview</div>
+        <h1 data-i18n="Wildwood Mission Control">Wildwood Mission Control</h1>
+        <p data-i18n="Welcome to Operation Wildwood. Your Bushcraft & Survival training covers the psychology of survival, the seven enemies of survival, emergency shelter construction, fire lighting and maintenance, water sourcing and purification, foraging awareness, and rescue signalling. You will master the S.T.O.P. procedure, the survival priorities rule of three, the fire triangle, shelter site selection, and universal distress signals. Complete training modules to earn XP, climb the rank ladder, and file your survival SITREPs.">Welcome to Operation Wildwood. Your Bushcraft & Survival training covers the psychology of survival, the seven enemies of survival, emergency shelter construction, fire lighting and maintenance, water sourcing and purification, foraging awareness, and rescue signalling. You will master the S.T.O.P. procedure, the survival priorities rule of three, the fire triangle, shelter site selection, and universal distress signals. Complete training modules to earn XP, climb the rank ladder, and file your survival SITREPs.</p>
+      </div>
+
+      <!-- Metrics row -->
+      <div class="grid grid-4" style="margin-bottom: 20px;">
+        <div class="metric">
+          <div class="m-ico">🎯</div>
+          <div class="m-val" id="cmdMissionsDone">0</div>
+          <div class="m-lbl" data-i18n="Missions Complete">Missions Complete</div>
+          <div class="m-sub" id="cmdMissionsTotal" data-i18n="of 8">of 8</div>
+        </div>
+        <div class="metric">
+          <div class="m-ico">⚡</div>
+          <div class="m-val" id="cmdXP">0</div>
+          <div class="m-lbl" data-i18n="Total XP">Total XP</div>
+          <div class="m-sub" id="cmdXPNext" data-i18n="+300 to next rank">+300 to next rank</div>
+        </div>
+        <div class="metric warn">
+          <div class="m-ico">📝</div>
+          <div class="m-val" id="cmdSitreps">0</div>
+          <div class="m-lbl" data-i18n="SITREPs Filed">SITREPs Filed</div>
+          <div class="m-sub" data-i18n="Filing recommended">Filing recommended</div>
+        </div>
+        <div class="metric">
+          <div class="m-ico">🏆</div>
+          <div class="m-val" id="cmdBadges">0</div>
+          <div class="m-lbl" data-i18n="Badges Earned">Badges Earned</div>
+          <div class="m-sub" id="cmdBadgeTotal" data-i18n="of 8">of 8</div>
+        </div>
+      </div>
+
+      <!-- Mission briefing + survival hazard panel -->
+      <div class="briefing">
+        <div class="mission-banner">
+          <div class="tag-row">
+            <span class="tag signal" data-i18n="OPERATION WILDWOOD">OPERATION WILDWOOD</span>
+            <span class="tag live" id="opStatusTag" data-i18n="ACTIVE">ACTIVE</span>
+            <span class="tag" data-i18n="RED STAR SURVIVAL PHASE">RED STAR SURVIVAL PHASE</span>
+          </div>
+          <h2 data-i18n="Current Operation: Bushcraft & Survival">Current Operation: Bushcraft & Survival</h2>
+          <p class="mission-sub" data-i18n="Your survival instructor has cleared you to begin the Bushcraft & Survival training rotation. Work through each performance objective in sequence. Each mission is a hands-on survival simulation — you will apply the S.T.O.P. procedure, build emergency shelters, light and maintain fires, purify water, identify safe forage, and signal for rescue just like a real cadet operating in the wilderness during a survival exercise.">Your survival instructor has cleared you to begin the Bushcraft & Survival training rotation. Work through each performance objective in sequence. Each mission is a hands-on survival simulation — you will apply the S.T.O.P. procedure, build emergency shelters, light and maintain fires, purify water, identify safe forage, and signal for rescue just like a real cadet operating in the wilderness during a survival exercise.</p>
+
+          <div class="chapter-list" id="chapterList">
+            <!-- chapters injected by JS -->
+          </div>
+        </div>
+
+        <div class="threat-panel">
+          <h2><span class="ico">⚠️</span> <span data-i18n="Survival Hazard Assessment">Survival Hazard Assessment</span></h2>
+          <p class="muted" style="font-size:12px; line-height:1.6;" data-i18n="Wilderness survival hazards cadets must remain aware of in the field. Threat levels update as you progress.">Wilderness survival hazards cadets must remain aware of in the field. Threat levels update as you progress.</p>
+          <div class="threat-meter">
+            <div class="threat-bar"><div class="threat-fill" id="threatFill" style="width: 35%;"></div></div>
+            <div class="threat-labels"><span data-i18n="SAFE">SAFE</span><span data-i18n="CAUTION">CAUTION</span><span data-i18n="HIGH">HIGH</span></div>
+          </div>
+          <div id="threatItems">
+            <div class="threat-item">
+              <div class="ti-ico">🌡️</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Cold Exposure">Cold Exposure</div>
+                <div class="ti-desc" data-i18n="Hypothermia is the number one wilderness killer. Shelter and fire are your first priorities in cold conditions.">Hypothermia is the number one wilderness killer. Shelter and fire are your first priorities in cold conditions.</div>
+              </div>
+              <div class="ti-level high" data-i18n="HIGH">HIGH</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">💧</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Dehydration">Dehydration</div>
+                <div class="ti-desc" data-i18n="You can survive only 3 days without water. Always locate and purify a water source early.">You can survive only 3 days without water. Always locate and purify a water source early.</div>
+              </div>
+              <div class="ti-level high" data-i18n="HIGH</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">🥶</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Seven Enemies of Survival">Seven Enemies of Survival</div>
+                <div class="ti-desc" data-i18n="Pain, Cold, Thirst, Hunger, Fatigue, Boredom, and Loneliness erode your will to survive. Maintain a positive attitude.">Pain, Cold, Thirst, Hunger, Fatigue, Boredom, and Loneliness erode your will to survive. Maintain a positive attitude.</div>
+              </div>
+              <div class="ti-level med" data-i18n="MED">MED</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">🍄</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Unsafe Foraging">Unsafe Foraging</div>
+                <div class="ti-desc" data-i18n="Eating unknown plants or mushrooms can be fatal. If you cannot identify it with certainty, do not eat it.">Eating unknown plants or mushrooms can be fatal. If you cannot identify it with certainty, do not eat it.</div>
+              </div>
+              <div class="ti-level med" data-i18n="MED">MED</div>
+            </div>
+            <div class="threat-item">
+              <div class="ti-ico">🔥</div>
+              <div class="ti-body">
+                <div class="ti-name" data-i18n="Fire Danger Rating">Fire Danger Rating</div>
+                <div class="ti-desc" data-i18n="Check the CFFDRS rating before lighting any fire. Extreme conditions mean no open flames permitted.">Check the CFFDRS rating before lighting any fire. Extreme conditions mean no open flames permitted.</div>
+              </div>
+              <div class="ti-level low" data-i18n="LOW">LOW</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TRAINING (Module List) ===== -->
+    <section class="section" id="section-training">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Training Modules">▸ Training Modules</div>
+        <h1 data-i18n="Bushcraft Training Pathway">Bushcraft Training Pathway</h1>
+        <p data-i18n="The Bushcraft & Survival training pathway is built in sequence following the Red Star wilderness survival syllabus (PO 224). Each module teaches core survival knowledge and then tests it with a hands-on simulation. Complete modules in order to unlock the next.">The Bushcraft & Survival training pathway is built in sequence following the Red Star wilderness survival syllabus (PO 224). Each module teaches core survival knowledge and then tests it with a hands-on simulation. Complete modules in order to unlock the next.</p>
+      </div>
+      <div class="mission-grid" id="trainingGrid">
+        <!-- training cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- ===== MISSIONS (Active Task Console) ===== -->
+    <section class="section" id="section-missions">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Mission Simulator">▸ Mission Simulator</div>
+        <h1 id="missionHeaderTitle" data-i18n="Select a Mission">Select a Mission</h1>
+        <p id="missionHeaderSub" data-i18n="Choose a training module from the Training tab, or pick a mission below to enter the simulator.">Choose a training module from the Training tab, or pick a mission below to enter the simulator.</p>
+      </div>
+
+      <div id="missionSelector" class="mission-grid">
+        <!-- mission selector cards -->
+      </div>
+
+      <div id="missionConsole" style="display:none;">
+        <!-- Active task console injected here -->
+      </div>
+    </section>
+
+    <!-- ===== ANALYSIS ===== -->
+    <section class="section" id="section-analysis">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Performance Analysis">▸ Performance Analysis</div>
+        <h1 data-i18n="Bushcraft Performance Dashboard">Bushcraft Performance Dashboard</h1>
+        <p data-i18n="Track your progress across bushcraft and survival training modules. XP is awarded for completing mission tasks correctly. Wrong attempts reduce your mission score but you can retry.">Track your progress across bushcraft and survival training modules. XP is awarded for completing mission tasks correctly. Wrong attempts reduce your mission score but you can retry.</p>
+      </div>
+
+      <div class="analysis-grid">
+        <div class="stat-block">
+          <h3><span class="ico">📊</span> <span data-i18n="Module Progress">Module Progress</span></h3>
+          <div class="progress-chart" id="progressChart">
+            <!-- progress bars injected -->
+          </div>
+        </div>
+        <div class="stat-block">
+          <h3><span class="ico">🎯</span> <span data-i18n="Rank Progress">Rank Progress</span></h3>
+          <div class="rank-ring-wrap">
+            <svg class="rank-ring" width="140" height="140" viewBox="0 0 140 140">
+              <circle class="ring-bg" cx="70" cy="70" r="60" stroke="var(--panel-border, #2a2014)" stroke-width="10" fill="none"></circle>
+              <circle id="xpRingFg" cx="70" cy="70" r="60" stroke="var(--ember, #e8762e)" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="377" transform="rotate(-90 70 70)"></circle>
+            </svg>
+            <div class="rank-ring-center">
+              <span class="ring-xp" id="ringXP">0</span>
+              <span class="ring-label" id="ringRankLabel">Recruit</span>
+            </div>
+          </div>
+          <div class="stat-row"><span data-i18n="Next Rank">Next Rank</span><strong id="nextRankName">Survival Cadet</strong></div>
+          <div class="stat-row"><span data-i18n="XP to Next">XP to Next</span><strong id="ringXPToNext">0 / 200 XP to next rank</strong></div>
+        </div>
+        <div class="stat-block">
+          <h3><span class="ico">📈</span> <span data-i18n="Overall Statistics">Overall Statistics</span></h3>
+          <div class="stat-row"><span data-i18n="Missions Complete">Missions Complete</span><strong id="analysisMissionsDone">0 / 8</strong></div>
+          <div class="stat-row"><span data-i18n="Total XP">Total XP</span><strong id="analysisXP">0</strong></div>
+          <div class="stat-row"><span data-i18n="Tasks Completed">Tasks Completed</span><strong id="analysisTasks">0</strong></div>
+          <div class="stat-row"><span data-i18n="Total Attempts">Total Attempts</span><strong id="totalAttempts">0</strong></div>
+          <div class="stat-row"><span data-i18n="Wrong Attempts">Wrong Attempts</span><strong id="wrongAttempts">0</strong></div>
+          <div class="stat-row"><span data-i18n="Accuracy">Accuracy</span><strong id="accuracyPct">100%</strong></div>
+          <div class="stat-row"><span data-i18n="Current Streak">Current Streak</span><strong id="currentStreak">0</strong></div>
+          <div class="stat-row"><span data-i18n="Best Streak">Best Streak</span><strong id="bestStreak">0</strong></div>
+        </div>
+        <div class="stat-block">
+          <h3><span class="ico">🔥</span> <span data-i18n="Mission XP Chart">Mission XP Chart</span></h3>
+          <div class="xp-bar-chart" id="xpBarChart"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SITREP ===== -->
+    <section class="section" id="section-sitrep">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Field Reports">▸ Field Reports</div>
+        <h1 data-i18n="SITREP Filing">SITREP Filing</h1>
+        <p data-i18n="A Situation Report (SITREP) is how cadets communicate survival status to their instructor. File a SITREP after each mission to log what you learned and any survival errors you identified in the field.">A Situation Report (SITREP) is how cadets communicate survival status to their instructor. File a SITREP after each mission to log what you learned and any survival errors you identified in the field.</p>
+      </div>
+
+      <div class="sitrep-form">
+        <div class="sitrep-row">
+          <div class="sitrep-label" data-i18n="Mission Reference">Mission Reference</div>
+          <select class="sitrep-input" id="sitrepMission">
+            <option value="" data-i18n="Select a completed mission…">Select a completed mission…</option>
+          </select>
+        </div>
+        <div class="sitrep-row">
+          <div class="sitrep-label" data-i18n="Overall Status">Overall Status</div>
+          <select class="sitrep-input" id="sitrepStatus">
+            <option value="" data-i18n="Choose status…">Choose status…</option>
+            <option value="NOMINAL" data-i18n="NOMINAL — All objectives met">NOMINAL — All objectives met</option>
+            <option value="MINOR_HAZARD" data-i18n="MINOR HAZARD — Completed with survival errors">MINOR HAZARD — Completed with survival errors</option>
+            <option value="ABORTED" data-i18n="ABORTED — Mission not completed">ABORTED — Mission not completed</option>
+          </select>
+        </div>
+        <div class="sitrep-row">
+          <div class="sitrep-label" data-i18n="Summary of Events">Summary of Events</div>
+          <textarea class="sitrep-textarea" id="sitrepSummary" data-i18n-placeholder="Summarise what happened during the survival mission. Include any errors identified and lessons learned. (Min 20 characters)"></textarea>
+        </div>
+        <button class="btn btn-primary" id="fileSitrepBtn" type="button" data-i18n="📝 File SITREP">📝 File SITREP</button>
+        <div class="task-feedback" id="sitrepFeedback"></div>
+      </div>
+
+      <div class="sitrep-list" id="sitrepLog">
+        <p class="muted" style="text-align:center; padding:20px; color:var(--ink-3); font-size:13px;" data-i18n="No SITREPs filed yet. Complete a mission and file your first report.">No SITREPs filed yet. Complete a mission and file your first report.</p>
+      </div>
+    </section>
+
+    <!-- ===== RANKS ===== -->
+    <section class="section" id="section-ranks">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Rank Progression">▸ Rank Progression</div>
+        <h1 data-i18n="Bushcraft Rank Ladder">Bushcraft Rank Ladder</h1>
+        <p data-i18n="As you complete bushcraft and survival training modules and earn XP, you advance through the survival ranks. Each rank unlocks new responsibilities and recognition in the field.">As you complete bushcraft and survival training modules and earn XP, you advance through the survival ranks. Each rank unlocks new responsibilities and recognition in the field.</p>
+      </div>
+      <div class="rank-list" id="rankList">
+        <!-- rank rows injected -->
+      </div>
+    </section>
+
+    <!-- ===== LEARN ===== -->
+    <section class="section" id="section-learn">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Learning Library">▸ Learning Library</div>
+        <h1 data-i18n="Bushcraft Knowledge Base">Bushcraft Knowledge Base</h1>
+        <p data-i18n="Reference materials covering the theory behind each bushcraft and survival training module from the Red Star wilderness survival syllabus (PO 224). Read these before or after missions to deepen your understanding of survival psychology, shelters, fire, water, foraging, and signalling. Reading articles also earns a small XP bonus.">Reference materials covering the theory behind each bushcraft and survival training module from the Red Star wilderness survival syllabus (PO 224). Read these before or after missions to deepen your understanding of survival psychology, shelters, fire, water, foraging, and signalling. Reading articles also earns a small XP bonus.</p>
+      </div>
+      <div class="learn-grid" id="learnGrid">
+        <!-- learn cards injected -->
+      </div>
+    </section>
+
+    <!-- ===== SURVIVAL TRAIL (Unique Interactive Game with Music) ===== -->
+    <section class="section" id="section-trail">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="▸ Survival Trail">▸ Survival Trail</div>
+        <h1 data-i18n="Survival Trail — Interactive Wilderness Simulator">Survival Trail — Interactive Wilderness Simulator</h1>
+        <p data-i18n="You are stranded alone in the wilderness with nightfall approaching. The Survival Trail is a multi-stage interactive scenario that tests everything you have learned. Make the right decisions at each stage — S.T.O.P., build shelter, light a fire, purify water, and signal for rescue. Every choice affects your survival condition meters. Complete all stages successfully to earn the Survival Trail badge. Toggle on the campfire music for an immersive wilderness atmosphere.">You are stranded alone in the wilderness with nightfall approaching. The Survival Trail is a multi-stage interactive scenario that tests everything you have learned. Make the right decisions at each stage — S.T.O.P., build shelter, light a fire, purify water, and signal for rescue. Every choice affects your survival condition meters. Complete all stages successfully to earn the Survival Trail badge. Toggle on the campfire music for an immersive wilderness atmosphere.</p>
+      </div>
+
+      <!-- Music control -->
+      <div class="trail-music-control" id="trailMusicControl">
+        <div class="tmc-ico">🎵</div>
+        <div class="tmc-text">
+          <div class="tmc-label" data-i18n="Campfire Music">Campfire Music</div>
+          <div class="tmc-sub" data-i18n="Click to toggle ambient wilderness sounds">Click to toggle ambient wilderness sounds</div>
+        </div>
+        <div class="tmc-note"></div>
+      </div>
+
+      <div class="trail-wrap">
+        <div class="trail-stage" id="trailStage">
+          <!-- Survival Trail game injected by JS -->
+        </div>
+        <div class="trail-side" id="trailSide">
+          <!-- Survival Trail stats injected by JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== TOAST ========== -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="translations_en.js?v=2"></script>
+  <script src="translations_fr.js?v=9"></script>
+  <script src="i18n.js?v=4"></script>
+  <script src="cadet_hq.js?v=2"></script>
+  <script src="mobile-nav.js?v=2"></script>
+  <script src="bushcraft_training.js?v=2"></script>
+  <script src="multimodal.js"></script>
+</body>
+</html>

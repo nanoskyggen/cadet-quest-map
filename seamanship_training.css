@@ -1,0 +1,135 @@
+/* ============================================================
+   SEAMANSHIP & MARITIME FOUNDATIONS — seamanship_training.css
+   Module styles layered on top of cadet-html5.css.
+   Deep-navy / signal-flag theme for the Phase 2 module 301.
+   ============================================================ */
+
+/* ---------- App-bar stat chips ---------- */
+.ship-stat {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--c-panel-2); border: 1px solid var(--c-line);
+  border-radius: 999px; padding: 6px 11px; font-size: 12px; font-weight: 800;
+}
+.ship-stat__ico { font-size: 13px; }
+.ship-stat__lbl { color: var(--c-ink-3); letter-spacing: .5px; text-transform: uppercase; font-size: 10px; }
+.ship-stat__val { color: var(--c-sea-bright); }
+
+/* ---------- Rail progress ---------- */
+.ship-progress-row { display: flex; align-items: baseline; justify-content: space-between; margin: 6px 0 8px; }
+.ship-progress-row strong { font-size: 26px; font-weight: 900; color: var(--c-sea-bright); }
+.ship-small { font-size: 12.5px; }
+.ship-xp-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+
+/* ---------- Chapter list ---------- */
+.ship-chapter-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; counter-reset: chap; }
+.ship-chapter-list li { counter-increment: chap; }
+.ship-chapter-btn {
+  width: 100%; text-align: left; cursor: pointer; font: inherit;
+  display: flex; align-items: center; gap: 10px;
+  background: transparent; border: 1px solid transparent; border-radius: var(--c-radius);
+  padding: 9px 10px; color: var(--c-ink-2); transition: background .12s ease, border-color .12s ease;
+}
+.ship-chapter-btn:hover { background: var(--c-panel-2); border-color: var(--c-line); }
+.ship-chapter-btn:focus-visible { outline: 2px solid var(--c-sea); outline-offset: 1px; }
+.ship-chapter-btn .num {
+  flex: none; width: 24px; height: 24px; border-radius: 8px; display: grid; place-items: center;
+  font-size: 12px; font-weight: 900; background: var(--c-panel-3); color: var(--c-ink-2);
+}
+.ship-chapter-btn .txt { flex: 1 1 auto; font-size: 13px; font-weight: 700; }
+.ship-chapter-btn .tick { flex: none; font-size: 13px; color: var(--c-green); opacity: 0; }
+.ship-chapter-btn.is-active { background: var(--c-panel-3); border-color: var(--c-sea-dim); color: var(--c-ink); }
+.ship-chapter-btn.is-done .num { background: rgba(56, 217, 123, .18); color: var(--c-green); }
+.ship-chapter-btn.is-done .tick { opacity: 1; }
+
+/* ---------- Hero ---------- */
+.ship-hero { display: flex; gap: clamp(14px, 2.4vw, 26px); align-items: center; flex-wrap: wrap; }
+.ship-hero__badge img { border-radius: 16px; border: 2px solid rgba(255, 214, 107, .5); box-shadow: 0 8px 22px rgba(0,0,0,.35); }
+.ship-hero__text { flex: 1 1 320px; min-width: 0; }
+
+/* ---------- Deck orientation trainer ---------- */
+.ship-sim { margin-top: 14px; }
+.ship-sim .cadet-canvas { cursor: crosshair; }
+.ship-sim-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.ship-sim-feedback {
+  margin: 14px 0 0; padding: 12px 14px; border-radius: var(--c-radius);
+  background: var(--c-panel-2); border: 1px solid var(--c-line); border-left: 4px solid var(--c-sea);
+  font-size: 13px; font-weight: 700; color: var(--c-ink);
+}
+.ship-sim-feedback.good { border-left-color: var(--c-green); }
+.ship-sim-feedback.warn { border-left-color: var(--c-amber); }
+.ship-sim-feedback.bad { border-left-color: var(--c-red); }
+
+/* ---------- Reader ---------- */
+.ship-reader { display: grid; gap: 12px; }
+.ship-reader-summary { display: flex; gap: 14px; align-items: flex-start; flex-wrap: wrap; }
+.ship-reader-summary .body { flex: 1 1 300px; min-width: 0; }
+.ship-reader-summary h3 { margin: 0 0 6px; font-size: 17px; font-weight: 800; }
+.ship-reader-summary p { margin: 0; color: var(--c-ink-2); font-size: 13.5px; }
+
+/* ---------- Chapter article (inside dialog) ---------- */
+.ship-chapter-article { color: var(--c-paper-ink); }
+.ship-chapter-h { font-size: 20px; font-weight: 900; margin: 0 0 10px; color: var(--c-paper-ink); }
+.ship-chapter-body p { margin: 0 0 12px; font-size: 14.5px; line-height: 1.7; color: #24374f; }
+.ship-chapter-body strong { color: var(--c-paper-ink); }
+.ship-chapter-body ul { margin: 0 0 12px; padding-left: 20px; }
+.ship-chapter-body li { margin-bottom: 6px; font-size: 14px; color: #24374f; }
+.ship-chapter-body .callout {
+  background: #eef6ff; border: 1px solid #cfe3fb; border-left: 4px solid #2f6fbe;
+  border-radius: 10px; padding: 12px 14px; margin: 0 0 14px; font-size: 13.5px; color: #1c3a5c;
+}
+.ship-chapter-body .callout.warn { background: #fff6e6; border-color: #f4d9a6; border-left-color: #d99a2b; color: #5a3d0c; }
+.ship-chapter-body table { width: 100%; border-collapse: collapse; margin: 0 0 14px; font-size: 13px; }
+.ship-chapter-body th, .ship-chapter-body td { border: 1px solid var(--c-paper-line); padding: 8px 10px; text-align: left; }
+.ship-chapter-body th { background: var(--c-paper-2); font-weight: 800; }
+.ship-keypoints { background: var(--c-paper-2); border: 1px solid var(--c-paper-line); border-radius: 12px; padding: 14px 16px; }
+.ship-keypoints h4 { margin: 0 0 8px; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--c-paper-ink-2); }
+.ship-keypoints ul { margin: 0; padding-left: 18px; }
+.ship-keypoints li { font-size: 13.5px; margin-bottom: 5px; color: #24374f; }
+
+/* ---------- Knowledge checks ---------- */
+.ship-task-list { display: grid; gap: 12px; }
+.ship-task {
+  border: 1px solid var(--c-line); border-radius: var(--c-radius);
+  background: var(--c-panel-2); padding: 14px 16px;
+}
+.ship-task.is-done { border-color: rgba(56, 217, 123, .5); background: linear-gradient(160deg, rgba(56,217,123,.08), var(--c-panel-2)); }
+.ship-task__head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.ship-task__num { flex: none; width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font-weight: 900; font-size: 12px; background: var(--c-panel-3); color: var(--c-ink-2); }
+.ship-task.is-done .ship-task__num { background: rgba(56,217,123,.2); color: var(--c-green); }
+.ship-task__title { font-size: 14px; font-weight: 800; }
+.ship-task__prompt { font-size: 13px; color: var(--c-ink-2); margin: 0 0 10px; }
+.ship-task__opts { display: grid; gap: 8px; }
+.ship-opt {
+  text-align: left; cursor: pointer; font: inherit; font-size: 13px;
+  background: var(--c-void); border: 1px solid var(--c-line); color: var(--c-ink);
+  border-radius: var(--c-radius); padding: 10px 12px; transition: border-color .12s ease, background .12s ease;
+}
+.ship-opt:hover { border-color: var(--c-sea-dim); }
+.ship-opt.correct { border-color: var(--c-green); background: rgba(56,217,123,.12); }
+.ship-opt.wrong { border-color: var(--c-red); background: rgba(255,90,110,.12); }
+.ship-task__fb { margin: 10px 0 0; font-size: 12.5px; font-weight: 700; }
+.ship-task__fb.good { color: var(--c-green); }
+.ship-task__fb.bad { color: var(--c-red); }
+.ship-task__input { display: flex; gap: 8px; flex-wrap: wrap; }
+.ship-task__input input { flex: 1 1 160px; }
+
+/* ---------- Earn ---------- */
+.ship-earn { text-align: center; }
+.ship-earn .cadet-btn { margin-top: 8px; }
+.ship-earn.is-ready { border-color: rgba(255,214,107,.55); box-shadow: 0 0 0 1px rgba(255,214,107,.25), 0 12px 30px rgba(0,0,0,.4); }
+
+/* ---------- Badge dialog ---------- */
+.ship-badge-win { text-align: center; }
+.ship-badge-win img { border-radius: 18px; border: 3px solid var(--c-gold); box-shadow: 0 10px 26px rgba(0,0,0,.4); }
+.ship-badge-win h3 { margin: 14px 0 6px; font-size: 22px; font-weight: 900; }
+.ship-badge-win p { color: var(--c-ink-2); font-size: 13.5px; margin: 0 auto; max-width: 46ch; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 620px) {
+  .ship-stat__lbl { display: none; }
+  .ship-hero { text-align: center; justify-content: center; }
+  .cadet-appbar__actions { gap: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ship-opt { transition: none; }
+}

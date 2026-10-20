@@ -1,0 +1,221 @@
+/* ============================================================
+   MUSIC TRAINING — "CONCERT HALL" THEME
+   CSS-only structural enhancements layered on top of music_training.css
+   Adds sheet music staff line decorations, musical clef watermarks,
+   and concert hall / recital program aesthetic. No HTML/JS changes.
+   ============================================================ */
+
+/* ---------- Sidebar: Concert program backdrop ---------- */
+.sidebar {
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(123, 79, 214, 0.06), transparent 40%),
+    linear-gradient(180deg, var(--panel), var(--void));
+  position: relative;
+}
+/* Sheet music staff lines as texture */
+.sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(245, 200, 76, 0.02) 28px,
+      rgba(245, 200, 76, 0.02) 29px,
+      transparent 29px,
+      transparent 30px,
+      rgba(245, 200, 76, 0.02) 30px,
+      rgba(245, 200, 76, 0.02) 31px,
+      transparent 31px,
+      transparent 32px,
+      rgba(245, 200, 76, 0.02) 32px,
+      rgba(245, 200, 76, 0.02) 33px,
+      transparent 33px,
+      transparent 34px,
+      rgba(245, 200, 76, 0.02) 34px,
+      rgba(245, 200, 76, 0.02) 35px,
+      transparent 35px,
+      transparent 56px
+    );
+  pointer-events: none;
+}
+
+/* Nav buttons — recital program listing feel */
+.nav-btn {
+  border-left: 3px solid transparent;
+  transition: border-color .2s, background .2s;
+  position: relative;
+}
+.nav-btn:hover {
+  border-left-color: var(--music-dim);
+}
+.nav-btn.active {
+  border-left-color: var(--music-bright);
+}
+/* Active — gold accent dot like a fermata mark */
+.nav-btn.active::after {
+  content: "";
+  position: absolute;
+  right: 8px; top: 50%;
+  transform: translateY(-50%);
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+/* ---------- Section headers — recital movement prefix ---------- */
+.section-head .eyebrow {
+  position: relative;
+  padding-left: 22px;
+}
+.section-head .eyebrow::before {
+  content: "♪";
+  position: absolute;
+  left: 0;
+  color: var(--music-bright);
+  font-size: 14px;
+  top: -2px;
+}
+.section-head h1 {
+  position: relative;
+}
+.section-head h1::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--music-bright), transparent);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* ---------- Mission cards — sheet music cards ---------- */
+.mission-card {
+  position: relative;
+}
+/* Staff line accent at bottom — using ::before to avoid ::after conflict with .done */
+.mission-card::before {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 18px;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(245, 200, 76, 0.06) 3px,
+      rgba(245, 200, 76, 0.06) 4px
+    );
+  opacity: 0;
+  transition: opacity .2s;
+  pointer-events: none;
+}
+.mission-card:hover:not(.locked)::before {
+  opacity: 1;
+}
+.mission-card.done::before {
+  opacity: 0.5;
+}
+
+/* ---------- Briefing panel — concert stage ---------- */
+/* Background enhancement only; ::after already used for music note watermark */
+.mission-banner {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(123,79,214,0.12), transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(245, 200, 76, 0.05), transparent 40%),
+    linear-gradient(180deg, var(--panel), var(--void)) !important;
+}
+
+/* ---------- Task brief — musical score document ---------- */
+.task-brief {
+  border-left: 3px solid var(--music-dim) !important;
+  position: relative;
+}
+.task-brief::before {
+  content: "SCORE";
+  position: absolute;
+  top: -1px;
+  right: 10px;
+  font-size: 8px;
+  font-family: var(--mono);
+  letter-spacing: 2px;
+  color: var(--music-dim);
+  background: var(--panel);
+  padding: 0 6px;
+}
+
+/* ---------- Cards — recital program panels ---------- */
+.card {
+  border-top: 2px solid var(--line-soft);
+  position: relative;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0;
+  width: 30px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--music));
+}
+
+/* ---------- Rank ladder — musician qualification stripes ---------- */
+.rank-row {
+  border-left: 3px solid var(--line-soft);
+  position: relative;
+}
+.rank-row.current {
+  border-left: 3px solid var(--gold);
+  box-shadow: -2px 0 12px rgba(245, 200, 76, 0.2);
+}
+
+/* ---------- Learn library cards — music reference sheets ---------- */
+.lib-card {
+  border-left: 3px solid var(--music-dim);
+  position: relative;
+}
+.lib-card::before {
+  content: "♫";
+  position: absolute;
+  top: 8px; right: 10px;
+  font-size: 12px;
+  color: var(--music-dim);
+  opacity: 0.4;
+}
+.lib-card.read {
+  border-left-color: var(--green-dim);
+}
+
+/* ---------- Tags — musical designation feel ---------- */
+.tag {
+  border-radius: 3px;
+  font-family: var(--mono);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  background: rgba(123, 79, 214, 0.06);
+}
+
+/* ---------- Task console — conductor's podium ---------- */
+.task-console {
+  border-top: 2px solid var(--music-dim);
+  position: relative;
+}
+.task-console::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--music-bright) 40%, transparent);
+}
+
+/* ---------- Step labels — movement numbers ---------- */
+.task-step-label .step-num {
+  background: var(--music-dim) !important;
+  color: var(--ink) !important;
+}
