@@ -43,7 +43,9 @@ python3 -m http.server 8000
 
 ## Hosting
 
-This repository is a static site and can be published directly with **GitHub Pages** (Settings → Pages → Deploy from branch → `main` / root). The homepage is `index.html`.
+This repository is a static site published with **GitHub Pages** (deploy from branch `main` / root).
+
+**🔗 Live site: https://nanoskyggen.github.io/cadet-quest-map/**
 
 ## License
 
